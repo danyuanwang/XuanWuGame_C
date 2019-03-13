@@ -1,11 +1,22 @@
 #include <iostream>
-#include <SDL.h>
-
+#include "GameEngine.h"
+#include"Board.h"
 int main(int, char**) {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		return 1;
+	GameEngine game_engine;
+	Board game_board;
+
+	game_engine.Initialize();
+
+	SDL_Event e;
+	e.type = SDL_FIRSTEVENT;
+
+	while (e.type != SDL_QUIT) {
+		//Handle events on queue 
+		while (game_engine.PollEvent(e) != 0) {
+			game_board.CheckEvent(e);
+		}
+		game_board.Draw();
+		game_engine.Flip();
 	}
-	SDL_Quit();
 	return 0;
 }
