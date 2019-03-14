@@ -3,12 +3,13 @@
 class Board
 {
 private:
-	SDL_Surface* m_screen = NULL;
+	SDL_Surface* m_pScreen = NULL;
 
 public:
 	Board();
 	~Board();
+	void SetScreen(SDL_Surface* pScreen);
 	void CheckEvent(SDL_Event &e);
-	void Draw(void);
+	void Draw();
 };
 
