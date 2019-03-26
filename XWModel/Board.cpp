@@ -65,6 +65,10 @@ void Board::TakeRequest(GamePlayRequest & request)
 
 void Board::GetPropertyTree(ptree & propert_tree) const
 {
-	propert_tree.put_value(GetClassName());
-	PROPERTY_TREE_PUT(propert_tree, _game_title);
+	PROPERTY_TREE_PUT_VALUE_STRING(propert_tree, GetClassName());
+	PROPERTY_TREE_PUT_STRING(propert_tree, _game_title);
+	PROPERTY_TREE_PUT(propert_tree, _screen_width);
+	PROPERTY_TREE_PUT(propert_tree, _screen_height);
+	PROPERTY_TREE_PUT(propert_tree, _screen_margin_x);
+	PROPERTY_TREE_PUT(propert_tree, _screen_margin_y);
 }
