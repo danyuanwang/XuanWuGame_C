@@ -6,6 +6,7 @@
 #include <boost/asio/ip/tcp.hpp>
 #include <string>
 #include <ctime>
+#include "..\XWModel\GameModel.h"
 
 using namespace boost::asio;
 using namespace boost::asio::ip;
@@ -35,6 +36,7 @@ void accept_handler(const boost::system::error_code &ec)
 
 int main()
 {
+	GameModel gameModel;
 	tcp_acceptor.listen();
 	tcp_acceptor.async_accept(tcp_socket, accept_handler);
 	ioservice.run();

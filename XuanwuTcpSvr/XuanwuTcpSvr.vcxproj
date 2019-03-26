@@ -161,6 +161,11 @@
   <ItemGroup>
     <ClCompile Include="XuanwuTcpSvr.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XWModel\XWModel.vcxproj">
+      <Project>{2a923120-8868-440b-a8ac-c972b41cd968}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
