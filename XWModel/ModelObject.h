@@ -13,5 +13,7 @@ public:
 
 	virtual void TakeRequest(GamePlayRequest & request) = 0;
 	virtual void GetPropertyTree(ptree& propert_tree) const = 0;
+	virtual const char* GetClassName() const = 0;
+
 };
 
