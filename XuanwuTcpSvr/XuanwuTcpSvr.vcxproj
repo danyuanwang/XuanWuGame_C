@@ -160,8 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConnectionSession.cpp" />
-    <ClCompile Include="NetPackMsg.cpp" />
-    <ClCompile Include="TcpNetPackMsg.cpp" />
+    <ClCompile Include="NetPackMsgHandler.cpp" />
+    <ClCompile Include="TcpNetPackMsgHandler.cpp" />
     <ClCompile Include="XuanwuTcpSvr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,8 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectionSession.h" />
-    <ClInclude Include="NetPackMsg.h" />
-    <ClInclude Include="TcpNetPackMsg.h" />
+    <ClInclude Include="NetPackMsgHandler.h" />
+    <ClInclude Include="TcpNetPackMsgHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

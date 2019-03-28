@@ -1,7 +1,7 @@
 #include <memory>
 #include <string>
-#include "NetPackMsg.h"
-#include "TcpNetPackMsg.h"
+#include "NetPackMsgHandler.h"
+#include "TcpNetPackMsgHandler.h"
 
 NetPackMsgHandler::NetPackMsgHandler()
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "NetPackMsg.h"
+#include "NetPackMsgHandler.h"
 class TcpNetPackMsgHandler :
 	public NetPackMsgHandler
 {

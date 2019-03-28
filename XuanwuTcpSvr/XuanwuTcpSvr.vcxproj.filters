@@ -21,10 +21,10 @@
     <ClCompile Include="ConnectionSession.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NetPackMsg.cpp">
+    <ClCompile Include="NetPackMsgHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TcpNetPackMsg.cpp">
+    <ClCompile Include="TcpNetPackMsgHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="ConnectionSession.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NetPackMsg.h">
+    <ClInclude Include="NetPackMsgHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TcpNetPackMsg.h">
+    <ClInclude Include="TcpNetPackMsgHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include <memory>
 #include <deque>
 #include <boost/asio/io_service.hpp>
-#include "NetPackMsg.h"
+#include "NetPackMsgHandler.h"
 
 
 class ConnectionSession:
