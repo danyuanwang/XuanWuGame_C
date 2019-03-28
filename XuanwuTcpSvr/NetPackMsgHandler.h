@@ -25,6 +25,7 @@ public:
 
 	virtual int ReadAsync(OnReceivedMsgCallback callback) = 0;
 	virtual int WriteAsync(std::unique_ptr<NetPackMsg>  up_message, OnSentMsgCallback onSentCallback) = 0;
+	virtual void CloseSocket() = 0;
 
 	static NetPackMsgHandler* CreateNetPackMsgHandler(tcp::socket socket);
 	static NetPackMsgHandler* CreateNetPackMsgHandler(udp::socket socket) { throw E_NOTIMPL; }

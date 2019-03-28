@@ -9,6 +9,7 @@ public:
 
 	int ReadAsync(OnReceivedMsgCallback callback);
 	int WriteAsync(std::unique_ptr<NetPackMsg>  up_message, OnSentMsgCallback onSentCallback);
+	void CloseSocket();
 
 private:
 	tcp::socket _socket;

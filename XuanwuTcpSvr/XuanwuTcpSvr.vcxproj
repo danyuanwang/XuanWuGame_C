@@ -159,8 +159,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConnectionMgr.cpp" />
     <ClCompile Include="ConnectionSession.cpp" />
     <ClCompile Include="NetPackMsgHandler.cpp" />
+    <ClCompile Include="Server.cpp" />
     <ClCompile Include="TcpNetPackMsgHandler.cpp" />
     <ClCompile Include="XuanwuTcpSvr.cpp" />
   </ItemGroup>
@@ -170,8 +172,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConnectionMgr.h" />
     <ClInclude Include="ConnectionSession.h" />
     <ClInclude Include="NetPackMsgHandler.h" />
+    <ClInclude Include="Server.h" />
     <ClInclude Include="TcpNetPackMsgHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

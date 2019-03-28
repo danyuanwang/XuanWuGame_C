@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include <deque>
-#include <boost/asio/io_service.hpp>
 #include "NetPackMsgHandler.h"
 
 
@@ -18,9 +17,11 @@ private:
 	void _do_write();
 public:
 	ConnectionSession(tcp::socket socket);
+	ConnectionSession(udp::socket socket);
 
 	~ConnectionSession();
 	void Start();
+	void Stop();
 	void Deliver(std::unique_ptr<NetPackMsg>  up_message);
 };
 

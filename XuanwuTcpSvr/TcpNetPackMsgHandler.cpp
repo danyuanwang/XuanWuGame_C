@@ -71,3 +71,8 @@ int TcpNetPackMsgHandler::WriteAsync(std::unique_ptr<NetPackMsg> up_message, OnS
 
 	return 0;
 }
+
+void TcpNetPackMsgHandler::CloseSocket()
+{
+	_socket.close();
+}
