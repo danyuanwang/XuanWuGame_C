@@ -111,3 +111,5 @@ UpgradeLog*.XML
 # SVN files
 .svn
 
+# Ignore the generated files under boost folder after we do the first-time checkin
+boost

@@ -37,6 +37,7 @@ void accept_handler(const boost::system::error_code &ec)
 int main()
 {
 	GameModel gameModel;
+
 	tcp_acceptor.listen();
 	tcp_acceptor.async_accept(tcp_socket, accept_handler);
 	ioservice.run();
