@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="CommonStructure.h" />
     <ClInclude Include="DataModel.h" />
     <ClInclude Include="GameModel.h" />
     <ClInclude Include="GamePlayRequest.h" />

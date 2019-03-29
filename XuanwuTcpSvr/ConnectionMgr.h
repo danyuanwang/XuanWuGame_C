@@ -29,13 +29,13 @@ private:
 
 	std::mutex _queue_mutex;
 	std::condition_variable _queue_cond;
-	std::thread _net_msg_consumer_thread;
-	bool _quit_thread;
+	std::thread _thread_net_msg_consumer;
+	bool _signal_quit_thread;
 
-	static void _consume_net_msg(ConnectionMgr* connnectMgr);
+	static void _s_process_net_msg(ConnectionMgr* connnectMgr);
+	void _process_net_msg();
 
 	DataModel _dataModel;
-
 	void _notify_client();
 };
 

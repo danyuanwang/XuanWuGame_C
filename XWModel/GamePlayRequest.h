@@ -1,4 +1,5 @@
 #pragma once
+#include "string"
 enum  GameScenarioTypeEnum
 {
 	GameScenario_Map = 0,
@@ -40,12 +41,17 @@ public:
 		GameOjbectTypeEnum to, 
 		GameOjbectActionTypeEnum action
 	);
+
+	GamePlayRequest(const char* json);
+
 	~GamePlayRequest();
 
 	GameScenarioTypeEnum GetScenarioType();
 	GameOjbectTypeEnum GetFromType();
 	GameOjbectTypeEnum GetToType();
 	GameOjbectActionTypeEnum GetActionType();
+	
+	std::string ToJson();
 
 private:
 	GameScenarioTypeEnum _scenario;
@@ -53,5 +59,6 @@ private:
 	GameOjbectTypeEnum _to;
 	GameOjbectActionTypeEnum _action;
 
+	const char* _get_class_name() { return "GamePlayRequest"; }
 };
 

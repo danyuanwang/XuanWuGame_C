@@ -2,11 +2,11 @@
 
 
 
-ConnectionMgr::ConnectionMgr():_quit_thread(false)
+ConnectionMgr::ConnectionMgr():_signal_quit_thread(false)
 {
-	std::thread t { _consume_net_msg, this };
+	std::thread t { _s_process_net_msg, this };
 
-	_net_msg_consumer_thread = std::move(t);
+	_thread_net_msg_consumer = std::move(t);
 
 }
 
@@ -33,9 +33,9 @@ void ConnectionMgr::StopAll()
 	}
 
 	std::lock_guard<std::mutex> lck(_queue_mutex);
-	_quit_thread = true;
+	_signal_quit_thread = true;
 	_queue_cond.notify_one();
-	_net_msg_consumer_thread.join();
+	_thread_net_msg_consumer.join();
 
 }
 
@@ -53,27 +53,31 @@ int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
 	return 0;
 }
 
-void ConnectionMgr::_consume_net_msg(ConnectionMgr* p_connnectMgr)
+void ConnectionMgr::_s_process_net_msg(ConnectionMgr* p_connnectMgr)
 {
-	while (!p_connnectMgr->_quit_thread)
+	p_connnectMgr->_process_net_msg();
+}
+
+void ConnectionMgr::_process_net_msg()
+{
+	while (!_signal_quit_thread)
 	{
-		std::unique_lock<std::mutex> lck(p_connnectMgr->_queue_mutex);
-		p_connnectMgr->_queue_cond.wait(lck);
-		if (!p_connnectMgr->_quit_thread)
+		std::unique_lock<std::mutex> lck(_queue_mutex);
+		_queue_cond.wait(lck);
+		if (!_signal_quit_thread)
 		{
-			while (!p_connnectMgr->_queue_net_msg.empty())
+			while (!_queue_net_msg.empty())
 			{
-				auto msg = std::move(p_connnectMgr->_queue_net_msg.front());
-				p_connnectMgr->_queue_net_msg.pop();
+				auto msg = std::move(_queue_net_msg.front());
+				_queue_net_msg.pop();
 
 				//handle msg
-				p_connnectMgr->_notify_client();
+				_notify_client();
 			}
 		}
 	}
 
 }
-
 void ConnectionMgr::_notify_client()
 {
 
