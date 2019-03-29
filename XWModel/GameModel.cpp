@@ -17,11 +17,14 @@ GameModel::~GameModel()
 void GameModel::TakeRequest(GamePlayRequest& request)
 {
 	_gameBoard.TakeRequest(request);
+
+	/*for test purpose, need to remove*/
+	_notifyUpdate();
 }
 
-void GameModel::RegisterObserver(GameModelObserverCallbackFunc observerFunc)
+void GameModel::RegisterObserver(GameModelCallback* p_observerFunc)
 {
-	_observerVector.push_back(observerFunc);
+	_observerVector.push_back(p_observerFunc);
 }
 
 void GameModel::GetPropertyTree(ptree & propert_tree) const
@@ -31,11 +34,12 @@ void GameModel::GetPropertyTree(ptree & propert_tree) const
 
 void GameModel::_notifyUpdate()
 {
-	std::vector< GameModelObserverCallbackFunc>::const_iterator citr;
-	for (citr = _observerVector.begin(); citr < _observerVector.end(); citr++) {
+	std::vector< GameModelCallback* >::const_iterator citr;
+	for (citr = _observerVector.begin(); citr < _observerVector.end(); citr++) 
+	{
 		try
 		{
-			(*citr)(*this);
+			(*citr)->OnGameModelObserverCallback();
 		}
 		catch (const std::exception&)
 		{

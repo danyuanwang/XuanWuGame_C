@@ -2,6 +2,7 @@
 #include <Vector>
 #include <memory>
 #include "ModelObject.h"
+#include "GameModelCallback.h"
 #include "GamePlayRequest.h"
 #include "GameModel.h"
 #include "Board.h"
@@ -15,12 +16,11 @@ https://docs.microsoft.com/en-us/cpp/cpp/calling-conventions?view=vs-2017
 
 class GameModel;
 
-typedef int(__stdcall *GameModelObserverCallbackFunc)(const GameModel& model);
 
 class GameModel:public ModelObject
 {
 private:
-	std::vector<GameModelObserverCallbackFunc> _observerVector;
+	std::vector<GameModelCallback*> _observerVector; /*no ownership for the object pointers*/
 
 	void _notifyUpdate();
 
@@ -30,10 +30,10 @@ public:
 	GameModel();
 	~GameModel();
 
-	const char* GetClassName() const { return "GameModel"; }
+	const char* GetClassName() const  { return "GameModel"; }
 	void TakeRequest(GamePlayRequest& request);
 	void GetPropertyTree(ptree& propert_tree) const;
 
-	void RegisterObserver(GameModelObserverCallbackFunc observerFunc);
+	void RegisterObserver(GameModelCallback* p_observerFunc/*using ordinary pointer means no ownership*/);
 };
 

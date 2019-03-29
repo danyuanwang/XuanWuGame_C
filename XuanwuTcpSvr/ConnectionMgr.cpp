@@ -4,6 +4,8 @@
 
 ConnectionMgr::ConnectionMgr():_signal_quit_thread(false)
 {
+	_up_gameModel = std::unique_ptr<GameModel>{ new GameModel };
+
 	std::thread t { _s_process_net_msg, this };
 
 	_thread_net_msg_consumer = std::move(t);
@@ -53,6 +55,23 @@ int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
 	return 0;
 }
 
+int ConnectionMgr::OnGameModelObserverCallback()
+{
+	GamePlayRequest gr{ GameScenario_DataModel , GameOjbect_GameBoard , GameOjbect_GameView , GameOjbectAction_UpdateView };
+
+	ptree property_tree;
+	_up_gameModel->GetPropertyTree(property_tree);
+	gr.Attach(_up_gameModel->GetClassName(), property_tree);
+
+	NetPackMsg netMsg{ gr.ToJson().c_str() };
+	for (auto p = _list_session.cbegin(); p != _list_session.cend(); ++p)
+	{
+		p->get()->Deliver(&netMsg);
+	}
+
+	return 0;
+}
+
 void ConnectionMgr::_s_process_net_msg(ConnectionMgr* p_connnectMgr)
 {
 	p_connnectMgr->_process_net_msg();
@@ -71,18 +90,11 @@ void ConnectionMgr::_process_net_msg()
 				auto msg = std::move(_queue_net_msg.front());
 				_queue_net_msg.pop();
 
-				//handle msg
-				_notify_client();
+				GamePlayRequest gr {(char*)msg->Data() };
+				_up_gameModel->TakeRequest(gr);
+
 			}
 		}
 	}
 
-}
-void ConnectionMgr::_notify_client()
-{
-
-	for (auto p = _list_session.cbegin();p!=_list_session.cend();++p)
-	{
-		//p->get()->Deliver();
-	}
 }

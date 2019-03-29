@@ -1,5 +1,6 @@
 #pragma once
 #include"NetMsgCallback.h"
+#include "GameModelCallback.h"
 #include "ConnectionSession.h"
 #include <list>
 #include <memory>
@@ -8,7 +9,7 @@
 
 #include "..\XWModel\GameModel.h"
 
-class ConnectionMgr:public NetMsgCallback
+class ConnectionMgr:public NetMsgCallback, GameModelCallback
 {
 public:
 	ConnectionMgr();
@@ -22,6 +23,7 @@ public:
 	int OnReceivedMsgCallback(std::unique_ptr<NetPackMsg>  up_message);
 	int OnSentMsgCallback(boost::system::error_code ec, std::size_t);
 
+	int OnGameModelObserverCallback();
 
 private:
 	std::list<std::unique_ptr<ConnectionSession>> _list_session;
@@ -35,7 +37,6 @@ private:
 	static void _s_process_net_msg(ConnectionMgr* connnectMgr);
 	void _process_net_msg();
 
-	DataModel _dataModel;
-	void _notify_client();
+	std::unique_ptr<GameModel> _up_gameModel;
 };
 

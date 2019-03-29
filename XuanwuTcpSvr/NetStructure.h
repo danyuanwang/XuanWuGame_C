@@ -10,7 +10,14 @@ public:
 		_p_data_buffer =  new char[_length]; 
 	}
 
-	NetPackMsg(const NetPackMsg& netPackMsg) 
+	NetPackMsg(const char* c_str)
+	{
+		_length = (int)std::strlen(c_str) + 1/*the string terminator*/;
+		_p_data_buffer = new char[_length];
+		std::strcpy(_p_data_buffer, c_str); 
+	}
+
+	NetPackMsg(const NetPackMsg& netPackMsg)
 	{ 
 		_copy(netPackMsg);
 	}

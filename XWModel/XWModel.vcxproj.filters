@@ -45,6 +45,9 @@
     <ClInclude Include="CommonStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameModelCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameModel.cpp">
@@ -72,6 +75,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonStructure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameModelCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

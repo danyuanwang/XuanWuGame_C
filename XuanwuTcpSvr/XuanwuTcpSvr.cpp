@@ -3,14 +3,24 @@
 #include "Server.h"
 #include <string>
 #include <iostream>
+void PTIterateCallback(std::string key, std::string value, int level)
+{
+	if (key.empty())
+	{
+		std::cout << "node value:" << value << ", level:" << level << std::endl;
+	}
+	else
+	{
+		std::cout << "key:" << key << ", value:" << value << ", level:" << level << std::endl;
+	}
+}
+
 int main()
 {
-	//std::string ips("0.0.0.0");
-	//std::string port("2014");
+	std::string ips("0.0.0.0");
+	std::string port("2014");
 
-	//server s(ips, port);
-	//s.run();
+	server s(ips, port);
+	s.run();
 
-	GamePlayRequest request{ GameScenario_Map , GameOjbect_Player ,GameOjbect_Army ,GameOjbectAction_Move};
-	std::cout << request.ToJson();
 }

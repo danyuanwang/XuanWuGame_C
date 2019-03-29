@@ -201,6 +201,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Settings.h" />
   </ItemGroup>

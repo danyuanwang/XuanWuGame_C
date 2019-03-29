@@ -24,6 +24,7 @@
     <ClInclude Include="CommonStructure.h" />
     <ClInclude Include="DataModel.h" />
     <ClInclude Include="GameModel.h" />
+    <ClInclude Include="GameModelCallback.h" />
     <ClInclude Include="GamePlayRequest.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mine.h" />
@@ -33,8 +34,10 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="CommonStructure.cpp" />
     <ClCompile Include="DataModel.cpp" />
     <ClCompile Include="GameModel.cpp" />
+    <ClCompile Include="GameModelCallback.cpp" />
     <ClCompile Include="GamePlayRequest.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mine.cpp" />
