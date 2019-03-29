@@ -17,3 +17,8 @@ NetPackMsgHandler * NetPackMsgHandler::CreateNetPackMsgHandler(tcp::socket socke
 {
 	return new TcpNetPackMsgHandler(std::move(socket));
 }
+
+void NetPackMsgHandler::SetMsgCallback(NetMsgCallback* p_netMsgCallback)
+{
+	_p_netMsgCallback = p_netMsgCallback;
+}

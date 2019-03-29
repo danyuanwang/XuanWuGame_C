@@ -1,12 +1,13 @@
 #include "ConnectionSession.h"
 
 
-ConnectionSession::ConnectionSession(tcp::socket socket)
+ConnectionSession::ConnectionSession(tcp::socket socket, NetMsgCallback* p_net_msg_callback):_p_net_msg_callback(p_net_msg_callback)
 {
 	_up_net_msg_handler = 
 		std::unique_ptr<NetPackMsgHandler>( 
 			NetPackMsgHandler::CreateNetPackMsgHandler(std::move(socket))
 			);
+	_up_net_msg_handler.get()->SetMsgCallback(p_net_msg_callback);
 }
 
 
@@ -17,7 +18,7 @@ ConnectionSession::~ConnectionSession()
 
 void ConnectionSession::Start()
 {
-	_up_net_msg_handler->ReadAsync(_on_read_msg);
+	_up_net_msg_handler->ReadAsync();
 }
 
 void ConnectionSession::Stop()
@@ -25,10 +26,11 @@ void ConnectionSession::Stop()
 	_up_net_msg_handler->CloseSocket();
 }
 
-void ConnectionSession::Deliver(std::unique_ptr<NetPackMsg>  up_message)
+void ConnectionSession::Deliver(const NetPackMsg*  p_message)
 {
 	bool write_in_progress = !_msg_write_queue.empty();
-	_msg_write_queue.push_back(std::move(up_message));
+	auto p = std::unique_ptr<NetPackMsg>{ new NetPackMsg(*p_message) }; // make a copy
+	_msg_write_queue.push_back(std::move(p));
 
 	if (!write_in_progress)
 	{
@@ -36,20 +38,10 @@ void ConnectionSession::Deliver(std::unique_ptr<NetPackMsg>  up_message)
 	}
 }
 
-int ConnectionSession::_on_read_msg(std::unique_ptr<NetPackMsg>  up_message)
-{
-	return 0;
-}
-
-int ConnectionSession::_on_write_msg(boost::system::error_code ec, std::size_t)
-{
-	return 0;
-}
-
 void  ConnectionSession::_do_write()
 {
 	std::unique_ptr<NetPackMsg>  up_message = std::move(_msg_write_queue.front());
 	_msg_write_queue.pop_front();
 
-	_up_net_msg_handler->WriteAsync(std::move(up_message), _on_write_msg);
+	_up_net_msg_handler->WriteAsync(std::move(up_message));
 }
