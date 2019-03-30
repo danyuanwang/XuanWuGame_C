@@ -6,25 +6,16 @@
 #include "GamePlayRequest.h"
 #include "GameModel.h"
 #include "Board.h"
-/*
-__stdcall is only valid in windows platform, more information is here.
-https://docs.microsoft.com/en-us/cpp/cpp/calling-conventions?view=vs-2017
-*/
-#ifndef WIN32 
-#define __stdcall
-#endif
+#include "ConnectionMgr.h"
 
-class GameModel;
-
-
-class GameModel:public ModelObject
+class GameModel:public ModelObject, NetMsgCallback
 {
 private:
-	std::vector<GameModelCallback*> _observerVector; /*no ownership for the object pointers*/
-
 	void _notifyUpdate();
 
 	Board _gameBoard;
+
+	ConnectionMgr* _p_connectionMgr;
 
 public:
 	GameModel();
@@ -34,6 +25,11 @@ public:
 	void TakeRequest(GamePlayRequest& request);
 	void GetPropertyTree(ptree& propert_tree) const;
 
-	void RegisterObserver(GameModelCallback* p_observerFunc/*using ordinary pointer means no ownership*/);
+	void BindConnection(ConnectionMgr* _p_onnectionMgr/*using ordinary pointer means no ownership*/);
+	int OnReceivedMsgCallback(std::unique_ptr<NetPackMsg>  up_message) ;
+	int OnReceivedMsgCallback(NetPackMsg*  up_message /*ordinary pointer means no ownership transfer*/);
+	int OnSentMsgCallback(boost::system::error_code ec, std::size_t);
+
+
 };
 

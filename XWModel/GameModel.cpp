@@ -22,11 +22,26 @@ void GameModel::TakeRequest(GamePlayRequest& request)
 	_notifyUpdate();
 }
 
-void GameModel::RegisterObserver(GameModelCallback* p_observerFunc)
+void GameModel::BindConnection(ConnectionMgr * p_onnectionMgr)
 {
-	_observerVector.push_back(p_observerFunc);
+	_p_connectionMgr = p_onnectionMgr;
+	_p_connectionMgr->AddMsgListener(this);
 }
 
+int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
+{
+	return 0;
+}
+
+int GameModel::OnReceivedMsgCallback(NetPackMsg * up_message)
+{
+	return 0;
+}
+
+int GameModel::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
+{
+	return 0;
+}
 void GameModel::GetPropertyTree(ptree & propert_tree) const
 {
 
@@ -34,17 +49,13 @@ void GameModel::GetPropertyTree(ptree & propert_tree) const
 
 void GameModel::_notifyUpdate()
 {
-	std::vector< GameModelCallback* >::const_iterator citr;
-	for (citr = _observerVector.begin(); citr < _observerVector.end(); citr++) 
-	{
-		try
-		{
-			(*citr)->OnGameModelObserverCallback();
-		}
-		catch (const std::exception&)
-		{
-			//ignore the error;
-		}
-	}
+	GamePlayRequest gr{ GameScenario_DataModel , GameOjbect_GameBoard , GameOjbect_GameView , GameOjbectAction_UpdateView };
+
+	ptree property_tree;
+	GetPropertyTree(property_tree);
+	gr.Attach(GetClassName(), property_tree);
+
+	NetPackMsg netMsg{ gr.ToJson().c_str() };
+	_p_connectionMgr->SendMsg(&netMsg);
 }
 
