@@ -8,7 +8,7 @@
 #include "Board.h"
 #include "ConnectionMgr.h"
 
-class GameModel:public ModelObject, NetMsgCallback
+class GameModel:public ModelObject, public NetMsgCallback
 {
 private:
 	void _notifyUpdate();
@@ -26,6 +26,7 @@ public:
 	void GetPropertyTree(ptree& propert_tree) const;
 
 	void BindConnection(ConnectionMgr* _p_onnectionMgr/*using ordinary pointer means no ownership*/);
+
 	int OnReceivedMsgCallback(std::unique_ptr<NetPackMsg>  up_message) ;
 	int OnReceivedMsgCallback(NetPackMsg*  up_message /*ordinary pointer means no ownership transfer*/);
 	int OnSentMsgCallback(boost::system::error_code ec, std::size_t);

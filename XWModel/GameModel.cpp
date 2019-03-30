@@ -25,7 +25,6 @@ void GameModel::TakeRequest(GamePlayRequest& request)
 void GameModel::BindConnection(ConnectionMgr * p_onnectionMgr)
 {
 	_p_connectionMgr = p_onnectionMgr;
-	_p_connectionMgr->AddMsgListener(this);
 }
 
 int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)

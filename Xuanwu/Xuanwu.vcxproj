@@ -99,9 +99,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
       <EnablePREfast>true</EnablePREfast>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)SDL\lib\x86;$(SolutionDir)boost\stage\lib</AdditionalLibraryDirectories>
@@ -122,9 +122,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
       <EnablePREfast>true</EnablePREfast>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)SDL\lib\x64;$(SolutionDir)boost\stage\lib</AdditionalLibraryDirectories>
@@ -147,9 +147,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
       <EnablePREfast>true</EnablePREfast>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -174,9 +174,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
       <EnablePREfast>true</EnablePREfast>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -200,13 +200,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
-    <ClInclude Include="chat_message.hpp" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Settings.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XuanwuNet\XuanwuNet.vcxproj">
+      <Project>{70aa3f39-8154-4964-bc3e-3d399a56ba1e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\XWModel\XWModel.vcxproj">
       <Project>{2a923120-8868-440b-a8ac-c972b41cd968}</Project>
     </ProjectReference>
