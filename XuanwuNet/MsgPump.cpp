@@ -108,7 +108,12 @@ int NetMsgPump::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 
 int NetMsgPump::OnReceivedMsgCallback(NetPackMsg * up_message)
 {
-	throw E_NOTIMPL;
+	/*make a copy of the message*/
+	auto up_msg = std::unique_ptr<NetPackMsg>(
+		new NetPackMsg{ *up_message }
+	);
+
+	return OnReceivedMsgCallback(std::move(up_msg));
 }
 
 int NetMsgPump::OnSentMsgCallback(boost::system::error_code ec, std::size_t size)

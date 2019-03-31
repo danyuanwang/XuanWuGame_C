@@ -32,7 +32,7 @@ void GameEngine::Initialize()
 {
 	//TODO: need to lock the m_initialized for thread safe.
 	if (!m_initialized) {
-		m_initialized = (SDL_Init(SDL_INIT_VIDEO) != 0);
+		m_initialized = (SDL_Init(SDL_INIT_VIDEO) >= 0);
 		CHECK_VALUE(
 			m_initialized,
 			XW_ERROR_CODE::GE_INIT_FAILED,

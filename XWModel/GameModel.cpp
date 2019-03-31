@@ -29,11 +29,15 @@ void GameModel::BindConnection(ConnectionMgr * p_onnectionMgr)
 
 int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 {
-	return 0;
+	return OnReceivedMsgCallback(up_message.get());
 }
 
-int GameModel::OnReceivedMsgCallback(NetPackMsg * up_message)
+int GameModel::OnReceivedMsgCallback(NetPackMsg * p_message)
 {
+	GamePlayRequest gpr = GamePlayRequest{ (char*)p_message->Body() };
+
+	TakeRequest(gpr);
+
 	return 0;
 }
 
