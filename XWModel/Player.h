@@ -6,7 +6,7 @@ class Player :
 public:
 	Player();
 	virtual ~Player();
-	const char* GetClassName() const { return "Player"; }
+	const char* GetNameForPTree() const { return "Player"; }
 
 	void TakeRequest(GamePlayRequest & request);
 	void GetPropertyTree(ptree& propert_tree) const;

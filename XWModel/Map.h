@@ -11,7 +11,7 @@ private:
 public:
 	Map();
 	~Map();
-	const char* GetClassName() const { return "Map"; }
+	const char* GetNameForPTree() const { return "Map"; }
 
 	void TakeRequest(GamePlayRequest & request) ;
 	void GetPropertyTree(ptree& propert_tree) const ;

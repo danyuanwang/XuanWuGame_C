@@ -21,7 +21,7 @@ public:
 	GameModel();
 	~GameModel();
 
-	const char* GetClassName() const  { return "GameModel"; }
+	const char* GetNameForPTree() const  { return "GameModel"; }
 	void TakeRequest(GamePlayRequest& request);
 	void GetPropertyTree(ptree& propert_tree) const;
 

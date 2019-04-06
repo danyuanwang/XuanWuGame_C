@@ -13,7 +13,7 @@ public:
 
 	void TakeRequest(GamePlayRequest& request);
 	void GetPropertyTree(ptree& propert_tree) const;
-	const char* GetClassName() const { return "Board"; }
+	const char* GetNameForPTree() const { return "Board"; }
 
 private:
 	const char* _game_title;

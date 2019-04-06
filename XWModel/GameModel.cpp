@@ -59,7 +59,7 @@ void GameModel::_notifyUpdate()
 
 	ptree property_tree;
 	GetPropertyTree(property_tree);
-	gr.Attach(GetClassName(), property_tree);
+	gr.Attach(GetNameForPTree(), property_tree);
 
 	NetPackMsg netMsg{ gr.ToJson().c_str() };
 	_p_connectionMgr->SendMsg(&netMsg);
