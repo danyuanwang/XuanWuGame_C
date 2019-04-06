@@ -1,5 +1,7 @@
 #pragma once
 #include"SDL.h"
+#include "GamePlayRequest.h"
+
 class Board
 {
 private:
@@ -9,7 +11,8 @@ public:
 	Board();
 	~Board();
 	void SetScreen(SDL_Surface* pScreen);
-	void CheckEvent(SDL_Event &e);
+	void CheckSdlEvent(SDL_Event &e);
+	void TakeRequest(GamePlayRequest &gpr);
 	void Draw();
 };
 

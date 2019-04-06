@@ -2,6 +2,9 @@
 #include<string>
 #include "ErrorHandling.h"
 #include "SDL.h"
+#include <sdl_image.h>
+#include <sdl_ttf.h>
+#include <sdl_mixer.h>
 
 
 class GameEngine

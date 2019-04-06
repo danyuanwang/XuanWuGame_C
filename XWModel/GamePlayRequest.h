@@ -42,7 +42,8 @@ enum  GameOjbectActionTypeEnum
 	GameOjbectAction_Total_Number,
 };
 
-class GamePlayRequest : public CommonStructure::PropertyTreeWalker
+class GamePlayRequest : 
+	public CommonStructure::PropertyTreeWalker
 {
 public:
 	GamePlayRequest(

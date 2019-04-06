@@ -2,7 +2,6 @@
 #include "GameEngine.h"
 #include"Board.h"
 #include "Client.h"
-#include "GamePlayRequest.h"
 
 int main(int, char**) {
 	GameEngine game_engine;
@@ -47,9 +46,10 @@ int main(int, char**) {
 		while (up_msp->Poll(up_msg))
 		{
 			//handle network messages
-			/*for test purpose START >>*/
+			GamePlayRequest gpr{ (char*)up_msg->Body() }; 
+			game_board.TakeRequest(gpr);
 
-			GamePlayRequest gpr{ (char*)up_msg->Body() };
+			/*for test purpose START >>*/
 			std::cout << gpr.ToJson();
 
 			/*<< END for test purpose*/
@@ -57,9 +57,10 @@ int main(int, char**) {
 		}
 
 		//Handle events on queue 
-		//while (game_engine.PollEvent(e) != 0) {
-		//	game_board.CheckEvent(e);
-		//}
+		while (game_engine.PollEvent(e) != 0) {
+			game_board.CheckSdlEvent(e);
+		}
+
 		//game_board.Draw();
 		//game_engine.Flip();
 	}
