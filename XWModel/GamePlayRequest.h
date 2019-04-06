@@ -46,12 +46,7 @@ class GamePlayRequest :
 	public CommonStructure::PropertyTreeWalker
 {
 public:
-	GamePlayRequest(
-		GameScenarioTypeEnum scenario,
-		GameOjbectTypeEnum from,
-		GameOjbectTypeEnum to,
-		GameOjbectActionTypeEnum action
-	);
+	GamePlayRequest();
 
 	GamePlayRequest(const char* json);
 
@@ -64,16 +59,29 @@ public:
 	GameOjbectTypeEnum GetToType();
 	GameOjbectActionTypeEnum GetActionType();
 
+	void SetScenario(GameScenarioTypeEnum scenario);
+	void SetFromObject(GameOjbectTypeEnum from);
+	void SetToObject(GameOjbectTypeEnum to);
+	void SetActionType(GameOjbectActionTypeEnum action);
+
 	std::string ToJson();
+
+	void AddKeyValue(const std::string& key, const std::string& value);
+	void AddKeyValue(const char* key, const char* value);
+
+	std::string GetKeyValue(const std::string& key);
+
+	template<typename T>
+	T GetKeyValue(const char* key) 
+	{
+		std::string s_value = GetKeyValue(std::string{ key });
+		int i_value = s_value.empty() ? 0 : std::atoi(s_value.c_str());
+		return T(i_value);
+	}
 
 	void OnIterateCallback(std::string key, std::string value, int level);
 
 private:
-	GameScenarioTypeEnum _scenario;
-	GameOjbectTypeEnum _from;
-	GameOjbectTypeEnum _to;
-	GameOjbectActionTypeEnum _action;
-
 	ptree  _property_tree;
 
 

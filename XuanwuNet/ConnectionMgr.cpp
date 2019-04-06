@@ -1,4 +1,7 @@
 #include "ConnectionMgr.h"
+#if _DEBUG
+#include <iostream>
+#endif
 
 
 
@@ -17,7 +20,6 @@ void ConnectionMgr::AddSession(tcp::socket socket)
 		new ConnectionSession(std::move(socket), this)
 		);
 	up_session.get()->Start();
-
 	_list_session.push_back(std::move(up_session));
 
 }
@@ -33,6 +35,11 @@ void ConnectionMgr::StopAll()
 
 int ConnectionMgr::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 {
+#if _DEBUG
+	std::cout << __FUNCTION__ << " : " << std::endl;
+	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
+#endif
+
 	for (auto p = _list_message_handler.cbegin(); p != _list_message_handler.cend(); ++p)
 	{
 		(*p)->OnReceivedMsgCallback(up_message.get()/*using ordinary pointer not to transfer ownership*/);
@@ -58,6 +65,11 @@ int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t s
 
 void ConnectionMgr::SendMsg(NetPackMsg * p_message)
 {
+#if _DEBUG
+	std::cout << __FUNCTION__ << " : " << std::endl;
+	std::cout << std::string{ (const char*)p_message->Body() } << std::endl;
+#endif
+
 	for (auto p = _list_session.cbegin(); p != _list_session.cend(); ++p)
 	{
 		p->get()->Deliver(p_message);

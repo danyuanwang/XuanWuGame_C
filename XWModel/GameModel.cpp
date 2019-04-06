@@ -35,7 +35,6 @@ int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 int GameModel::OnReceivedMsgCallback(NetPackMsg * p_message)
 {
 	GamePlayRequest gpr = GamePlayRequest{ (char*)p_message->Body() };
-
 	TakeRequest(gpr);
 
 	return 0;
@@ -52,7 +51,11 @@ void GameModel::GetPropertyTree(ptree & propert_tree) const
 
 void GameModel::_notifyUpdate()
 {
-	GamePlayRequest gr{ GameScenario_DataModel , GameOjbect_GameBoard , GameOjbect_GameView , GameOjbectAction_UpdateView };
+	GamePlayRequest gr;
+	gr.SetScenario(GameScenario_DataModel);
+	gr.SetFromObject(GameOjbect_GameBoard);
+	gr.SetToObject(GameOjbect_GameView);
+	gr.SetActionType(GameOjbectAction_UpdateView);
 
 	ptree property_tree;
 	GetPropertyTree(property_tree);

@@ -1,16 +1,7 @@
 #include"commonstructure.h"
 #include "GamePlayRequest.h"
 
-GamePlayRequest::GamePlayRequest(
-	GameScenarioTypeEnum scenario,
-	GameOjbectTypeEnum from,
-	GameOjbectTypeEnum to,
-	GameOjbectActionTypeEnum action
-) :
-	_scenario(scenario),
-	_from(from),
-	_to(to),
-	_action(action)
+GamePlayRequest::GamePlayRequest()
 {
 	_init_property_tree();
 }
@@ -31,12 +22,9 @@ void GamePlayRequest::Attach(const char* key, ptree pt)
 
 void GamePlayRequest::OnIterateCallback(std::string key, std::string value, int level)
 {
-	if (!key.empty())
+	if (!key.empty() && level == 0)
 	{
-		MATCH_FROM_PROPERTY_KV(key, value, _scenario, GameScenarioTypeEnum);
-		MATCH_FROM_PROPERTY_KV(key, value, _from, GameOjbectTypeEnum);
-		MATCH_FROM_PROPERTY_KV(key, value, _to, GameOjbectTypeEnum);
-		MATCH_FROM_PROPERTY_KV(key, value, _action, GameOjbectActionTypeEnum);
+		AddKeyValue(key, value);
 	}
 }
 
@@ -47,36 +35,48 @@ GamePlayRequest::~GamePlayRequest()
 
 GameScenarioTypeEnum GamePlayRequest::GetScenarioType()
 {
-	return _scenario;
+	return GetKeyValue<GameScenarioTypeEnum>(QUOTES(scenario));
 }
 
 GameOjbectTypeEnum GamePlayRequest::GetFromType()
 {
-	return _from;
+	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(scenario));
 }
 
 GameOjbectTypeEnum GamePlayRequest::GetToType()
 {
-	return _to;
+	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(scenario));
 }
 
 GameOjbectActionTypeEnum GamePlayRequest::GetActionType()
 {
-	return _action;
+	return GetKeyValue<GameOjbectActionTypeEnum>(QUOTES(scenario));
+}
+
+void GamePlayRequest::SetScenario(GameScenarioTypeEnum scenario)
+{
+	PROPERTY_TREE_PUT(_property_tree, scenario);
+}
+
+void GamePlayRequest::SetFromObject(GameOjbectTypeEnum from)
+{
+	PROPERTY_TREE_PUT(_property_tree, from);
+}
+
+void GamePlayRequest::SetToObject(GameOjbectTypeEnum to)
+{
+	PROPERTY_TREE_PUT(_property_tree, to);
+}
+
+void GamePlayRequest::SetActionType(GameOjbectActionTypeEnum action)
+{
+	PROPERTY_TREE_PUT(_property_tree, action);
+
 }
 
 void GamePlayRequest::_init_property_tree()
 {
 	_property_tree.clear();
-
-	ptree  pt_elements;
-
-	PROPERTY_TREE_PUT(pt_elements, _scenario);
-	PROPERTY_TREE_PUT(pt_elements, _from);
-	PROPERTY_TREE_PUT(pt_elements, _to);
-	PROPERTY_TREE_PUT(pt_elements, _action);
-
-	_property_tree.push_back(ptree::value_type(_get_class_name(), pt_elements));
 }
 
 std::string GamePlayRequest::ToJson()
@@ -86,4 +86,19 @@ std::string GamePlayRequest::ToJson()
 	boost::property_tree::write_json(json, _property_tree);
 
 	return json.str();
+}
+
+void GamePlayRequest::AddKeyValue(const std::string & key, const std::string & value)
+{
+	_property_tree.put(key, value);
+}
+
+void GamePlayRequest::AddKeyValue(const char * key, const char * value)
+{
+	_property_tree.put(key, value);
+}
+
+std::string GamePlayRequest::GetKeyValue(const std::string & key)
+{
+	return	_property_tree.get(key, "");
 }

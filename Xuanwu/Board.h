@@ -1,16 +1,17 @@
 #pragma once
-#include"SDL.h"
 #include "GamePlayRequest.h"
+#include "ConnectionMgr.h"
+#include "GameEngine.h"
 
 class Board
 {
 private:
-	SDL_Surface* m_pScreen = NULL;
+	GameEngine* mp_game_engine = nullptr; // no ownership
+	ConnectionMgr* mp_connection_mgr = nullptr;  // no ownership
 
 public:
-	Board();
+	Board(GameEngine* pge, ConnectionMgr* pcmr);
 	~Board();
-	void SetScreen(SDL_Surface* pScreen);
 	void CheckSdlEvent(SDL_Event &e);
 	void TakeRequest(GamePlayRequest &gpr);
 	void Draw();

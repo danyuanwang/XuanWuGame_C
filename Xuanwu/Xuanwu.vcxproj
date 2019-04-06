@@ -73,25 +73,25 @@
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
-      <EnablePREfast>true</EnablePREfast>
+      <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\SDL2_ttf
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
-      <EnablePREfast>true</EnablePREfast>
+      <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\SDL2_ttf
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
-      <EnablePREfast>true</EnablePREfast>
+      <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -184,7 +184,7 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\SDL2_ttf
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
-      <EnablePREfast>true</EnablePREfast>
+      <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
     <Link>

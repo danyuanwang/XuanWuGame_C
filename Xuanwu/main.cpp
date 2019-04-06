@@ -4,39 +4,21 @@
 #include "Client.h"
 
 int main(int, char**) {
-	GameEngine game_engine;
-	Board game_board;
 	std::string	str_host("127.0.0.1"), str_port("2014");
 
 	auto up_msp = std::unique_ptr<NetMsgPump>(new NetMsgPump);
 	auto up_cnmgr = std::unique_ptr<ConnectionMgr>(new ConnectionMgr());
 	auto up_client = std::unique_ptr<Client>(new Client(str_host, str_port, up_cnmgr.get()));
 
+	auto up_game_engine = std::unique_ptr<GameEngine>(new GameEngine);
+	up_game_engine->Initialize();
+
+	auto up_game_board = std::unique_ptr<Board>(new Board(up_game_engine.get(), up_cnmgr.get()));
+
 	up_cnmgr->AddMsgListener(up_msp.get());
 
-	game_engine.Initialize();
 
 	up_client->Start();
-
-	/*for test purpose START >>*/
-	auto up_gpr = std::unique_ptr<GamePlayRequest>(
-		new GamePlayRequest
-	{ 
-		GameScenario_GameBoard, 
-		GameOjbect_GameView , 
-		GameOjbect_GameBoard, 
-		GameOjbectAction_Restart 
-	}
-	);
-
-	auto up_netMsg = std::unique_ptr<NetPackMsg>(
-		new NetPackMsg{ up_gpr->ToJson().c_str() }
-	);
-	up_cnmgr->SendMsg(up_netMsg.get());
-
-	/*<< END for test purpose*/
-
-
 
 	SDL_Event e;
 	e.type = SDL_FIRSTEVENT;
@@ -47,18 +29,13 @@ int main(int, char**) {
 		{
 			//handle network messages
 			GamePlayRequest gpr{ (char*)up_msg->Body() }; 
-			game_board.TakeRequest(gpr);
-
-			/*for test purpose START >>*/
-			std::cout << gpr.ToJson();
-
-			/*<< END for test purpose*/
+			up_game_board->TakeRequest(gpr);
 
 		}
 
 		//Handle events on queue 
-		while (game_engine.PollEvent(e) != 0) {
-			game_board.CheckSdlEvent(e);
+		while (up_game_engine->PollEvent(e) != 0) {
+			up_game_board->CheckSdlEvent(e);
 		}
 
 		//game_board.Draw();
