@@ -2,8 +2,8 @@
 #include <boost/asio.hpp>
 #include<memory>
 
-#define MAX_TCP_DATA_BUFFER_SIZE 1024 * 512
-#define TCP_DATA_HEADER_SIZE 4
+#define MAX_TCP_DATA_BUFFER_SIZE 99999999
+#define TCP_DATA_HEADER_SIZE 8
 class NetPackMsg
 {
 public:
@@ -76,7 +76,7 @@ public:
 	int BodyLen() { return _length; }
 
 private:
-	enum { enum_header_length = 4 };
+	enum { enum_header_length = TCP_DATA_HEADER_SIZE};
 
 	int _length;
 	int _body_length;
@@ -104,7 +104,7 @@ private:
 	void _encode_header()
 	{
 		char header[enum_header_length + 1] = "";
-		std::sprintf(header, "%4d", static_cast<int>(_body_length));
+		std::strncpy(header,  std::to_string(_body_length).c_str(), enum_header_length);
 		std::memcpy(_p_header, header, enum_header_length);
 		_header_length = enum_header_length;
 	}

@@ -1,14 +1,9 @@
 #include "Board.h"
 #include "DataModel.h"
 
-Board::Board() :
-	_game_title(_dataModel.GetGameScreenTitle()),
-	_screen_width(_dataModel.GetGameScreenWidth()),
-	_screen_height(_dataModel.GetGameScreenHeight()),
-	_screen_margin_x(_dataModel.GetGameScreenMarginX()),
-	_screen_margin_y(_dataModel.GetGameScreenMarginY())
+Board::Board()
 {
-
+	_up_map = std::unique_ptr<Map>{ new Map() };
 }
 
 
@@ -17,19 +12,6 @@ Board::~Board()
 
 }
 
-void Board::_restartGame()
-{
-	//restart a new game
-	_map = nullptr;
-
-}
-
-void Board::_endGame()
-{
-	//end a game
-	_map = nullptr;
-
-}
 
 void Board::TakeRequest(GamePlayRequest & request)
 {
@@ -41,12 +23,10 @@ void Board::TakeRequest(GamePlayRequest & request)
 		{
 		case GameOjbectAction_Restart:
 		{
-			_restartGame();
 			break;
 		}
 		case GameOjbectAction_End:
 		{
-			_endGame();
 			break;
 		}
 		default:
@@ -63,12 +43,15 @@ void Board::TakeRequest(GamePlayRequest & request)
 	}
 }
 
-void Board::GetPropertyTree(ptree & propert_tree) const
+ptree & Board::GetPropertyTree(ptree & propert_tree)
 {
-	PROPERTY_TREE_PUT_VALUE_STRING(propert_tree, GetNameForPTree());
-	PROPERTY_TREE_PUT_STRING(propert_tree, _game_title);
-	PROPERTY_TREE_PUT(propert_tree, _screen_width);
-	PROPERTY_TREE_PUT(propert_tree, _screen_height);
-	PROPERTY_TREE_PUT(propert_tree, _screen_margin_x);
-	PROPERTY_TREE_PUT(propert_tree, _screen_margin_y);
+	ptree pt_element;
+
+	propert_tree.push_back(
+		ptree::value_type(
+			_up_map->GetNameForPTree(), 
+			_up_map->GetPropertyTree(pt_element)
+		)
+	);
+	return propert_tree;
 }

@@ -4,7 +4,7 @@
 
 GameModel::GameModel()
 {
-
+	up_game_board = std::unique_ptr<Board>{ new Board() };
 }
 
 
@@ -16,7 +16,7 @@ GameModel::~GameModel()
 
 void GameModel::TakeRequest(GamePlayRequest& request)
 {
-	_gameBoard.TakeRequest(request);
+	up_game_board->TakeRequest(request);
 
 	/*for test purpose, need to remove*/
 	_notifyUpdate();
@@ -44,9 +44,18 @@ int GameModel::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
 {
 	return 0;
 }
-void GameModel::GetPropertyTree(ptree & propert_tree) const
-{
 
+ptree& GameModel::GetPropertyTree(ptree & propert_tree)
+{
+	ptree pt_ele;
+
+	propert_tree.push_back(
+		ptree::value_type(
+			up_game_board->GetNameForPTree(), 
+			up_game_board->GetPropertyTree(pt_ele)
+		)
+	);
+	return propert_tree;
 }
 
 void GameModel::_notifyUpdate()

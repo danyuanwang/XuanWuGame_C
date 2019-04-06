@@ -9,7 +9,7 @@ public:
 	virtual ~ModelObject();
 
 	virtual void TakeRequest(GamePlayRequest & request) = 0;
-	virtual void GetPropertyTree(ptree& propert_tree) const = 0;
+	virtual ptree& GetPropertyTree(ptree& propert_tree) = 0;
 	virtual const char* GetNameForPTree() const = 0;
 };
 
