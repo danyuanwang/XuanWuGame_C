@@ -8,7 +8,7 @@
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
 <link rel="up" href="../../boost_container_header_reference.html#header.boost.container.static_vector_hpp" title="Header &lt;boost/container/static_vector.hpp&gt;">
 <link rel="prev" href="pmr/stable_vector_of.html" title="Struct template stable_vector_of">
-<link rel="next" href="operator___idp48172016.html" title="Function template operator==">
+<link rel="next" href="operator___idp42403280.html" title="Function template operator==">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr>
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pmr/stable_vector_of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#header.boost.container.static_vector_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="operator___idp48172016.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="pmr/stable_vector_of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#header.boost.container.static_vector_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="operator___idp42403280.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="boost.container.static_vector"></a><div class="titlepage"></div>
@@ -50,100 +50,101 @@
   <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_reverse_iterator</span> <a name="boost.container.static_vector.const_reverse_iterator"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>  <span class="comment">// The const reverse iterator. </span>
 
   <span class="comment">// <a class="link" href="static_vector.html#boost.container.static_vectorconstruct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="static_vector.html#idp48043056-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">explicit</span> <a class="link" href="static_vector.html#idp48046624-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48052096-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48058992-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <a class="link" href="static_vector.html#idp48065328-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48075056-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48081632-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48087280-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48089232-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">explicit</span> <a class="link" href="static_vector.html#idp48091520-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42273984-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">explicit</span> <a class="link" href="static_vector.html#idp42277552-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42283024-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42289920-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <a class="link" href="static_vector.html#idp42296256-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42305984-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42312560-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42318208-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42320160-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">explicit</span> <a class="link" href="static_vector.html#idp42322448-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-    <a class="link" href="static_vector.html#idp48092768-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48100288-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <a class="link" href="static_vector.html#idp48109568-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp48120208-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp48126624-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
+    <a class="link" href="static_vector.html#idp42323696-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42331216-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <a class="link" href="static_vector.html#idp42340496-bb"><span class="identifier">static_vector</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp42351136-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp42357552-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-    <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp48131168-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp48139136-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+    <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp42362096-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> 
+  <a class="link" href="static_vector.html#idp42370064-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_assignable</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-    <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp48148720-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="static_vector.html#idp48160000-bb"><span class="special">~</span><span class="identifier">static_vector</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+    <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a class="link" href="static_vector.html#idp42379984-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="static_vector.html#idp42391264-bb"><span class="special">~</span><span class="identifier">static_vector</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="static_vector.html#idp47740112-bb">public member functions</a></span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47740672-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47750224-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47761504-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47766592-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47773376-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47779600-bb"><span class="identifier">reserve</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47784912-bb"><span class="identifier">push_back</span></a><span class="special">(</span><span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47789904-bb"><span class="identifier">push_back</span></a><span class="special">(</span><span class="identifier">value_type</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47794896-bb"><span class="identifier">pop_back</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47798752-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47809008-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47817808-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="comment">// <a class="link" href="static_vector.html#idp41971040-bb">public member functions</a></span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp41971600-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="static_vector.html#idp41981152-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp41992432-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp41997520-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42004304-bb"><span class="identifier">resize</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42010528-bb"><span class="identifier">reserve</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42015840-bb"><span class="identifier">push_back</span></a><span class="special">(</span><span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42020832-bb"><span class="identifier">push_back</span></a><span class="special">(</span><span class="identifier">value_type</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42025824-bb"><span class="identifier">pop_back</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42029680-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42039936-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42048736-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> 
-    <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47829216-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47843952-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47854176-bb"><span class="identifier">erase</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47860080-bb"><span class="identifier">erase</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">const_iterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47869104-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47876672-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47882208-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp47888400-bb"><span class="identifier">emplace_back</span></a><span class="special">(</span><span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47895520-bb"><span class="identifier">emplace</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp47905952-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp47909376-bb"><span class="identifier">at</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp47915072-bb"><span class="identifier">at</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp47921072-bb"><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp47926480-bb"><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47932192-bb"><span class="identifier">nth</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp47937584-bb"><span class="identifier">nth</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp47943248-bb"><span class="identifier">index_of</span></a><span class="special">(</span><span class="identifier">iterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp47948656-bb"><span class="identifier">index_of</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp47954336-bb"><span class="identifier">front</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp47958816-bb"><span class="identifier">front</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp47963584-bb"><span class="identifier">back</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
-  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp47968048-bb"><span class="identifier">back</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
-  <span class="identifier">Value</span> <span class="special">*</span> <a class="link" href="static_vector.html#idp47972816-bb"><span class="identifier">data</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">const</span> <span class="identifier">Value</span> <span class="special">*</span> <a class="link" href="static_vector.html#idp47977152-bb"><span class="identifier">data</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47981504-bb"><span class="identifier">begin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp47985520-bb"><span class="identifier">begin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp47989568-bb"><span class="identifier">cbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp47993616-bb"><span class="identifier">end</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp47997680-bb"><span class="identifier">end</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp48001760-bb"><span class="identifier">cend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">reverse_iterator</span> <a class="link" href="static_vector.html#idp48005840-bb"><span class="identifier">rbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp48010656-bb"><span class="identifier">rbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp48015472-bb"><span class="identifier">crbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">reverse_iterator</span> <a class="link" href="static_vector.html#idp48020288-bb"><span class="identifier">rend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp48025120-bb"><span class="identifier">rend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp48029968-bb"><span class="identifier">crend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp48034816-bb"><span class="identifier">size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">bool</span> <a class="link" href="static_vector.html#idp48038832-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+    <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42060144-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42074880-bb"><span class="identifier">insert</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42085104-bb"><span class="identifier">erase</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42091008-bb"><span class="identifier">erase</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">const_iterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42100032-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">Iterator</span><span class="special">,</span> <span class="identifier">Iterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42107600-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42113136-bb"><span class="identifier">assign</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp42119328-bb"><span class="identifier">emplace_back</span></a><span class="special">(</span><span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42126448-bb"><span class="identifier">emplace</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">,</span> <span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="static_vector.html#idp42136880-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp42140304-bb"><span class="identifier">at</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp42146000-bb"><span class="identifier">at</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp42152000-bb"><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp42157408-bb"><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42163120-bb"><span class="identifier">nth</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp42168512-bb"><span class="identifier">nth</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp42174176-bb"><span class="identifier">index_of</span></a><span class="special">(</span><span class="identifier">iterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp42179584-bb"><span class="identifier">index_of</span></a><span class="special">(</span><span class="identifier">const_iterator</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp42185264-bb"><span class="identifier">front</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp42189744-bb"><span class="identifier">front</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">reference</span> <a class="link" href="static_vector.html#idp42194512-bb"><span class="identifier">back</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">const_reference</span> <a class="link" href="static_vector.html#idp42198976-bb"><span class="identifier">back</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+  <span class="identifier">Value</span> <span class="special">*</span> <a class="link" href="static_vector.html#idp42203744-bb"><span class="identifier">data</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">const</span> <span class="identifier">Value</span> <span class="special">*</span> <a class="link" href="static_vector.html#idp42208080-bb"><span class="identifier">data</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42212432-bb"><span class="identifier">begin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp42216448-bb"><span class="identifier">begin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp42220496-bb"><span class="identifier">cbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">iterator</span> <a class="link" href="static_vector.html#idp42224544-bb"><span class="identifier">end</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp42228608-bb"><span class="identifier">end</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_iterator</span> <a class="link" href="static_vector.html#idp42232688-bb"><span class="identifier">cend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">reverse_iterator</span> <a class="link" href="static_vector.html#idp42236768-bb"><span class="identifier">rbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp42241584-bb"><span class="identifier">rbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp42246400-bb"><span class="identifier">crbegin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">reverse_iterator</span> <a class="link" href="static_vector.html#idp42251216-bb"><span class="identifier">rend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp42256048-bb"><span class="identifier">rend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">const_reverse_iterator</span> <a class="link" href="static_vector.html#idp42260896-bb"><span class="identifier">crend</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp42265744-bb"><span class="identifier">size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="static_vector.html#idp42269760-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="static_vector.html#idp48162592-bb">public static functions</a></span>
-  <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp48163152-bb"><span class="identifier">capacity</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp48167408-bb"><span class="identifier">max_size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="comment">// <a class="link" href="static_vector.html#idp42393856-bb">public static functions</a></span>
+  <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp42394416-bb"><span class="identifier">capacity</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="static_vector.html#idp42398672-bb"><span class="identifier">max_size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
   <span class="comment">// public data members</span>
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="identifier">size_type</span> <span class="identifier">static_capacity</span><span class="special">;</span>  <span class="comment">// The capacity/max size of the container. </span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.10.15.38.3.4"></a><h2>Description</h2>
+<a name="id-1.3.10.14.38.3.4"></a><h2>Description</h2>
 <p><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> is a sequence container like <a class="link" href="vector.html" title="Class template vector">boost::container::vector</a> with contiguous storage that can change in size, along with the static allocation, low overhead, and fixed capacity of boost::array.</p>
 <p>A <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> is a sequence that supports random access to elements, constant time insertion and removal of elements at the end, and linear time insertion and removal of elements at the beginning or in the middle. The number of elements in a <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> may vary dynamically up to a fixed capacity because elements are stored within the object itself similarly to an array. However, objects are initialized as they are inserted into <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> unlike C arrays or std::array which must construct all elements on instantiation. The behavior of <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> enables the use of statically allocated elements in cases with complex object lifetime requirements that would otherwise not be trivially possible.</p>
 <p><b>Error Handling.&#160;</b>Insertion beyond the capacity result in throwing std::bad_alloc() if exceptions are enabled or calling throw_bad_alloc() if not enabled.</p>
 <p>
-std::out_of_range is thrown if out of bound access is performed in <code class="computeroutput">at()</code> if exceptions are enabled, throw_out_of_range() if not enabled.</p>
+std::out_of_range is thrown if out of bounds access is performed in <code class="computeroutput">at()</code> if exceptions are enabled, throw_out_of_range() if not enabled.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id-1.3.10.15.38.3.4.6"></a><h3>Template Parameters</h3>
+<a name="id-1.3.10.14.38.3.4.6"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Value</pre>
@@ -156,13 +157,13 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.10.15.38.3.4.7"></a><h3>
+<a name="id-1.3.10.14.38.3.4.7"></a><h3>
 <a name="boost.container.static_vectorconstruct-copy-destruct"></a><code class="computeroutput">static_vector</code> 
         public
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a name="idp48043056-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Constructs an empty <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p><b>Throws.&#160;</b>Nothing.</p>
+<pre class="literallayout"><a name="idp42273984-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Constructs an empty <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
 </p>
 <p><b>Complexity.&#160;</b>Constant O(1). </p>
@@ -170,7 +171,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </p>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">explicit</span> <a name="idp48046624-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count value initialized values. <p>
+<pre class="literallayout"><span class="keyword">explicit</span> <a name="idp42277552-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count value initialized values. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's value initialization throws.</p>
@@ -206,7 +207,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48052096-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count default initialized values. <p>
+<pre class="literallayout"><a name="idp42283024-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count default initialized values. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's default initialization throws.</p>
@@ -245,7 +246,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48058992-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count copies of value. <p>
+<pre class="literallayout"><a name="idp42289920-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing count copies of value. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor throws.</p>
@@ -287,7 +288,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <a name="idp48065328-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing copy of a range <code class="computeroutput">[first, last)</code>. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <a name="idp42296256-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing copy of a range <code class="computeroutput">[first, last)</code>. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's constructor taking a dereferenced Iterator throws.</p>
@@ -336,7 +337,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48075056-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing copy of a range <code class="computeroutput">[il.begin(), il.end())</code>. <p>
+<pre class="literallayout"><a name="idp42305984-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Constructs a <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> containing copy of a range <code class="computeroutput">[il.begin(), il.end())</code>. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's constructor taking a dereferenced std::initializer_list throws.</p>
@@ -376,7 +377,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48081632-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Constructs a copy of other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p>
+<pre class="literallayout"><a name="idp42312560-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Constructs a copy of other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p>
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor throws.</p>
 <p>
@@ -404,12 +405,12 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </tr></tbody>
 </table></div>
 </li>
-<li class="listitem"><pre class="literallayout"><a name="idp48087280-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre></li>
-<li class="listitem"><pre class="literallayout"><a name="idp48089232-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre></li>
-<li class="listitem"><pre class="literallayout"><span class="keyword">explicit</span> <a name="idp48091520-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a name="idp42318208-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a name="idp42320160-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><span class="keyword">explicit</span> <a name="idp42322448-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-  <a name="idp48092768-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Constructs a copy of other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p>
+  <a name="idp42323696-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Constructs a copy of other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code>. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor throws.</p>
@@ -445,7 +446,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48100288-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre>Move constructor. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+<pre class="literallayout"><a name="idp42331216-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_constructible</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre>Move constructor. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 </p>
 <p><b>Throws.&#160;</b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -480,7 +481,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <a name="idp48109568-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Move constructor. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <a name="idp42340496-bb"></a><span class="identifier">static_vector</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Move constructor. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -522,7 +523,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp48120208-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp42351136-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws.</p>
 <p>
@@ -551,7 +552,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp48126624-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in std::initializer_list to *this. <p>
+<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp42357552-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in std::initializer_list to *this. <p>
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws.</p>
 <p>
@@ -581,7 +582,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp48131168-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp42362096-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Copy assigns Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws.</p>
@@ -617,7 +618,8 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp48139136-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Move assignment. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+<pre class="literallayout"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> 
+<a name="idp42370064-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">dtl</span><span class="special">::</span><span class="identifier">is_nothrow_move_assignable</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre>Move assignment. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 </p>
 <p><b>Throws.&#160;</b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -653,7 +655,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> 
-  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp48148720-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Move assignment. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
+  <a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> <a name="idp42379984-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Move assignment. Moves Values stored in the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> to this one. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -695,7 +697,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idp48160000-bb"></a><span class="special">~</span><span class="identifier">static_vector</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destructor. Destroys Values stored in this container. <p><b>Throws.&#160;</b>Nothing</p>
+<pre class="literallayout"><a name="idp42391264-bb"></a><span class="special">~</span><span class="identifier">static_vector</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destructor. Destroys Values stored in this container. <p><b>Throws.&#160;</b>Nothing</p>
 <p>
 </p>
 <p><b>Complexity.&#160;</b>Linear O(N). </p>
@@ -705,11 +707,11 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.10.15.38.3.4.8"></a><h3>
-<a name="idp47740112-bb"></a><code class="computeroutput">static_vector</code> public member functions</h3>
+<a name="id-1.3.10.14.38.3.4.8"></a><h3>
+<a name="idp41971040-bb"></a><code class="computeroutput">static_vector</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47740672-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Swaps contents of the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> and this one. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp41971600-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Swaps contents of the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> and this one. <p>
 </p>
 <p><b>Throws.&#160;</b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -744,7 +746,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <span class="keyword">void</span> <a name="idp47750224-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Swaps contents of the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> and this one. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> C<span class="special">&gt;</span> <span class="keyword">void</span> <a name="idp41981152-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a><span class="special">&lt;</span> <span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">C</span> <span class="special">&gt;</span> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>Swaps contents of the other <code class="computeroutput"><a class="link" href="static_vector.html" title="Class template static_vector">static_vector</a></code> and this one. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -786,7 +788,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47761504-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are value initialized. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp41992432-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are value initialized. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's value initialization throws.</p>
@@ -822,7 +824,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47766592-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are default initialized. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp41997520-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <a class="link" href="default_init_t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are default initialized. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's default initialization throws.</p>
@@ -861,7 +863,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47773376-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are copy constructed from value. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42004304-bb"></a><span class="identifier">resize</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts or erases elements at the end such that the size becomes count. New elements are copy constructed from value. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor throws.</p>
@@ -903,7 +905,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47779600-bb"></a><span class="identifier">reserve</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>This call has no effect because the Capacity of this container is constant. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42010528-bb"></a><span class="identifier">reserve</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>This call has no effect because the Capacity of this container is constant. <p>
 
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
@@ -939,7 +941,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47784912-bb"></a><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Adds a copy of value at the end. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42015840-bb"></a><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Adds a copy of value at the end. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor throws.</p>
@@ -975,7 +977,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47789904-bb"></a><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">value_type</span> <span class="special">&amp;&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Moves value to the end. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42020832-bb"></a><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">value_type</span> <span class="special">&amp;&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Moves value to the end. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's move constructor throws.</p>
@@ -1011,7 +1013,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47794896-bb"></a><span class="identifier">pop_back</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destroys last value and decreases the size. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42025824-bb"></a><span class="identifier">pop_back</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destroys last value and decreases the size. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing by default.</p>
 <p>
@@ -1031,7 +1033,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47798752-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of element at p. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42029680-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of element at p. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -1086,7 +1088,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47809008-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">value_type</span> <span class="special">&amp;&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a move-constructed element at p. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42039936-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">value_type</span> <span class="special">&amp;&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a move-constructed element at p. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's move constructor or move assignment throws.</p>
@@ -1135,7 +1137,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47817808-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a count copies of value at p. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42048736-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Inserts a count copies of value at p. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -1195,7 +1197,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> 
-  <span class="identifier">iterator</span> <a name="idp47829216-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of a range <code class="computeroutput">[first, last)</code> at p. <p>
+  <span class="identifier">iterator</span> <a name="idp42060144-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of a range <code class="computeroutput">[first, last)</code> at p. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -1255,7 +1257,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47843952-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of a range <code class="computeroutput">[il.begin(), il.end())</code> at p. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42074880-bb"></a><span class="identifier">insert</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Inserts a copy of a range <code class="computeroutput">[il.begin(), il.end())</code> at p. <p>
 
 </p>
 <p><b>Throws.&#160;</b></p>
@@ -1307,7 +1309,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47854176-bb"></a><span class="identifier">erase</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">)</span><span class="special">;</span></pre>Erases Value from p. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42085104-bb"></a><span class="identifier">erase</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">)</span><span class="special">;</span></pre>Erases Value from p. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's move assignment throws.</p>
@@ -1343,7 +1345,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47860080-bb"></a><span class="identifier">erase</span><span class="special">(</span><span class="identifier">const_iterator</span> first<span class="special">,</span> <span class="identifier">const_iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Erases Values from a range <code class="computeroutput">[first, last)</code>. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42091008-bb"></a><span class="identifier">erase</span><span class="special">(</span><span class="identifier">const_iterator</span> first<span class="special">,</span> <span class="identifier">const_iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Erases Values from a range <code class="computeroutput">[first, last)</code>. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's move assignment throws.</p>
@@ -1392,7 +1394,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <span class="keyword">void</span> <a name="idp47869104-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Assigns a range <code class="computeroutput">[first, last)</code> of Values to this container. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iterator<span class="special">&gt;</span> <span class="keyword">void</span> <a name="idp42100032-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">Iterator</span> first<span class="special">,</span> <span class="identifier">Iterator</span> last<span class="special">)</span><span class="special">;</span></pre>Assigns a range <code class="computeroutput">[first, last)</code> of Values to this container. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws,</p>
@@ -1434,7 +1436,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47876672-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Assigns a range <code class="computeroutput">[il.begin(), il.end())</code> of Values to this container. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42107600-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>Assigns a range <code class="computeroutput">[il.begin(), il.end())</code> of Values to this container. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws,</p>
@@ -1470,7 +1472,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47882208-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Assigns a count copies of value to this container. <p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42113136-bb"></a><span class="identifier">assign</span><span class="special">(</span><span class="identifier">size_type</span> count<span class="special">,</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>Assigns a count copies of value to this container. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If Value's copy constructor or copy assignment throws.</p>
@@ -1512,7 +1514,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">reference</span> <a name="idp47888400-bb"></a><span class="identifier">emplace_back</span><span class="special">(</span><span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span> args<span class="special">)</span><span class="special">;</span></pre>Inserts a Value constructed with <code class="computeroutput">std::forward&lt;Args&gt;(args)</code>... in the end of the container. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">reference</span> <a name="idp42119328-bb"></a><span class="identifier">emplace_back</span><span class="special">(</span><span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span> args<span class="special">)</span><span class="special">;</span></pre>Inserts a Value constructed with <code class="computeroutput">std::forward&lt;Args&gt;(args)</code>... in the end of the container. <p>
 
 
 </p>
@@ -1553,7 +1555,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">iterator</span> <a name="idp47895520-bb"></a><span class="identifier">emplace</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span> args<span class="special">)</span><span class="special">;</span></pre>Inserts a Value constructed with <code class="computeroutput">std::forward&lt;Args&gt;(args)</code>... before p. <p>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> Args<span class="special">&gt;</span> <span class="identifier">iterator</span> <a name="idp42126448-bb"></a><span class="identifier">emplace</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">,</span> <span class="identifier">Args</span> <span class="special">&amp;&amp;</span><span class="special">...</span> args<span class="special">)</span><span class="special">;</span></pre>Inserts a Value constructed with <code class="computeroutput">std::forward&lt;Args&gt;(args)</code>... before p. <p>
 
 </p>
 <p><b>Throws.&#160;</b>If in-place constructor throws or if Value's move constructor or move assignment throws.</p>
@@ -1602,7 +1604,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idp47905952-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Removes all elements from the container. <p><b>Throws.&#160;</b>Nothing.</p>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idp42136880-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Removes all elements from the container. <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
 </p>
 <p><b>Complexity.&#160;</b>Constant O(1). </p>
@@ -1610,7 +1612,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </p>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reference</span> <a name="idp47909376-bb"></a><span class="identifier">at</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns reference to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">reference</span> <a name="idp42140304-bb"></a><span class="identifier">at</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns reference to the i-th element. <p>
 
 
 </p>
@@ -1651,7 +1653,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp47915072-bb"></a><span class="identifier">at</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp42146000-bb"></a><span class="identifier">at</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the i-th element. <p>
 
 
 </p>
@@ -1692,7 +1694,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reference</span> <a name="idp47921072-bb"></a><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns reference to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">reference</span> <a name="idp42152000-bb"></a><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns reference to the i-th element. <p>
 
 
 </p>
@@ -1733,7 +1735,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp47926480-bb"></a><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp42157408-bb"></a><span class="keyword">operator</span><span class="special">[</span><span class="special">]</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the i-th element. <p>
 
 
 </p>
@@ -1774,7 +1776,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47932192-bb"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns a iterator to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42163120-bb"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span><span class="special">;</span></pre>Returns a iterator to the i-th element. <p>
 
 
 </p>
@@ -1815,7 +1817,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp47937584-bb"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns a const_iterator to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp42168512-bb"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns a const_iterator to the i-th element. <p>
 
 
 </p>
@@ -1856,7 +1858,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp47943248-bb"></a><span class="identifier">index_of</span><span class="special">(</span><span class="identifier">iterator</span> p<span class="special">)</span><span class="special">;</span></pre>Returns the index of the element pointed by p. <p>
+<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp42174176-bb"></a><span class="identifier">index_of</span><span class="special">(</span><span class="identifier">iterator</span> p<span class="special">)</span><span class="special">;</span></pre>Returns the index of the element pointed by p. <p>
 
 
 </p>
@@ -1897,7 +1899,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp47948656-bb"></a><span class="identifier">index_of</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns the index of the element pointed by p. <p>
+<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp42179584-bb"></a><span class="identifier">index_of</span><span class="special">(</span><span class="identifier">const_iterator</span> p<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns the index of the element pointed by p. <p>
 
 
 </p>
@@ -1938,7 +1940,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reference</span> <a name="idp47954336-bb"></a><span class="identifier">front</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Returns reference to the first element. <p>
+<pre class="literallayout"><span class="identifier">reference</span> <a name="idp42185264-bb"></a><span class="identifier">front</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Returns reference to the first element. <p>
 
 </p>
 <p><b>Throws.&#160;</b>Nothing by default.</p>
@@ -1965,7 +1967,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp47958816-bb"></a><span class="identifier">front</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the first element. <p>
+<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp42189744-bb"></a><span class="identifier">front</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the first element. <p>
 
 </p>
 <p><b>Throws.&#160;</b>Nothing by default.</p>
@@ -1992,7 +1994,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reference</span> <a name="idp47963584-bb"></a><span class="identifier">back</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Returns reference to the last element. <p>
+<pre class="literallayout"><span class="identifier">reference</span> <a name="idp42194512-bb"></a><span class="identifier">back</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Returns reference to the last element. <p>
 
 </p>
 <p><b>Throws.&#160;</b>Nothing by default.</p>
@@ -2019,7 +2021,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp47968048-bb"></a><span class="identifier">back</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the first element. <p>
+<pre class="literallayout"><span class="identifier">const_reference</span> <a name="idp42198976-bb"></a><span class="identifier">back</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns const reference to the first element. <p>
 
 </p>
 <p><b>Throws.&#160;</b>Nothing by default.</p>
@@ -2046,7 +2048,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">Value</span> <span class="special">*</span> <a name="idp47972816-bb"></a><span class="identifier">data</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Pointer such that <code class="computeroutput">[data(), data() + size())</code> is a valid range. For a non-empty vector <code class="computeroutput">data() == &amp;front()</code>. <p><b>Throws.&#160;</b>Nothing.</p>
+<pre class="literallayout"><span class="identifier">Value</span> <span class="special">*</span> <a name="idp42203744-bb"></a><span class="identifier">data</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Pointer such that <code class="computeroutput">[data(), data() + size())</code> is a valid range. For a non-empty vector <code class="computeroutput">data() == &amp;front()</code>. <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
 </p>
 <p><b>Complexity.&#160;</b>Constant O(1). </p>
@@ -2054,7 +2056,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </p>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">Value</span> <span class="special">*</span> <a name="idp47977152-bb"></a><span class="identifier">data</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Const pointer such that <code class="computeroutput">[data(), data() + size())</code> is a valid range. For a non-empty vector <code class="computeroutput">data() == &amp;front()</code>. <p><b>Throws.&#160;</b>Nothing.</p>
+<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">Value</span> <span class="special">*</span> <a name="idp42208080-bb"></a><span class="identifier">data</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Const pointer such that <code class="computeroutput">[data(), data() + size())</code> is a valid range. For a non-empty vector <code class="computeroutput">data() == &amp;front()</code>. <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
 </p>
 <p><b>Complexity.&#160;</b>Constant O(1). </p>
@@ -2062,7 +2064,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </p>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47981504-bb"></a><span class="identifier">begin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns iterator to the first element. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42212432-bb"></a><span class="identifier">begin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns iterator to the first element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2082,7 +2084,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp47985520-bb"></a><span class="identifier">begin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the first element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp42216448-bb"></a><span class="identifier">begin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the first element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2102,7 +2104,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp47989568-bb"></a><span class="identifier">cbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the first element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp42220496-bb"></a><span class="identifier">cbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the first element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2122,7 +2124,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp47993616-bb"></a><span class="identifier">end</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns iterator to the one after the last element. <p>
+<pre class="literallayout"><span class="identifier">iterator</span> <a name="idp42224544-bb"></a><span class="identifier">end</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns iterator to the one after the last element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2142,7 +2144,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp47997680-bb"></a><span class="identifier">end</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the one after the last element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp42228608-bb"></a><span class="identifier">end</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the one after the last element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2162,7 +2164,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp48001760-bb"></a><span class="identifier">cend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the one after the last element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="idp42232688-bb"></a><span class="identifier">cend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const iterator to the one after the last element. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2182,7 +2184,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reverse_iterator</span> <a name="idp48005840-bb"></a><span class="identifier">rbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns reverse iterator to the first element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">reverse_iterator</span> <a name="idp42236768-bb"></a><span class="identifier">rbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns reverse iterator to the first element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2202,7 +2204,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp48010656-bb"></a><span class="identifier">rbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the first element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp42241584-bb"></a><span class="identifier">rbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the first element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2222,7 +2224,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp48015472-bb"></a><span class="identifier">crbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the first element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp42246400-bb"></a><span class="identifier">crbegin</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the first element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2242,7 +2244,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">reverse_iterator</span> <a name="idp48020288-bb"></a><span class="identifier">rend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns reverse iterator to the one after the last element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">reverse_iterator</span> <a name="idp42251216-bb"></a><span class="identifier">rend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns reverse iterator to the one after the last element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2262,7 +2264,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp48025120-bb"></a><span class="identifier">rend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the one after the last element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp42256048-bb"></a><span class="identifier">rend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the one after the last element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2282,7 +2284,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp48029968-bb"></a><span class="identifier">crend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the one after the last element of the reversed container. <p>
+<pre class="literallayout"><span class="identifier">const_reverse_iterator</span> <a name="idp42260896-bb"></a><span class="identifier">crend</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns const reverse iterator to the one after the last element of the reversed container. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2302,7 +2304,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp48034816-bb"></a><span class="identifier">size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns the number of stored elements. <p>
+<pre class="literallayout"><span class="identifier">size_type</span> <a name="idp42265744-bb"></a><span class="identifier">size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns the number of stored elements. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2322,7 +2324,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">bool</span> <a name="idp48038832-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Queries if the container contains elements. <p>
+<pre class="literallayout"><span class="keyword">bool</span> <a name="idp42269760-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Queries if the container contains elements. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2344,11 +2346,11 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.10.15.38.3.4.9"></a><h3>
-<a name="idp48162592-bb"></a><code class="computeroutput">static_vector</code> public static functions</h3>
+<a name="id-1.3.10.14.38.3.4.9"></a><h3>
+<a name="idp42393856-bb"></a><code class="computeroutput">static_vector</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="idp48163152-bb"></a><span class="identifier">capacity</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns container's capacity. <p>
+<pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="idp42394416-bb"></a><span class="identifier">capacity</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns container's capacity. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2368,7 +2370,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="idp48167408-bb"></a><span class="identifier">max_size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns container's capacity. <p>
+<pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="idp42398672-bb"></a><span class="identifier">max_size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns container's capacity. <p>
 </p>
 <p><b>Throws.&#160;</b>Nothing.</p>
 <p>
@@ -2393,8 +2395,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </div>
 <table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
 <td align="left"></td>
-<td align="right"><div class="copyright-footer">Copyright &#169; 2009-2017 Ion
-      Gaztanaga<p>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2009-2018 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
@@ -2402,7 +2403,7 @@ std::out_of_range is thrown if out of bound access is performed in <code class="
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pmr/stable_vector_of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#header.boost.container.static_vector_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="operator___idp48172016.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="pmr/stable_vector_of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#header.boost.container.static_vector_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="operator___idp42403280.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

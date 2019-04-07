@@ -17,6 +17,7 @@
 #include <boost/test/detail/global_typedef.hpp>
 #include <boost/test/detail/fwd_decl.hpp>
 #include <boost/test/detail/workaround.hpp>
+#include <boost/test/tree/test_unit.hpp>
 
 #include <boost/test/utils/class_properties.hpp>
 
@@ -141,10 +142,11 @@ public:
     }
 };
 
-// adding support for tuple
+// Describing template test cases with tuples
 #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) && \
     !defined(BOOST_NO_CXX11_HDR_TUPLE) && \
-    !defined(BOOST_NO_CXX11_AUTO_DECLARATIONS)
+    !defined(BOOST_NO_CXX11_AUTO_DECLARATIONS) && \
+    !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
 template<typename TestCaseTemplate, typename... tuple_parameter_pack>
 class template_test_case_gen<TestCaseTemplate, std::tuple<tuple_parameter_pack...> > : public template_test_case_gen_base {
@@ -179,7 +181,7 @@ public:
     }
 };
 
-#endif /* C++11 variadic and tuples */
+#endif /* C++11 variadic, tuples and type alias */
 
 } // namespace ut_detail
 } // unit_test

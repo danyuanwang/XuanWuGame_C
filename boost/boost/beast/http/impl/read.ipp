@@ -18,9 +18,12 @@
 #include <boost/beast/core/handler_ptr.hpp>
 #include <boost/beast/core/read_size.hpp>
 #include <boost/beast/core/type_traits.hpp>
+#include <boost/beast/core/detail/buffer.hpp>
 #include <boost/asio/associated_allocator.hpp>
 #include <boost/asio/associated_executor.hpp>
 #include <boost/asio/coroutine.hpp>
+#include <boost/asio/error.hpp>
+#include <boost/asio/executor_work_guard.hpp>
 #include <boost/asio/handler_continuation_hook.hpp>
 #include <boost/asio/handler_invoke_hook.hpp>
 #include <boost/asio/post.hpp>
@@ -43,6 +46,8 @@ class read_some_op
     : public boost::asio::coroutine
 {
     Stream& s_;
+    boost::asio::executor_work_guard<decltype(
+        std::declval<Stream&>().get_executor())> wg_;
     DynamicBuffer& b_;
     basic_parser<isRequest, Derived>& p_;
     std::size_t bytes_transferred_ = 0;
@@ -57,6 +62,7 @@ public:
     read_some_op(DeducedHandler&& h, Stream& s,
         DynamicBuffer& b, basic_parser<isRequest, Derived>& p)
         : s_(s)
+        , wg_(s_.get_executor())
         , b_(b)
         , p_(p)
         , h_(std::forward<DeducedHandler>(h))
@@ -117,8 +123,6 @@ operator()(
     bool cont)
 {
     cont_ = cont;
-    boost::optional<typename
-        DynamicBuffer::mutable_buffers_type> mb;
     BOOST_ASIO_CORO_REENTER(*this)
     {
         if(b_.size() == 0)
@@ -135,18 +139,22 @@ operator()(
                 break;
 
         do_read:
-            try
-            {
-                mb.emplace(b_.prepare(
-                    read_size_or_throw(b_, 65536)));
-            }
-            catch(std::length_error const&)
-            {
-                ec = error::buffer_overflow;
-                break;
-            }
             BOOST_ASIO_CORO_YIELD
-            s_.async_read_some(*mb, std::move(*this));
+            {
+                // VFALCO This was read_size_or_throw
+                auto const size = read_size(b_, 65536);
+                if(size == 0)
+                {
+                    ec = error::buffer_overflow;
+                    goto upcall;
+                }
+                auto const mb =
+                    beast::detail::dynamic_buffer_prepare(
+                        b_, size, ec, error::buffer_overflow);
+                if(ec)
+                    goto upcall;
+                s_.async_read_some(*mb, std::move(*this));
+            }
             if(ec == boost::asio::error::eof)
             {
                 BOOST_ASSERT(bytes_transferred == 0);
@@ -170,10 +178,13 @@ operator()(
 
     upcall:
         if(! cont_)
-            return boost::asio::post(
+        {
+            BOOST_ASIO_CORO_YIELD
+            boost::asio::post(
                 s_.get_executor(),
-                bind_handler(std::move(h_),
+                bind_handler(std::move(*this),
                     ec, bytes_transferred_));
+        }
         h_(ec, bytes_transferred_);
     }
 }
@@ -209,6 +220,8 @@ class read_op
     : public boost::asio::coroutine
 {
     Stream& s_;
+    boost::asio::executor_work_guard<decltype(
+        std::declval<Stream&>().get_executor())> wg_;
     DynamicBuffer& b_;
     basic_parser<isRequest, Derived>& p_;
     std::size_t bytes_transferred_ = 0;
@@ -224,6 +237,7 @@ public:
         DynamicBuffer& b, basic_parser<isRequest,
             Derived>& p)
         : s_(s)
+        , wg_(s_.get_executor())
         , b_(b)
         , p_(p)
         , h_(std::forward<DeducedHandler>(h))
@@ -327,6 +341,8 @@ class read_msg_op
     struct data
     {
         Stream& s;
+        boost::asio::executor_work_guard<decltype(
+            std::declval<Stream&>().get_executor())> wg;
         DynamicBuffer& b;
         message_type& m;
         parser_type p;
@@ -336,6 +352,7 @@ class read_msg_op
         data(Handler const&, Stream& s_,
                 DynamicBuffer& b_, message_type& m_)
             : s(s_)
+            , wg(s.get_executor())
             , b(b_)
             , m(m_)
             , p(std::move(m))
@@ -432,7 +449,10 @@ operator()(
         }
     upcall:
         bytes_transferred = d.bytes_transferred;
-        d_.invoke(ec, bytes_transferred);
+        {
+            auto wg = std::move(d.wg);
+            d_.invoke(ec, bytes_transferred);
+        }
     }
 }
 
@@ -497,19 +517,18 @@ read_some(
                 break;
         }
     do_read:
-        boost::optional<typename
-            DynamicBuffer::mutable_buffers_type> b;
-        try
-        {
-            b.emplace(buffer.prepare(
-                read_size_or_throw(buffer, 65536)));
-        }
-        catch(std::length_error const&)
+        auto const size = read_size(buffer, 65536);
+        if(size == 0)
         {
             ec = error::buffer_overflow;
-            return bytes_transferred;
+            break;
         }
-        auto const n = stream.read_some(*b, ec);
+        auto const mb =
+            beast::detail::dynamic_buffer_prepare(
+                buffer, size, ec, error::buffer_overflow);
+        if(ec)
+            break;
+        auto const n = stream.read_some(*mb, ec);
         if(ec == boost::asio::error::eof)
         {
             BOOST_ASSERT(n == 0);

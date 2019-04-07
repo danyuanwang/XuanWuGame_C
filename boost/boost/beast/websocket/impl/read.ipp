@@ -16,11 +16,13 @@
 #include <boost/beast/core/buffers_suffix.hpp>
 #include <boost/beast/core/flat_static_buffer.hpp>
 #include <boost/beast/core/type_traits.hpp>
+#include <boost/beast/core/detail/buffer.hpp>
 #include <boost/beast/core/detail/clamp.hpp>
 #include <boost/beast/core/detail/config.hpp>
 #include <boost/asio/associated_allocator.hpp>
 #include <boost/asio/associated_executor.hpp>
 #include <boost/asio/coroutine.hpp>
+#include <boost/asio/executor_work_guard.hpp>
 #include <boost/asio/handler_continuation_hook.hpp>
 #include <boost/asio/handler_invoke_hook.hpp>
 #include <boost/asio/post.hpp>
@@ -82,6 +84,8 @@ class stream<NextLayer, deflateSupported>::read_some_op
 {
     Handler h_;
     stream<NextLayer, deflateSupported>& ws_;
+    boost::asio::executor_work_guard<decltype(std::declval<
+        stream<NextLayer, deflateSupported>&>().get_executor())> wg_;
     MutableBufferSequence bs_;
     buffers_suffix<MutableBufferSequence> cb_;
     std::size_t bytes_written_ = 0;
@@ -103,6 +107,7 @@ public:
         MutableBufferSequence const& bs)
         : h_(std::forward<DeducedHandler>(h))
         , ws_(ws)
+        , wg_(ws_.get_executor())
         , bs_(bs)
         , cb_(bs)
         , code_(close_code::none)
@@ -622,12 +627,8 @@ operator()(
         goto upcall;
 
     close:
-        if(ws_.wr_block_.try_lock(this))
-        {
-            // Make sure the stream is open
-            BOOST_ASSERT(ws_.status_ == status::open);
-        }
-        else
+        // Try to acquire the write block
+        if(! ws_.wr_block_.try_lock(this))
         {
             // Suspend
             BOOST_ASIO_CORO_YIELD
@@ -700,10 +701,13 @@ operator()(
                 ws_.paused_ping_.maybe_invoke() ||
                 ws_.paused_wr_.maybe_invoke();
         if(! cont_)
-            return boost::asio::post(
-                ws_.stream_.get_executor(),
-                bind_handler(std::move(h_),
+        {
+            BOOST_ASIO_CORO_YIELD
+            boost::asio::post(
+                ws_.get_executor(),
+                bind_handler(std::move(*this),
                     ec, bytes_written_));
+        }
         h_(ec, bytes_written_);
     }
 }
@@ -719,6 +723,8 @@ class stream<NextLayer, deflateSupported>::read_op
 {
     Handler h_;
     stream<NextLayer, deflateSupported>& ws_;
+    boost::asio::executor_work_guard<decltype(std::declval<
+        stream<NextLayer, deflateSupported>&>().get_executor())> wg_;
     DynamicBuffer& b_;
     std::size_t limit_;
     std::size_t bytes_written_ = 0;
@@ -740,6 +746,7 @@ public:
         bool some)
         : h_(std::forward<DeducedHandler>(h))
         , ws_(ws)
+        , wg_(ws_.get_executor())
         , b_(b)
         , limit_(limit ? limit : (
             std::numeric_limits<std::size_t>::max)())
@@ -794,35 +801,27 @@ operator()(
     std::size_t bytes_transferred)
 {
     using beast::detail::clamp;
-    using buffers_type = typename
-        DynamicBuffer::mutable_buffers_type;
-    boost::optional<buffers_type> mb;
     BOOST_ASIO_CORO_REENTER(*this)
     {
         do
         {
-            try
-            {
-                mb.emplace(b_.prepare(clamp(
-                    ws_.read_size_hint(b_), limit_)));
-            }
-            catch(std::length_error const&)
-            {
-                ec = error::buffer_overflow;
-            }
-            if(ec)
-            {
-                BOOST_ASIO_CORO_YIELD
-                boost::asio::post(
-                    ws_.get_executor(),
-                    bind_handler(std::move(*this),
-                        error::buffer_overflow, 0));
-                break;
-            }
             BOOST_ASIO_CORO_YIELD
-            read_some_op<buffers_type, read_op>{
-                std::move(*this), ws_, *mb}(
-                    {}, 0, false);
+            {
+                auto mb = beast::detail::dynamic_buffer_prepare(b_,
+                    clamp(ws_.read_size_hint(b_), limit_),
+                        ec, error::buffer_overflow);
+                if(ec)
+                    boost::asio::post(
+                        ws_.get_executor(),
+                        bind_handler(
+                            std::move(*this), ec, 0));
+                else
+                    read_some_op<typename
+                        DynamicBuffer::mutable_buffers_type,
+                            read_op>(std::move(*this), ws_, *mb)(
+                                {}, 0, false);
+                return;
+            }
             if(ec)
                 break;
             b_.commit(bytes_transferred);
@@ -944,17 +943,10 @@ read_some(
     auto const size =
         clamp(read_size_hint(buffer), limit);
     BOOST_ASSERT(size > 0);
-    boost::optional<typename
-        DynamicBuffer::mutable_buffers_type> mb;
-    try
-    {
-        mb.emplace(buffer.prepare(size));
-    }
-    catch(std::length_error const&)
-    {
-        ec = error::buffer_overflow;
+    auto mb = beast::detail::dynamic_buffer_prepare(
+        buffer, size, ec, error::buffer_overflow);
+    if(ec)
         return 0;
-    }
     auto const bytes_written = read_some(*mb, ec);
     buffer.commit(bytes_written);
     return bytes_written;

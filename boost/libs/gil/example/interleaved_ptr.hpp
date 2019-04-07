@@ -1,49 +1,31 @@
-/*
-    Copyright 2005-2007 Adobe Systems Incorporated
-   
-    Use, modification and distribution are subject to the Boost Software License,
-    Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
-    http://www.boost.org/LICENSE_1_0.txt).
-
-    See http://opensource.adobe.com/gil for most recent version including documentation.
-*/
-
-/*************************************************************************************************/
-
-////////////////////////////////////////////////////////////////////////////////////////
-/// \file               
-/// \brief Example on how to create a pixel iterator
-/// \author Lubomir Bourdev and Hailin Jin \n
-///         Adobe Systems Incorporated
-/// \date 2005-2007 \n Last updated on February 26, 2007
-///
-/// Definitions of standard GIL channel models
-///
-////////////////////////////////////////////////////////////////////////////////////////
-
-#ifndef GIL_INTERLEAVED_PTR_HPP
-#define GIL_INTERLEAVED_PTR_HPP
+//
+// Copyright 2005-2007 Adobe Systems Incorporated
+//
+// Distributed under the Boost Software License, Version 1.0
+// See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt
+//
+#ifndef BOOST_GIL_EXAMPLE_INTERLEAVED_PTR_HPP
+#define BOOST_GIL_EXAMPLE_INTERLEAVED_PTR_HPP
 
 #include <boost/gil/pixel_iterator.hpp>
 #include "interleaved_ref.hpp"
 
+// Example on how to create a pixel iterator
+
 namespace boost { namespace gil {
 
-/////////////////////////////////////////////////////////////////////////
-///
-/// A model of an interleaved pixel iterator. Contains an iterator to the first channel of the current pixel
-///
-/// Models: 
-///     MutablePixelIteratorConcept
-///        PixelIteratorConcept
-///           boost_concepts::RandomAccessTraversalConcept
-///           PixelBasedConcept
-///     HomogeneousPixelBasedConcept
-///        PixelBasedConcept
-///     ByteAdvanceableConcept
-///     HasDynamicXStepTypeConcept
-///
-/////////////////////////////////////////////////////////////////////////
+// A model of an interleaved pixel iterator. Contains an iterator to the first channel of the current pixel
+//
+// Models:
+//     MutablePixelIteratorConcept
+//        PixelIteratorConcept
+//           boost_concepts::RandomAccessTraversalConcept
+//           PixelBasedConcept
+//     HomogeneousPixelBasedConcept
+//        PixelBasedConcept
+//     ByteAdvanceableConcept
+//     HasDynamicXStepTypeConcept
 
 template <typename ChannelPtr,  // Models Channel Iterator (examples: unsigned char* or const unsigned char*)
           typename Layout>      // A layout (includes the color space and channel ordering)
@@ -82,7 +64,7 @@ public:
     // Channels accessor (not required by any concept)
     const ChannelPtr& channels()            const { return _channels; }
           ChannelPtr& channels()                  { return _channels; }
-    
+
     // Not required by concepts but useful
     static const std::size_t num_channels = mpl::size<typename Layout::color_space_t>::value;
 private:
@@ -92,9 +74,9 @@ private:
 
     void increment()            { _channels+=num_channels; }
     void decrement()            { _channels-=num_channels; }
-    void advance(ptrdiff_t d)   { _channels+=num_channels*d; }
+    void advance(std::ptrdiff_t d)   { _channels+=num_channels*d; }
 
-    ptrdiff_t distance_to(const interleaved_ptr& it) const { return (it._channels-_channels)/num_channels; }
+    std::ptrdiff_t distance_to(const interleaved_ptr& it) const { return (it._channels-_channels)/num_channels; }
     bool equal(const interleaved_ptr& it) const { return _channels==it._channels; }
 
     reference dereference() const { return reference(_channels); }
@@ -110,12 +92,12 @@ private:
 // GIL's planar reference and iterator ("planar_pixel_reference" and "planar_pixel_iterator") which share the class "pixel" as the value_type. The
 // class "pixel" is also the value type for interleaved pixel references. Here we are dealing with channels, not pixels, but the principles still apply.
 template <typename ChannelPtr, typename Layout>
-struct const_iterator_type<interleaved_ptr<ChannelPtr,Layout> > { 
+struct const_iterator_type<interleaved_ptr<ChannelPtr,Layout> > {
 private:
     typedef typename std::iterator_traits<ChannelPtr>::reference channel_ref_t;
     typedef typename channel_traits<channel_ref_t>::const_pointer channel_const_ptr_t;
 public:
-    typedef interleaved_ptr<channel_const_ptr_t,Layout> type; 
+    typedef interleaved_ptr<channel_const_ptr_t,Layout> type;
 };
 
 template <typename ChannelPtr, typename Layout>
@@ -157,18 +139,18 @@ struct channel_type<interleaved_ptr<ChannelPtr,Layout> > {
 /////////////////////////////
 
 template <typename ChannelPtr, typename Layout>
-inline std::ptrdiff_t memunit_step(const interleaved_ptr<ChannelPtr,Layout>&) { 
+inline std::ptrdiff_t memunit_step(const interleaved_ptr<ChannelPtr,Layout>&) {
     return sizeof(typename std::iterator_traits<ChannelPtr>::value_type)*   // size of each channel in bytes
            interleaved_ptr<ChannelPtr,Layout>::num_channels;                // times the number of channels
 }
 
 template <typename ChannelPtr, typename Layout>
-inline std::ptrdiff_t memunit_distance(const interleaved_ptr<ChannelPtr,Layout>& p1, const interleaved_ptr<ChannelPtr,Layout>& p2) { 
-    return memunit_distance(p1.channels(),p2.channels()); 
+inline std::ptrdiff_t memunit_distance(const interleaved_ptr<ChannelPtr,Layout>& p1, const interleaved_ptr<ChannelPtr,Layout>& p2) {
+    return memunit_distance(p1.channels(),p2.channels());
 }
 
 template <typename ChannelPtr, typename Layout>
-inline void memunit_advance(interleaved_ptr<ChannelPtr,Layout>& p, std::ptrdiff_t diff) { 
+inline void memunit_advance(interleaved_ptr<ChannelPtr,Layout>& p, std::ptrdiff_t diff) {
     memunit_advance(p.channels(), diff);
 }
 
@@ -194,7 +176,6 @@ template <typename ChannelPtr, typename Layout>
 struct dynamic_x_step_type<interleaved_ptr<ChannelPtr,Layout> > {
     typedef memory_based_step_iterator<interleaved_ptr<ChannelPtr,Layout> > type;
 };
-
 } }  // namespace boost::gil
 
 #endif

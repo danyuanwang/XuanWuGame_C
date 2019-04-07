@@ -27,13 +27,13 @@ struct static_pool
     char*
     end()
     {
-        return reinterpret_cast<char*>(this+1) + size_;
+        return reinterpret_cast<char*>(this + 1) + size_;
     }
 
     explicit
     static_pool(std::size_t size)
         : size_(size)
-        , p_(reinterpret_cast<char*>(this+1))
+        , p_(reinterpret_cast<char*>(this + 1))
     {
     }
 
@@ -79,7 +79,7 @@ public:
     {
         if(--count_)
             return;
-        p_ = reinterpret_cast<char*>(this+1);
+        p_ = reinterpret_cast<char*>(this + 1);
     }
 };
 
@@ -104,7 +104,7 @@ public:
 template<class T>
 struct fields_alloc
 {
-    detail::static_pool& pool_;
+    detail::static_pool* pool_;
 
 public:
     using value_type = T;
@@ -122,39 +122,46 @@ public:
         using other = fields_alloc<U>;
     };
 
+#if defined(_GLIBCXX_USE_CXX11_ABI) && (_GLIBCXX_USE_CXX11_ABI == 0)
+    // Workaround for g++
+    // basic_string assumes that allocators are default-constructible
+    // See: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=56437
+    fields_alloc() = default;
+#endif
+
     explicit
     fields_alloc(std::size_t size)
-        : pool_(detail::static_pool::construct(size))
+        : pool_(&detail::static_pool::construct(size))
     {
     }
 
     fields_alloc(fields_alloc const& other)
-        : pool_(other.pool_.share())
+        : pool_(&other.pool_->share())
     {
     }
 
     template<class U>
     fields_alloc(fields_alloc<U> const& other)
-        : pool_(other.pool_.share())
+        : pool_(&other.pool_->share())
     {
     }
 
     ~fields_alloc()
     {
-        pool_.destroy();
+        pool_->destroy();
     }
 
     value_type*
     allocate(size_type n)
     {
         return static_cast<value_type*>(
-            pool_.alloc(n * sizeof(T)));
+            pool_->alloc(n * sizeof(T)));
     }
 
     void
     deallocate(value_type*, size_type)
     {
-        pool_.dealloc();
+        pool_->dealloc();
     }
 
 #if defined(BOOST_LIBSTDCXX_VERSION) && BOOST_LIBSTDCXX_VERSION < 60000

@@ -1,3 +1,189 @@
+Version 189-hf1:
+
+* Fix broken doc link
+* example/cppcon2018 only requires C++11
+
+--------------------------------------------------------------------------------
+
+Version 189:
+
+* Add CppCon2018 chat server example and video
+
+--------------------------------------------------------------------------------
+
+Version 188:
+
+* Remove extraneous strand from example
+* Add missing include in http/read.ipp 
+* Test for gcc warning bug
+* Fix a spurious gcc warning
+
+--------------------------------------------------------------------------------
+
+Version 187:
+
+* Add experimental timeout_socket
+* Fix warning in file tests
+* Fix uninitialized comparison in buffers iterator
+* Partial support for BOOST_NO_EXCEPTIONS
+* Fix a spurious gcc warning
+* Test for gcc warning bug
+* Add missing include
+* Remove extraneous strand from example
+
+--------------------------------------------------------------------------------
+
+Version 186:
+
+* basic_fields uses intrusive base hooks
+* Fix parsing of out-of-bounds hex values
+
+--------------------------------------------------------------------------------
+
+Version 185:
+
+* Remove extraneous function
+* Fix some typos
+* Add BOOST_BEAST_USE_STD_STRING_VIEW
+* Fix timer on websocket upgrade in examples
+
+--------------------------------------------------------------------------------
+
+Version 183:
+
+* Fix a rare case of failed UTF8 validation
+* Verify certificates in client examples
+* Use boost::empty_value
+* Workaround for http-server-fast and libstdc++
+
+--------------------------------------------------------------------------------
+
+Version 182:
+
+* Silence ubsan false positive
+
+--------------------------------------------------------------------------------
+
+Version 181:
+
+* Fix parse_dec algorithm
+* Add parse_dec tests
+
+--------------------------------------------------------------------------------
+
+Version 180:
+
+* Fix http_server_stackless_ssl.cpp example
+
+--------------------------------------------------------------------------------
+
+Version 179:
+
+* Use the exchange() idiom in move constructors
+* Most members of std::allocate are deprecated in C++17
+* Remove some unused variables
+
+--------------------------------------------------------------------------------
+
+Version 178:
+
+* Use static_cast instead
+
+--------------------------------------------------------------------------------
+
+Version 177:
+
+* Add test for issue #1188
+* Set /permissive-
+* Check error in example set_option
+
+--------------------------------------------------------------------------------
+
+Version 176:
+
+* Tidy up Quick Reference
+* Fix array end calculation in utf8 assertion
+* WebSocket masks use secure PRNG by default
+
+--------------------------------------------------------------------------------
+
+Version 175:
+
+* Fix initialization warning
+
+--------------------------------------------------------------------------------
+
+Version 174:
+
+* Fix Fields, FieldsWriter concept docs
+* Fix BodyReader constructor requirements doc
+
+--------------------------------------------------------------------------------
+
+Version 173:
+
+* Remove Autobahn testsuite doc note
+* Fix buffers_adapter iterator value type
+* Fix buffers_adapter max_size
+* Fix buffers_prefix iterator decrement
+* buffers_adapter improvements
+* Add icy_stream Shoutcast stream filter
+
+--------------------------------------------------------------------------------
+
+Version 172:
+
+* Tidy up websocket stream javadocs
+* Fix move-only arguments in bind_handler
+* Fix http::parser constructor javadoc
+* Tidy up test::stream javadocs
+* Tidy up composed operation doc
+
+--------------------------------------------------------------------------------
+
+Version 171:
+
+* Add handler_ptr::has_value
+* Remove spurious assert
+* Fix unused variable warning
+
+--------------------------------------------------------------------------------
+
+Version 170:
+
+* Add flat_stream to experimental
+* Add ssl_stream to experimental
+* Add test::error to experimental
+* Add test::fail_count to experimental
+* Add test::stream to experimental
+* Use a shared string for example HTTP server doc roots
+* Remove deprecated serializer::reader_impl()
+* Remove deprecated Body reader and writer ctor signatures
+* Add is_mutable_body_writer metafunction
+* Add const and non-const overloads for message based http writes
+* Use the root certificate which matches the fingerprint
+
+--------------------------------------------------------------------------------
+
+Version 169:
+
+* Use buffers_to_string in tests
+* Use boost::void_t
+* Refactor HTTP write_op implementation
+* Use fully qualified namespace in BOOST_BEAST_HANDLER_INIT
+* New flat_stream example class
+* Use flat_stream in ssl_stream example code
+
+--------------------------------------------------------------------------------
+
+Version 168:
+
+* Use executor_work_guard in composed operations
+* Revert verb.ipp change which caused spurious warnings
+* Fix race in advanced server examples
+
+--------------------------------------------------------------------------------
+
 Version 167:
 
 * Revert: Tidy up calls to post()
@@ -13,7 +199,6 @@ Version 166:
 Version 165:
 
 * Fix BOOST_NO_CXX11_ALLOCATOR check
-* Tidy up a warning
 
 --------------------------------------------------------------------------------
 
@@ -1176,7 +1361,7 @@ Actions Required:
   take the logical NOT of the return value.
 
 * Modify instances of user-defined BodyReader and BodyWriter
-  types to perfrom two-phase initialization, as per the
+  types to perform two-phase initialization, as per the
   updated documented type requirements.
 
 --------------------------------------------------------------------------------
@@ -2270,7 +2455,7 @@ The message class hierarchy is refactored (breaking change):
 * Fix integer warnings in Windows builds
 * Add 32 and 64 bit Windows build support
 * Update README for build instructions and more
-* Add repository and documention banners
+* Add repository and documentation banners
 
 --------------------------------------------------------------------------------
 

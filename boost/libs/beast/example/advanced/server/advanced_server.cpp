@@ -555,7 +555,7 @@ class http_session : public std::enable_shared_from_this<http_session>
         boost::asio::io_context::executor_type> strand_;
     boost::asio::steady_timer timer_;
     boost::beast::flat_buffer buffer_;
-    std::string const& doc_root_;
+    std::shared_ptr<std::string const> doc_root_;
     http::request<http::string_body> req_;
     queue queue_;
 
@@ -564,7 +564,7 @@ public:
     explicit
     http_session(
         tcp::socket socket,
-        std::string const& doc_root)
+        std::shared_ptr<std::string const> const& doc_root)
         : socket_(std::move(socket))
         , strand_(socket_.get_executor())
         , timer_(socket_.get_executor().context(),
@@ -578,6 +578,15 @@ public:
     void
     run()
     {
+        // Make sure we run on the strand
+        if(! strand_.running_in_this_thread())
+            return boost::asio::post(
+                boost::asio::bind_executor(
+                    strand_,
+                    std::bind(
+                        &http_session::run,
+                        shared_from_this())));
+
         // Run the timer. The timer is operated
         // continuously, this simplifies the code.
         on_timer({});
@@ -611,6 +620,10 @@ public:
     {
         if(ec && ec != boost::asio::error::operation_aborted)
             return fail(ec, "timer");
+
+        // Check if this has been upgraded to Websocket
+        if(timer_.expires_at() == (std::chrono::steady_clock::time_point::min)())
+            return;
 
         // Verify that the timer really expired since the deadline may have moved.
         if(timer_.expiry() <= std::chrono::steady_clock::now())
@@ -649,6 +662,10 @@ public:
         // See if it is a WebSocket Upgrade
         if(websocket::is_upgrade(req_))
         {
+            // Make timer expire immediately, by setting expiry to time_point::min we can detect
+            // the upgrade to websocket in the timer handler
+            timer_.expires_at((std::chrono::steady_clock::time_point::min)());
+
             // Create a WebSocket websocket_session by transferring the socket
             std::make_shared<websocket_session>(
                 std::move(socket_))->do_accept(std::move(req_));
@@ -656,7 +673,7 @@ public:
         }
 
         // Send the response
-        handle_request(doc_root_, std::move(req_), queue_);
+        handle_request(*doc_root_, std::move(req_), queue_);
 
         // If we aren't at the queue limit, try to pipeline another request
         if(! queue_.is_full())
@@ -706,13 +723,13 @@ class listener : public std::enable_shared_from_this<listener>
 {
     tcp::acceptor acceptor_;
     tcp::socket socket_;
-    std::string const& doc_root_;
+    std::shared_ptr<std::string const> doc_root_;
 
 public:
     listener(
         boost::asio::io_context& ioc,
         tcp::endpoint endpoint,
-        std::string const& doc_root)
+        std::shared_ptr<std::string const> const& doc_root)
         : acceptor_(ioc)
         , socket_(ioc)
         , doc_root_(doc_root)
@@ -728,7 +745,7 @@ public:
         }
 
         // Allow address reuse
-        acceptor_.set_option(boost::asio::socket_base::reuse_address(true));
+        acceptor_.set_option(boost::asio::socket_base::reuse_address(true), ec);
         if(ec)
         {
             fail(ec, "set_option");
@@ -808,7 +825,7 @@ int main(int argc, char* argv[])
     }
     auto const address = boost::asio::ip::make_address(argv[1]);
     auto const port = static_cast<unsigned short>(std::atoi(argv[2]));
-    std::string const doc_root = argv[3];
+    auto const doc_root = std::make_shared<std::string>(argv[3]);
     auto const threads = std::max<int>(1, std::atoi(argv[4]));
 
     // The io_context is required for all I/O

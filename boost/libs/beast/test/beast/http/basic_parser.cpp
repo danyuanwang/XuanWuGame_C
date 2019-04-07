@@ -1213,6 +1213,76 @@ public:
         BEAST_EXPECT(ec);
     }
 
+    void
+    testIssue1211()
+    {
+        using base = detail::basic_parser_base;
+        auto const good =
+            [&](string_view s, std::uint32_t v0)
+            {
+                std::uint32_t v;
+                auto const result =
+                    base::parse_dec(s.begin(), s.end(), v);
+                if(BEAST_EXPECTS(result, s))
+                    BEAST_EXPECTS(v == v0, s);
+            };
+        auto const bad =
+            [&](string_view s)
+            {
+                std::uint32_t v;
+                auto const result =
+                    base::parse_dec(s.begin(), s.end(), v);
+                BEAST_EXPECTS(! result, s);
+            };
+        good("0",           0);
+        good("00",          0);
+        good("001",         1);
+        good("255",         255);
+        good("65535",       65535);
+        good("65536",       65536);
+        good("4294967295",  4294967295);
+        bad ("");
+        bad (" ");
+        bad (" 0");
+        bad ("0 ");
+        bad ("-1");
+        bad ("4294967296");
+    }
+
+    void
+    testIssue1267()
+    {
+        using base = detail::basic_parser_base;
+        auto const good =
+            [&](string_view s, std::uint64_t v0)
+            {
+                std::uint64_t v;
+                auto it = s.begin();
+                auto const result =
+                    base::parse_hex(it, v);
+                if(BEAST_EXPECTS(result, s))
+                    BEAST_EXPECTS(v == v0, s);
+            };
+        auto const bad =
+            [&](string_view s)
+            {
+                std::uint64_t v;
+                auto it = s.begin();
+                auto const result =
+                    base::parse_hex(it, v);
+                BEAST_EXPECTS(! result, s);
+            };
+        good("f\r\n",               15);
+        good("ff\r\n",              255);
+        good("ffff\r\n",            65535);
+        good("ffffffffr\n",         4294967295);
+        good("ffffffffffffffff\r\n", 18446744073709551615ULL);
+        bad ("\r\n");
+        bad ("g\r\n");
+        bad ("10000000000000000\r\n");
+        bad ("ffffffffffffffffffffff\r\n");
+    }
+
     //--------------------------------------------------------------------------
 
     void
@@ -1237,6 +1307,8 @@ public:
         testIssue692();
         testFuzz();
         testRegression1();
+        testIssue1211();
+        testIssue1267();
     }
 };
 

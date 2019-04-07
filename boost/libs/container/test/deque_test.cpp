@@ -35,20 +35,6 @@
 
 using namespace boost::container;
 
-namespace boost {
-namespace container {
-
-//Explicit instantiation to detect compilation errors
-template class boost::container::deque
- < test::movable_and_copyable_int
- , test::simple_allocator<test::movable_and_copyable_int> >;
-
-template class boost::container::deque
-   < test::movable_and_copyable_int
-   , allocator<test::movable_and_copyable_int> >;
-
-}}
-
 //Function to check if both sets are equal
 template<class V1, class V2>
 bool deque_copyable_only(V1 &, V2 &, dtl::false_type)
@@ -281,6 +267,20 @@ bool do_test()
       stddeque.resize(200);
       if(!test::CheckEqualContainers(cntdeque, stddeque)) return 1;
    }
+
+#ifndef BOOST_CONTAINER_NO_CXX17_CTAD
+   //Check Constructor Template Auto Deduction
+   {
+      auto gold = MyStdDeque{ 1, 2, 3 };
+      auto test = deque(gold.begin(), gold.end());
+      if(!test::CheckEqualContainers(gold, test)) return false;
+   }
+   {
+      auto gold = MyStdDeque{ 1, 2, 3 };
+      auto test = deque(gold.begin(), gold.end(), new_allocator<int>());
+      if(!test::CheckEqualContainers(gold, test)) return false;
+   }
+#endif
 
    std::cout << std::endl << "Test OK!" << std::endl;
    return true;
