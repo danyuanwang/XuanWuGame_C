@@ -18,12 +18,11 @@ class Cell :public ModelObject
 {
 private:
 	const int _elevation_of_cell_type[CellType_Total] = {1, 1, 2, 1, 0, 1, 0};
-	int _id;
 	int _row_index;
 	int _col_index;
 	int _elevation;
 	CellType _type;
-	std::string _s_name_id;
+	std::string _str_name_id;
 
 public:
 	Cell(
@@ -32,9 +31,13 @@ public:
 		CellType _type
 	);
 	~Cell();
-	const char* GetNameForPTree() const { return  _s_name_id.c_str();}
+	const char* GetNameForPTree() const { return  _str_name_id.c_str();}
 
 	void TakeRequest(GamePlayRequest & request);
 	ptree & GetPropertyTree(ptree& propert_tree);
+
+	CellType GetCellType() { return _type;  };
+	int GetRowIndex() { return _row_index; };
+	int GetColIndex() { return _col_index; };
 };
 

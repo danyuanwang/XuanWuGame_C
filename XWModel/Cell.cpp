@@ -1,5 +1,4 @@
 #include "Cell.h"
-static unsigned int s_id_counter = 0;
 
 Cell::Cell(
 	int row_index,
@@ -9,11 +8,11 @@ Cell::Cell(
 	_row_index(row_index),
 	_col_index(col_index),
 	_type(type),
-	_elevation(_elevation_of_cell_type[(int)type]),
-	_id(s_id_counter++)
+	_elevation(_elevation_of_cell_type[(int)type])
 {
-	_s_name_id.append("Cell");
-	_s_name_id.append(std::to_string(_id));
+	_str_name_id.append("Cell");
+	_str_name_id.append(std::to_string(_id));
+
 }
 
 

@@ -5,7 +5,9 @@
 
 
 
-ConnectionMgr::ConnectionMgr() 
+ConnectionMgr::ConnectionMgr() :
+	_sent_message_counter(0),
+	_received_message_counter(0)
 {
 }
 
@@ -35,16 +37,18 @@ void ConnectionMgr::StopAll()
 
 int ConnectionMgr::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 {
-#if _DEBUG
-	std::cout << __FUNCTION__ << " : " << std::endl;
-	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
-#endif
 
 	for (auto p = _list_message_handler.cbegin(); p != _list_message_handler.cend(); ++p)
 	{
 		(*p)->OnReceivedMsgCallback(up_message.get()/*using ordinary pointer not to transfer ownership*/);
 	}
 
+	_received_message_counter++;
+
+#if _DEBUG
+	std::cout << __FUNCTION__ << " : " << _received_message_counter << " : " << std::endl;
+	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
+#endif
 
 	return 0;
 }
@@ -56,6 +60,8 @@ int ConnectionMgr::OnReceivedMsgCallback(NetPackMsg * up_message)
 
 int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t size)
 {
+	_sent_message_counter++;
+
 	for (auto p = _list_message_handler.cbegin(); p != _list_message_handler.cend(); ++p)
 	{
 		(*p)->OnSentMsgCallback(ec, size);
@@ -65,15 +71,15 @@ int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t s
 
 void ConnectionMgr::SendMsg(NetPackMsg * p_message)
 {
-#if _DEBUG
-	std::cout << __FUNCTION__ << " : " << std::endl;
-	std::cout << std::string{ (const char*)p_message->Body() } << std::endl;
-#endif
-
 	for (auto p = _list_session.cbegin(); p != _list_session.cend(); ++p)
 	{
 		p->get()->Deliver(p_message);
 	}
+
+#if _DEBUG
+	std::cout << __FUNCTION__ << " : " << _sent_message_counter << " : " << std::endl;
+	std::cout << std::string{ (const char*)p_message->Body() } << std::endl;
+#endif
 
 }
 

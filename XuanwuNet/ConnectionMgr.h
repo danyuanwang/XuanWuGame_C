@@ -31,5 +31,8 @@ private:
 	std::list<std::unique_ptr<ConnectionSession>> _list_session;
 	std::list<NetMsgCallback* > _list_message_handler;
 
+	unsigned long _sent_message_counter;
+	unsigned long _received_message_counter;
+
 };
 

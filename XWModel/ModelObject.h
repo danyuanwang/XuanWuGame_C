@@ -11,5 +11,11 @@ public:
 	virtual void TakeRequest(GamePlayRequest & request) = 0;
 	virtual ptree& GetPropertyTree(ptree& propert_tree) = 0;
 	virtual const char* GetNameForPTree() const = 0;
+
+protected:
+
+	static unsigned long s_id_counter;
+
+	unsigned long _id;
 };
 
