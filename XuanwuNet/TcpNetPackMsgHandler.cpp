@@ -20,6 +20,7 @@ int TcpNetPackMsgHandler::ReadAsync()
 {
 	/*first, read header to determine the pack size*/
 	auto sp_data_header = std::shared_ptr<char>(new char[_header_len + 1]);
+	std::memset(sp_data_header.get(), 0, _header_len + 1);
 
 	boost::asio::async_read(_socket,
 		boost::asio::buffer(sp_data_header.get(), _header_len),
@@ -61,10 +62,9 @@ int TcpNetPackMsgHandler::ReadAsync()
 								{
 									_p_netMsgCallback->OnReceivedMsgCallback(sp_read_message.get());
 								}
+
+								ReadAsync();
 							}
-
-
-							ReadAsync();
 
 						});
 				}

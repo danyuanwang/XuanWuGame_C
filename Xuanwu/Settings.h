@@ -4,8 +4,8 @@
 namespace GameSettings
 {
 	const XW_RGB_Color BackgroundColor = XW_RGB_Color(XW_Color_Value::WHITE);
-	const int WidthOfWindowX = 1200;
-	const int HeightWindowY = 830;
+	const int WidthOfWindowX = 320;
+	const int HeightWindowY = 200;
 	const char* WindowCaption = "Xuanwu Game";
 
 	const int NumOfBoardRow = 20;

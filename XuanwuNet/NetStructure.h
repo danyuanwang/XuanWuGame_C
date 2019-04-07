@@ -14,6 +14,7 @@ public:
 		_body_length = length;
 		_length = _body_length + _header_length;
 		_p_buffer =  new char[_length];
+		std::memset(_p_buffer, 0, _length);
 		_p_header = _p_buffer;
 		_p_body = _p_buffer + _header_length;
 
@@ -26,6 +27,7 @@ public:
 		_body_length = (int)std::strlen(p_message_content) + 1/*the string terminator*/;
 		_length = _body_length + _header_length;
 		_p_buffer = new char[_length];
+		std::memset(_p_buffer, 0, _length);
 		_p_header = _p_buffer;
 		_p_body = _p_buffer + _header_length;
 		std::strcpy(_p_body, p_message_content);
