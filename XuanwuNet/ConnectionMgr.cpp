@@ -37,25 +37,25 @@ void ConnectionMgr::StopAll()
 
 int ConnectionMgr::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 {
+	return OnReceivedMsgCallback(up_message.get()/*using ordinary pointer not to transfer ownership*/);
+}
 
+int ConnectionMgr::OnReceivedMsgCallback(NetPackMsg * p_message)
+{
 	for (auto p = _list_message_handler.cbegin(); p != _list_message_handler.cend(); ++p)
 	{
-		(*p)->OnReceivedMsgCallback(up_message.get()/*using ordinary pointer not to transfer ownership*/);
+		(*p)->OnReceivedMsgCallback(p_message);
 	}
 
 	_received_message_counter++;
 
-#if _DEBUG
-	std::cout << __FUNCTION__ << " : " << _received_message_counter << " : " << std::endl;
-	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
-#endif
+	//#if _DEBUG
+	//	std::cout << __FUNCTION__ << " : " << _received_message_counter << " : " << std::endl;
+	//	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
+	//#endif
 
 	return 0;
-}
 
-int ConnectionMgr::OnReceivedMsgCallback(NetPackMsg * up_message)
-{
-	throw E_NOTIMPL;
 }
 
 int ConnectionMgr::OnSentMsgCallback(boost::system::error_code ec, std::size_t size)

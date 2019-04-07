@@ -106,11 +106,11 @@ int NetMsgPump::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 	return 0;
 }
 
-int NetMsgPump::OnReceivedMsgCallback(NetPackMsg * up_message)
+int NetMsgPump::OnReceivedMsgCallback(NetPackMsg * p_message)
 {
 	/*make a copy of the message*/
 	auto up_msg = std::unique_ptr<NetPackMsg>(
-		new NetPackMsg{ *up_message }
+		new NetPackMsg{ *p_message }
 	);
 
 	return OnReceivedMsgCallback(std::move(up_msg));

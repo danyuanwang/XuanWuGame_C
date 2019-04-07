@@ -8,7 +8,7 @@ public:
 	virtual ~TcpNetPackMsgHandler();
 
 	int ReadAsync();
-	int WriteAsync(std::unique_ptr<NetPackMsg>  up_message);
+	int WriteAsync(NetPackMsg*  p_message);
 	void CloseSocket();
 
 private:

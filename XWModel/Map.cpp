@@ -46,27 +46,38 @@ void Map::TakeRequest(GamePlayRequest & request)
 
 ptree & Map::GetPropertyTree(ptree & propert_tree)
 {
+	ptree pt_sub_cell;
 	for (auto iter = _list_cell.cbegin(); iter < _list_cell.cend(); iter++)
 	{
 		ptree pt_element;
-		propert_tree.push_back(
+		pt_sub_cell.push_back(
 			ptree::value_type(
-			(*iter)->GetNameForPTree(),
+			std::to_string((*iter)->GetModelObjectID()).c_str(),
 				(*iter)->GetPropertyTree(pt_element)
 			)
 		);
 	}
 
+	propert_tree.push_back(ptree::value_type(
+		_list_cell.cbegin()->get()->GetNameForPTree(),
+		pt_sub_cell)
+	);
+
+	ptree pt_sub_mine;
 	for (auto iter = _list_mine.cbegin(); iter < _list_mine.cend(); iter++)
 	{
 		ptree pt_element;
-		propert_tree.push_back(
+		pt_sub_mine.push_back(
 			ptree::value_type(
-			(*iter)->GetNameForPTree(),
+			std::to_string((*iter)->GetModelObjectID()).c_str(),
 				(*iter)->GetPropertyTree(pt_element)
 			)
 		);
 	}
+	propert_tree.push_back(ptree::value_type(
+		_list_mine.cbegin()->get()->GetNameForPTree(),
+		pt_sub_mine)
+	);
 
 	return propert_tree;
 }

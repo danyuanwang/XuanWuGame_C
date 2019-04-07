@@ -1,10 +1,13 @@
 #include "TcpNetPackMsgHandler.h"
+#if _DEBUG
+#include <iostream>
+#endif
+
 TcpNetPackMsgHandler::TcpNetPackMsgHandler(tcp::socket socket)
 	:_socket(std::move(socket))
 {
 
 }
-
 
 
 TcpNetPackMsgHandler::~TcpNetPackMsgHandler()
@@ -16,47 +19,54 @@ TcpNetPackMsgHandler::~TcpNetPackMsgHandler()
 int TcpNetPackMsgHandler::ReadAsync()
 {
 	/*first, read header to determine the pack size*/
+	auto sp_data_header = std::shared_ptr<char>(new char[_header_len + 1]);
+
 	boost::asio::async_read(_socket,
-		boost::asio::buffer(_data_header, _header_len),
-		[this](boost::system::error_code ec, std::size_t /*length*/)
+		boost::asio::buffer(sp_data_header.get(), _header_len),
+		boost::asio::transfer_at_least(_header_len),
+		[this, sp_data_header](boost::system::error_code ec, std::size_t bytes_transferred)
 		{
 			if (!ec)
 			{
-				_message_len = std::atoi(_data_header);
-				if (_message_len < MAX_TCP_DATA_BUFFER_SIZE && _message_len > 0)
+
+				int message_len = std::atoi(sp_data_header.get());
+
+				assert(bytes_transferred == _header_len);
+				assert(message_len > _header_len);
+
+#if _DEBUG
+				std::cout << __FUNCTION__ << " : " << sp_data_header << " : " << bytes_transferred << " : " << message_len << std::endl;
+				//								std::cout << std::string{ (const char*)sp_read_message->Body() } << std::endl;
+#endif
+
+				if (message_len < MAX_TCP_DATA_BUFFER_SIZE && message_len > 0)
 				{
-					auto up_netmsg = new NetPackMsg(_message_len);
+					auto sp_read_message = std::shared_ptr<NetPackMsg>(new NetPackMsg(message_len));
+
 					boost::asio::async_read(
 						_socket,
-						boost::asio::buffer(up_netmsg->Body(), _message_len),
-						boost::asio::transfer_at_least(_message_len),
-						[this, up_netmsg](boost::system::error_code ec, std::size_t bytes_transferred)
+						boost::asio::buffer(sp_read_message->Body(), message_len),
+						boost::asio::transfer_at_least(message_len),
+						[this, sp_read_message](boost::system::error_code ec, std::size_t bytes_transferred)
 						{
 							if (!ec)
 							{
-								assert(bytes_transferred == _message_len);
+								assert(bytes_transferred == sp_read_message->BodyLen());
 
-								if (bytes_transferred == _message_len)
+#if _DEBUG
+								std::cout << __FUNCTION__ << " : " << sp_read_message->BodyLen() << " vs " << bytes_transferred << " : " << std::endl;
+//								std::cout << std::string{ (const char*)sp_read_message->Body() } << std::endl;
+#endif
+								if (_p_netMsgCallback != nullptr)
 								{
-									if (_p_netMsgCallback != nullptr)
-									{
-										_p_netMsgCallback->OnReceivedMsgCallback(std::unique_ptr<NetPackMsg>(up_netmsg));
-									}
+									_p_netMsgCallback->OnReceivedMsgCallback(sp_read_message.get());
 								}
 							}
-							else
-							{
-								_message_len = 0;
-								_package_len = 0;
-							}
+
 
 							ReadAsync();
 
 						});
-				}
-				else
-				{
-					ReadAsync();
 				}
 
 			}
@@ -66,14 +76,14 @@ int TcpNetPackMsgHandler::ReadAsync()
 	return 0;
 }
 
-int TcpNetPackMsgHandler::WriteAsync(std::unique_ptr<NetPackMsg> up_message)
+int TcpNetPackMsgHandler::WriteAsync(NetPackMsg* p_netmsg)
 {
 	boost::asio::async_write(_socket,
-		boost::asio::buffer(up_message->Buffer(), up_message->Length()),
-		boost::asio::transfer_at_least(up_message->Length()),
-		[this](boost::system::error_code ec, std::size_t bytes_transferred)
+		boost::asio::buffer(p_netmsg->Buffer(), p_netmsg->Length()),
+		boost::asio::transfer_at_least(p_netmsg->Length()),
+		[this, p_netmsg](boost::system::error_code ec, std::size_t bytes_transferred)
 		{
-			if (!_p_netMsgCallback)
+			if (_p_netMsgCallback != nullptr)
 			{
 				_p_netMsgCallback->OnSentMsgCallback(ec, bytes_transferred);
 			}

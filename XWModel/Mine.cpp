@@ -15,8 +15,6 @@ Mine::Mine(
 
 {
 	_str_name_id.append("Mine");
-	_str_name_id.append(std::to_string(_id));
-
 }
 
 

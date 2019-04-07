@@ -11,7 +11,6 @@ Cell::Cell(
 	_elevation(_elevation_of_cell_type[(int)type])
 {
 	_str_name_id.append("Cell");
-	_str_name_id.append(std::to_string(_id));
 
 }
 

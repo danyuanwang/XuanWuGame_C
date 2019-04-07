@@ -71,9 +71,9 @@ public:
 	void* Buffer() { return _p_buffer; }
 	int Length() { return _length; }
 	void* Header() { return _p_header; }
-	int HeaderLen() { return _length; }
+	int HeaderLen() { return _header_length; }
 	void* Body() { return _p_body; }
-	int BodyLen() { return _length; }
+	int BodyLen() { return _body_length; }
 
 private:
 	enum { enum_header_length = TCP_DATA_HEADER_SIZE};
