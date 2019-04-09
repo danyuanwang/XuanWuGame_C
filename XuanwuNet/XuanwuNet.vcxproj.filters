@@ -39,6 +39,9 @@
     <ClCompile Include="MsgPump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GZip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectionMgr.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MsgPump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GZip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

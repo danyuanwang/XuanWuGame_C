@@ -22,6 +22,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ConnectionMgr.cpp" />
     <ClCompile Include="ConnectionSession.cpp" />
+    <ClCompile Include="GZip.cpp" />
     <ClCompile Include="MsgPump.cpp" />
     <ClCompile Include="NetMsgCallback.cpp" />
     <ClCompile Include="NetPackMsgHandler.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="ConnectionMgr.h" />
     <ClInclude Include="ConnectionSession.h" />
+    <ClInclude Include="GZip.h" />
     <ClInclude Include="MsgPump.h" />
     <ClInclude Include="NetMsgCallback.h" />
     <ClInclude Include="NetPackMsgHandler.h" />
