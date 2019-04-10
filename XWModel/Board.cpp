@@ -13,25 +13,26 @@ Board::~Board()
 }
 
 
-ptree & Board::GetPropertyTree(ptree & property_tree)
+ptree & Board::GetPropertyTree()
 {
 	_property_tree.clear();
 
+	ptree pt_map;
 	{
-		ptree pt_element;
-		_property_tree.add_child(
-			QUOTES(_up_map),
-			_up_map->GetPropertyTree(pt_element)
+		pt_map.push_back(
+			ptree::value_type(
+				_up_map->GetNameForPTree(),
+			_up_map->GetPropertyTree()
+			)
 		);
 	}
 
-	property_tree.push_back(
-		ptree::value_type(
-			GetNameForPTree(),
-			_property_tree
-		)
+	_property_tree.add_child(
+		QUOTES(_up_map),
+		pt_map
 	);
-	return property_tree;
+
+	return _property_tree;
 }
 
 void Board::OnIterateCallback(std::string key, std::string value, int level)
@@ -39,7 +40,8 @@ void Board::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void Board::UpdateByPropertyTree(ptree& propert_tree)
+void Board::UpdateByPropertyTree(const ptree& propert_tree)
 {
-	throw std::logic_error("not implemented");
+	_property_tree = propert_tree.get_child(GetNameForPTree());
+	_up_map->UpdateByPropertyTree(_property_tree.get_child(QUOTES(_up_map)));
 }

@@ -53,7 +53,8 @@ public:
 
 	~GamePlayRequest();
 
-	void Attach(const char* key, ptree pt);
+	void AddChild(const char* key, ptree pt);
+	ptree& GetChild(const char* key);
 
 	GameScenarioTypeEnum GetScenarioType();
 	GameOjbectTypeEnum GetFromType();

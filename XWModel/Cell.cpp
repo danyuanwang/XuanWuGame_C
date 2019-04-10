@@ -1,10 +1,15 @@
 #include "Cell.h"
 
+Cell::Cell(const ptree& property_tree)
+{
+	UpdateByPropertyTree(property_tree);
+}
+
 Cell::Cell(
 	int row_index,
 	int col_index,
 	CellType type
-) : 
+) :
 	_row_index(row_index),
 	_col_index(col_index),
 	_type(type),
@@ -20,7 +25,7 @@ Cell::~Cell()
 {
 }
 
-ptree & Cell::GetPropertyTree(ptree & property_tree)
+ptree & Cell::GetPropertyTree()
 {
 	_property_tree.clear();
 
@@ -28,12 +33,7 @@ ptree & Cell::GetPropertyTree(ptree & property_tree)
 	PROPERTY_TREE_PUT(_property_tree, _col_index);
 	PROPERTY_TREE_PUT(_property_tree, _elevation);
 	PROPERTY_TREE_PUT(_property_tree, _type);
-
-	property_tree.push_back(ptree::value_type(
-		GetNameForPTree(),
-		_property_tree)
-	);
-	return property_tree;
+	return _property_tree;
 }
 
 void Cell::OnIterateCallback(std::string key, std::string value, int level)
@@ -41,7 +41,12 @@ void Cell::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void Cell::UpdateByPropertyTree(ptree& propert_tree)
+void Cell::UpdateByPropertyTree(const ptree& propert_tree)
 {
-	throw std::logic_error("not implemented");
+	_property_tree = propert_tree;
+
+	PTREE_GET(_row_index);
+	PTREE_GET(_col_index);
+	PTREE_GET(_elevation);
+	PTREE_GET_T(_type, CellType);
 }

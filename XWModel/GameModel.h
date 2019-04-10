@@ -14,7 +14,6 @@ class GameModel :
 {
 private:
 	std::unique_ptr<Board> up_game_board;
-
 	std::list<std::unique_ptr<Player>> _list_player; 
 
 
@@ -23,9 +22,9 @@ public:
 	~GameModel();
 
 	const char* GetNameForPTree() const { return "GameModel"; }
-	ptree& GetPropertyTree(ptree& propert_tree);
+	ptree& GetPropertyTree();
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree);
 
 
 };

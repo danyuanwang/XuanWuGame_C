@@ -18,15 +18,16 @@ private:
 
 	void _init_map();
 
-	int _rand_in_range(int userBeg, int userEnd) { return std::rand() % ((userEnd - userBeg) + 1) + userBeg; }
+	int _rand_in_range(int userBeg, int userEnd) 
+	{ return std::rand() % ((userEnd - userBeg) + 1) + userBeg; }
 public:
 	Map();
 	~Map();
 	const char* GetNameForPTree() const { return "Map"; }
 
-	ptree &  GetPropertyTree(ptree& propert_tree)  ;
+	ptree &  GetPropertyTree()  ;
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree);
 
 };
 

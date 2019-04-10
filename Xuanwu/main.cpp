@@ -13,7 +13,7 @@ int main(int, char**) {
 	auto up_game_engine = std::unique_ptr<GameEngine>(new GameEngine);
 	up_game_engine->Initialize();
 
-	auto up_game_board = std::unique_ptr<GameClient>(new GameClient(up_game_engine.get(), up_cnmgr.get()));
+	auto up_game = std::unique_ptr<GameClient>(new GameClient(up_game_engine.get(), up_cnmgr.get()));
 
 	up_cnmgr->AddMsgListener(up_msp.get());
 	up_client->Start();
@@ -27,12 +27,12 @@ int main(int, char**) {
 		{
 			//handle network messages
 			GamePlayRequest gpr{ up_msg->GetContent() };
-
+			up_game->ProcessGameRequest(gpr);
 		}
 
 		//Handle events on queue 
 		while (up_game_engine->PollEvent(e) != 0) {
-			up_game_board->CheckSdlEvent(e);
+			up_game->CheckSdlEvent(e);
 		}
 
 		//game_board.Draw();

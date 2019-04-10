@@ -7,17 +7,23 @@
 
 #define QUOTES(x) #x
 #define PROPERTY_TREE_PUT(pt,v) {(pt).put(std::string(QUOTES(v)), std::to_string(v));}
-#define PROPERTY_TREE_PUT_STRING(pt,v) {(pt).put(std::string(QUOTES(v)), std::string(v));}
+#define PTREE_PUT(v)  PROPERTY_TREE_PUT(_property_tree,v)
+#define PROPERTY_TREE_GET(pt, v, t) {(v) = (t)std::atoi((pt).get(std::string(QUOTES(v)), "").c_str());}
+#define PTREE_GET_T(v, t) PROPERTY_TREE_GET(_property_tree, v, t)
+#define PTREE_GET(v) PROPERTY_TREE_GET(_property_tree, v, int)
 
-#define PROPERTY_TREE_PUT_RAW(pt, n, v) {(pt).put((n), (v));}
-#define PROPERTY_TREE_PUT_VALUE_STRING(pt,v) {(pt).put_value(std::string(v));}
-#define PROPERTY_TREE_PUT_VALUE(pt,v) {(pt).put_value(std::to_string(v));}
+//#define PROPERTY_TREE_PUT_STRING(pt,v) {(pt).put(std::string(QUOTES(v)), std::string(v));}
 
-#define MATCH_FROM_PROPERTY_KV(k,v,x,T) if (k == QUOTES(x)) \
-{\
-	x = (T)std::atoi(v.c_str());\
-}\
+//#define PROPERTY_TREE_PUT_RAW(pt, n, v) {(pt).put((n), (v));}
+//#define PROPERTY_TREE_PUT_VALUE_STRING(pt,v) {(pt).put_value(std::string(v));}
+//#define PROPERTY_TREE_PUT_VALUE(pt,v) {(pt).put_value(std::to_string(v));}
+//
 
+//#define MATCH_FROM_PROPERTY_KV(k,v,x,T) if (k == QUOTES(x)) \
+//{\
+//	x = (T)std::atoi(v.c_str());\
+//}\
+//
 
 using boost::property_tree::ptree;
 

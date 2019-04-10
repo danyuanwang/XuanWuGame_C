@@ -11,10 +11,10 @@ public:
 	Board();
 	~Board();
 
-	ptree&  GetPropertyTree(ptree& propert_tree);
+	ptree&  GetPropertyTree();
 	const char* GetNameForPTree() const { return "Board"; }
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree);
 
 private:
 	std::unique_ptr<Map> _up_map;

@@ -30,12 +30,15 @@ public:
 		int _col_index,
 		CellType _type
 	);
+	
+	Cell(const ptree& property_tree);
+
 	~Cell();
 	const char* GetNameForPTree() const { return  _str_name_id.c_str();}
 
-	ptree & GetPropertyTree(ptree& propert_tree);
+	ptree & GetPropertyTree();
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree);
 
 	CellType GetCellType() { return _type;  };
 	int GetRowIndex() { return _row_index; };

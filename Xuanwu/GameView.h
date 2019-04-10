@@ -3,12 +3,12 @@
 #include "ConnectionMgr.h"
 #include "GameEngine.h"
 
-class Board
+class GameView
 {
 
 public:
-	Board();
-	~Board();
+	GameView();
+	~GameView();
 	void Draw();
 };
 

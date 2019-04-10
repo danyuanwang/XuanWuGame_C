@@ -206,13 +206,15 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\SDL2_ttf
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GameClient.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameView.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="GameClient.h" />

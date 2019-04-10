@@ -1,5 +1,9 @@
 #include "Mine.h"
 
+Mine::Mine(const ptree& property_tree)
+{
+	UpdateByPropertyTree(property_tree);
+}
 
 Mine::Mine(
 	int row_index,
@@ -23,7 +27,7 @@ Mine::~Mine()
 }
 
 
-ptree & Mine::GetPropertyTree(ptree & property_tree)
+ptree & Mine::GetPropertyTree()
 {
 	_property_tree.clear();
 
@@ -33,12 +37,7 @@ ptree & Mine::GetPropertyTree(ptree & property_tree)
 	PROPERTY_TREE_PUT(_property_tree, _value_fore_sale);
 	PROPERTY_TREE_PUT(_property_tree, _type);
 
-	property_tree.push_back(ptree::value_type(
-		GetNameForPTree(),
-		_property_tree)
-	);
-
-	return property_tree;
+	return _property_tree;
 }
 
 
@@ -47,7 +46,14 @@ void Mine::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void Mine::UpdateByPropertyTree(ptree& propert_tree)
+void Mine::UpdateByPropertyTree(const ptree& propert_tree)
 {
-	throw std::logic_error("not implemented");
+	_property_tree = propert_tree;
+
+	PTREE_GET(_row_index);
+	PTREE_GET(_col_index);
+	PTREE_GET(_elevation);
+	PTREE_GET(_value_fore_sale);
+	PTREE_GET_T(_cell_type, CellType);
+	PTREE_GET_T(_type, MineType);
 }

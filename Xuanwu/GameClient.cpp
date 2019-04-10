@@ -6,6 +6,8 @@ GameClient::GameClient(GameEngine* pge, ConnectionMgr* pcmr) :
 	mp_game_engine(pge), mp_connection_mgr(pcmr)
 {
 	up_gameModel = std::unique_ptr<GameModel>{ new GameModel() };
+	up_gameView = std::unique_ptr<GameView>{ new GameView() };
+	up_gameController = std::unique_ptr<GameController>{ new GameController() };
 }
 
 
@@ -30,56 +32,29 @@ void GameClient::CheckSdlEvent(SDL_Event & e)
 		new NetPackMsg
 		);
 	up_netMsg->SetConent(up_gpr->ToJson().c_str());
+	mp_connection_mgr->SendMsg(up_netMsg.get());
 
 	/*<< END for test purpose*/
 
+	up_gameController->CheckSdlEvent(e);
 
-	switch (e.type)
-	{
-	case SDL_KEYDOWN:
-	{ //Select surfaces based on key press 
-		switch (e.key.keysym.sym)
-		{
-			case SDLK_UP:
-			{
-				mp_connection_mgr->SendMsg(up_netMsg.get());
-				break;
-			}
-			case SDLK_DOWN:
-			{
-				mp_connection_mgr->SendMsg(up_netMsg.get());
-				break;
-			}
-			case SDLK_LEFT:
-			{
-				mp_connection_mgr->SendMsg(up_netMsg.get());
-				break;
-			}
-			case SDLK_RIGHT:
-			{
-				mp_connection_mgr->SendMsg(up_netMsg.get());
-				break;
-			}
-			default:
-			{
-				break;
-			}
-		}
-	}
-	default:
-	{
-		break;
-	}
-	}
+	up_gameView->Draw();
+
 }
 
 void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 {
 	switch (gpr.GetToType())
 	{
+		case GameOjbect_GameView:
+		{
+			break;
+		}
+		case GameOjbect_GameBoard:
 		case GameOjbect_GameModel:
 		{
-			//up_gameModel->UpdateByJson();
+			ptree property_tree = gpr.GetChild(up_gameModel->GetNameForPTree());
+			up_gameModel->UpdateByPropertyTree(property_tree);
 			break;
 		}
 		default:
@@ -87,4 +62,6 @@ void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 			break;
 		}
 	}
+
+	up_gameView->Draw();
 }

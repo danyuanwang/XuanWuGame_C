@@ -4,7 +4,7 @@
 
 GameModel::GameModel()
 {
-	up_game_board = std::unique_ptr<Board>{ new Board() };
+	up_game_board =  std::unique_ptr<Board>{ new Board() } ;
 }
 
 
@@ -13,26 +13,27 @@ GameModel::~GameModel()
 
 }
 
-ptree& GameModel::GetPropertyTree(ptree & property_tree)
+ptree& GameModel::GetPropertyTree()
 {
 	_property_tree.clear();
 
+	ptree pt_board;
 	{
-		ptree pt_element;
+		pt_board.push_back(
+			ptree::value_type(
+				up_game_board->GetNameForPTree(),
+				up_game_board->GetPropertyTree()
+			)
+		);
+
 		_property_tree.add_child(
 			QUOTES(up_game_board),
-			up_game_board->GetPropertyTree(pt_element)
+			pt_board
 		);
 	}
 
-	property_tree.push_back(
-		ptree::value_type(
-			GetNameForPTree(),
-			_property_tree
-		)
-	);
 
-	return property_tree;
+	return _property_tree;
 }
 
 void GameModel::OnIterateCallback(std::string key, std::string value, int level)
@@ -40,7 +41,8 @@ void GameModel::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void GameModel::UpdateByPropertyTree(ptree& propert_tree)
+void GameModel::UpdateByPropertyTree(const ptree& propert_tree)
 {
-	throw std::logic_error("not implemented");
+	_property_tree = propert_tree;
+	up_game_board->UpdateByPropertyTree(_property_tree.get_child(QUOTES(up_game_board)));
 }

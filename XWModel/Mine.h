@@ -14,6 +14,8 @@ enum MineType
 class Mine :public ModelObject
 {
 public:
+	Mine(const ptree& property_tree);
+
 	Mine(
 		int _row_index,
 		int _col_index,
@@ -25,9 +27,9 @@ public:
 
 	const char* GetNameForPTree() const { return  _str_name_id.c_str(); }
 
-	ptree & GetPropertyTree(ptree& propert_tree);
+	ptree & GetPropertyTree();
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree);
 
 private:
 	const int _value_of_mine_type[MineType_Total] = { 5, 15, 25 };

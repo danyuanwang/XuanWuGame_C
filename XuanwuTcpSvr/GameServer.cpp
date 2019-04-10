@@ -41,10 +41,7 @@ void GameServer::_notifyUpdate()
 	gr.SetToObject(GameOjbect_GameView);
 	gr.SetActionType(GameOjbectAction_UpdateView);
 
-	ptree property_tree;
-
-	up_game_model->GetPropertyTree(property_tree);
-	gr.Attach(up_game_model->GetNameForPTree(), property_tree);
+	gr.AddChild(up_game_model->GetNameForPTree(), up_game_model->GetPropertyTree());
 
 	NetPackMsg netMsg;
 	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)

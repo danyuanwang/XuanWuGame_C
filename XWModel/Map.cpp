@@ -40,33 +40,37 @@ Map::~Map()
 }
 
 
-ptree & Map::GetPropertyTree(ptree & property_tree)
+ptree & Map::GetPropertyTree()
 {
 	_property_tree.clear();
 
+	ptree pt_cells;
 	for (auto iter = _list_cell.cbegin(); iter < _list_cell.cend(); iter++)
 	{
-		ptree pt_element;
-		_property_tree.add_child(
-			QUOTES(_list_cell),
-			(*iter)->GetPropertyTree(pt_element)
+		pt_cells.push_back(
+			ptree::value_type(
+			(*iter)->GetNameForPTree(),
+				(*iter)->GetPropertyTree()
+			)
 		);
 	}
 
+	_property_tree.add_child(QUOTES(_list_cell), pt_cells);
+
+	ptree pt_mines;
 	for (auto iter = _list_mine.cbegin(); iter < _list_mine.cend(); iter++)
 	{
-		ptree pt_element;
-		_property_tree.add_child(
-			QUOTES(_list_mine),
-			(*iter)->GetPropertyTree(pt_element)
+		pt_mines.push_back(
+			ptree::value_type(
+			(*iter)->GetNameForPTree(),
+				(*iter)->GetPropertyTree()
+			)
 		);
 	}
 
-	property_tree.push_back(ptree::value_type(
-		GetNameForPTree(),
-		_property_tree)
-	);
-	return property_tree;
+	_property_tree.add_child(QUOTES(_list_mine), pt_mines);
+
+	return _property_tree;
 }
 
 void Map::_init_map()
@@ -134,7 +138,32 @@ void Map::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void Map::UpdateByPropertyTree(ptree& propert_tree)
+void Map::UpdateByPropertyTree(const ptree& propert_tree)
 {
-	throw std::logic_error("not implemented");
+	_property_tree = propert_tree.get_child(GetNameForPTree());
+
+	_list_cell.clear();
+	ptree pt_cells = _property_tree.get_child(QUOTES(_list_cell));
+	BOOST_FOREACH(ptree::value_type const&v, pt_cells)
+	{
+		const std::string & key = v.first; // key
+		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
+		if (key == QUOTES(Cell))
+		{
+			_list_cell.push_back(std::move(std::unique_ptr<Cell>(new Cell(subtree))));
+		}
+	}
+
+	_list_mine.clear();
+	ptree pt_mines = _property_tree.get_child(QUOTES(_list_mine));
+	BOOST_FOREACH(ptree::value_type const&v, pt_mines)
+	{
+		const std::string & key = v.first; // key
+		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
+		if (key == QUOTES(Mine))
+		{
+			_list_mine.push_back(std::move(std::unique_ptr<Mine>(new Mine(subtree))));
+		}
+	}
+
 }

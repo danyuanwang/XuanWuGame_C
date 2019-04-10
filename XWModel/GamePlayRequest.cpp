@@ -15,10 +15,16 @@ GamePlayRequest::GamePlayRequest(const char * json)
 
 }
 
-void GamePlayRequest::Attach(const char* key, ptree pt)
+void GamePlayRequest::AddChild(const char* key, ptree pt)
 {
 	_property_tree.push_back(ptree::value_type(key, pt));
 }
+
+ptree& GamePlayRequest::GetChild(const char* key)
+{
+	return _property_tree.get_child(key);
+}
+
 
 void GamePlayRequest::OnIterateCallback(std::string key, std::string value, int level)
 {
@@ -40,17 +46,17 @@ GameScenarioTypeEnum GamePlayRequest::GetScenarioType()
 
 GameOjbectTypeEnum GamePlayRequest::GetFromType()
 {
-	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(scenario));
+	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(from));
 }
 
 GameOjbectTypeEnum GamePlayRequest::GetToType()
 {
-	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(scenario));
+	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(to));
 }
 
 GameOjbectActionTypeEnum GamePlayRequest::GetActionType()
 {
-	return GetKeyValue<GameOjbectActionTypeEnum>(QUOTES(scenario));
+	return GetKeyValue<GameOjbectActionTypeEnum>(QUOTES(action));
 }
 
 void GamePlayRequest::SetScenario(GameScenarioTypeEnum scenario)
