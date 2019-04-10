@@ -10,15 +10,10 @@
 #include "Player.h"
 
 class GameModel :
-	public ModelObject, 
-	public NetMsgCallback
+	public ModelObject
 {
 private:
-	void _notifyUpdate();
-
 	std::unique_ptr<Board> up_game_board;
-
-	ConnectionMgr* _p_connectionMgr;
 
 	std::list<std::unique_ptr<Player>> _list_player; 
 
@@ -28,14 +23,9 @@ public:
 	~GameModel();
 
 	const char* GetNameForPTree() const { return "GameModel"; }
-	void TakeRequest(GamePlayRequest& request);
 	ptree& GetPropertyTree(ptree& propert_tree);
-
-	void BindConnection(ConnectionMgr* _p_onnectionMgr/*using ordinary pointer means no ownership*/);
-
-	int OnReceivedMsgCallback(std::unique_ptr<NetPackMsg>  up_message);
-	int OnReceivedMsgCallback(NetPackMsg*  up_message /*ordinary pointer means no ownership transfer*/);
-	int OnSentMsgCallback(boost::system::error_code ec, std::size_t);
+	void OnIterateCallback(std::string key, std::string value, int level);
+	void UpdateByPropertyTree(ptree& propert_tree);
 
 
 };

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "GameEngine.h"
-#include"Board.h"
+#include"GameClient.h"
 #include "Client.h"
 
 int main(int, char**) {
@@ -13,11 +13,9 @@ int main(int, char**) {
 	auto up_game_engine = std::unique_ptr<GameEngine>(new GameEngine);
 	up_game_engine->Initialize();
 
-	auto up_game_board = std::unique_ptr<Board>(new Board(up_game_engine.get(), up_cnmgr.get()));
+	auto up_game_board = std::unique_ptr<GameClient>(new GameClient(up_game_engine.get(), up_cnmgr.get()));
 
 	up_cnmgr->AddMsgListener(up_msp.get());
-
-
 	up_client->Start();
 
 	SDL_Event e;
@@ -29,7 +27,6 @@ int main(int, char**) {
 		{
 			//handle network messages
 			GamePlayRequest gpr{ up_msg->GetContent() };
-			up_game_board->TakeRequest(gpr);
 
 		}
 

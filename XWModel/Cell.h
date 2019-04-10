@@ -33,8 +33,9 @@ public:
 	~Cell();
 	const char* GetNameForPTree() const { return  _str_name_id.c_str();}
 
-	void TakeRequest(GamePlayRequest & request);
 	ptree & GetPropertyTree(ptree& propert_tree);
+	void OnIterateCallback(std::string key, std::string value, int level);
+	void UpdateByPropertyTree(ptree& propert_tree);
 
 	CellType GetCellType() { return _type;  };
 	int GetRowIndex() { return _row_index; };

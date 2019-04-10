@@ -20,6 +20,7 @@ enum  GameOjbectTypeEnum
 	GameOjbect_Player = 0,
 	GameOjbect_Army,
 	GameOjbect_GameBoard,
+	GameOjbect_GameModel,
 
 	GameOjbect_GameView,
 

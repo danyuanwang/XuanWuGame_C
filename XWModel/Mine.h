@@ -25,8 +25,9 @@ public:
 
 	const char* GetNameForPTree() const { return  _str_name_id.c_str(); }
 
-	void TakeRequest(GamePlayRequest & request);
 	ptree & GetPropertyTree(ptree& propert_tree);
+	void OnIterateCallback(std::string key, std::string value, int level);
+	void UpdateByPropertyTree(ptree& propert_tree);
 
 private:
 	const int _value_of_mine_type[MineType_Total] = { 5, 15, 25 };

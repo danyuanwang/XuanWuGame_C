@@ -24,8 +24,9 @@ public:
 	~Map();
 	const char* GetNameForPTree() const { return "Map"; }
 
-	void TakeRequest(GamePlayRequest & request) ;
 	ptree &  GetPropertyTree(ptree& propert_tree)  ;
+	void OnIterateCallback(std::string key, std::string value, int level);
+	void UpdateByPropertyTree(ptree& propert_tree);
 
 };
 

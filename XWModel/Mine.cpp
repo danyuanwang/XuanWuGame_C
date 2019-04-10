@@ -22,16 +22,32 @@ Mine::~Mine()
 {
 }
 
-void Mine::TakeRequest(GamePlayRequest & request)
+
+ptree & Mine::GetPropertyTree(ptree & property_tree)
 {
+	_property_tree.clear();
+
+	PROPERTY_TREE_PUT(_property_tree, _row_index);
+	PROPERTY_TREE_PUT(_property_tree, _col_index);
+	PROPERTY_TREE_PUT(_property_tree, _cell_type);
+	PROPERTY_TREE_PUT(_property_tree, _value_fore_sale);
+	PROPERTY_TREE_PUT(_property_tree, _type);
+
+	property_tree.push_back(ptree::value_type(
+		GetNameForPTree(),
+		_property_tree)
+	);
+
+	return property_tree;
 }
 
-ptree & Mine::GetPropertyTree(ptree & propert_tree)
+
+void Mine::OnIterateCallback(std::string key, std::string value, int level)
 {
-	PROPERTY_TREE_PUT(propert_tree, _row_index);
-	PROPERTY_TREE_PUT(propert_tree, _col_index);
-	PROPERTY_TREE_PUT(propert_tree, _cell_type);
-	PROPERTY_TREE_PUT(propert_tree, _value_fore_sale);
-	PROPERTY_TREE_PUT(propert_tree, _type);
-	return propert_tree;
+	throw std::logic_error("not implemented");
+}
+
+void Mine::UpdateByPropertyTree(ptree& propert_tree)
+{
+	throw std::logic_error("not implemented");
 }

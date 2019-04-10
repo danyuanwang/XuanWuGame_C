@@ -12,7 +12,7 @@ public:
 	virtual void CloseSocket() = 0;
 
 	static NetPackMsgHandler* CreateNetPackMsgHandler(tcp::socket socket);
-	static NetPackMsgHandler* CreateNetPackMsgHandler(udp::socket socket) { throw E_NOTIMPL; }
+	static NetPackMsgHandler* CreateNetPackMsgHandler(udp::socket socket) { throw std::logic_error("not implemented"); }
 
 	void SetMsgCallback(NetMsgCallback* up_netMsgCallback);
 protected:

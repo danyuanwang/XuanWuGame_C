@@ -39,47 +39,34 @@ Map::~Map()
 {
 }
 
-void Map::TakeRequest(GamePlayRequest & request)
-{
 
-}
-
-ptree & Map::GetPropertyTree(ptree & propert_tree)
+ptree & Map::GetPropertyTree(ptree & property_tree)
 {
-	ptree pt_sub_cell;
+	_property_tree.clear();
+
 	for (auto iter = _list_cell.cbegin(); iter < _list_cell.cend(); iter++)
 	{
 		ptree pt_element;
-		pt_sub_cell.push_back(
-			ptree::value_type(
-			std::to_string((*iter)->GetModelObjectID()).c_str(),
-				(*iter)->GetPropertyTree(pt_element)
-			)
+		_property_tree.add_child(
+			QUOTES(_list_cell),
+			(*iter)->GetPropertyTree(pt_element)
 		);
 	}
 
-	propert_tree.push_back(ptree::value_type(
-		_list_cell.cbegin()->get()->GetNameForPTree(),
-		pt_sub_cell)
-	);
-
-	ptree pt_sub_mine;
 	for (auto iter = _list_mine.cbegin(); iter < _list_mine.cend(); iter++)
 	{
 		ptree pt_element;
-		pt_sub_mine.push_back(
-			ptree::value_type(
-			std::to_string((*iter)->GetModelObjectID()).c_str(),
-				(*iter)->GetPropertyTree(pt_element)
-			)
+		_property_tree.add_child(
+			QUOTES(_list_mine),
+			(*iter)->GetPropertyTree(pt_element)
 		);
 	}
-	propert_tree.push_back(ptree::value_type(
-		_list_mine.cbegin()->get()->GetNameForPTree(),
-		pt_sub_mine)
-	);
 
-	return propert_tree;
+	property_tree.push_back(ptree::value_type(
+		GetNameForPTree(),
+		_property_tree)
+	);
+	return property_tree;
 }
 
 void Map::_init_map()
@@ -140,4 +127,14 @@ void Map::_init_map()
 
 		list_of_mountain_cell_no.erase(list_of_mountain_cell_no.cbegin() + index_selected_cell);
 	}
+}
+
+void Map::OnIterateCallback(std::string key, std::string value, int level)
+{
+	throw std::logic_error("not implemented");
+}
+
+void Map::UpdateByPropertyTree(ptree& propert_tree)
+{
+	throw std::logic_error("not implemented");
 }

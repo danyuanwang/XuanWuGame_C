@@ -13,45 +13,33 @@ Board::~Board()
 }
 
 
-void Board::TakeRequest(GamePlayRequest & request)
+ptree & Board::GetPropertyTree(ptree & property_tree)
 {
-	switch (request.GetToType())
-	{
-	case GameOjbect_GameBoard:
-	{
-		switch (request.GetActionType())
-		{
-		case GameOjbectAction_Restart:
-		{
-			break;
-		}
-		case GameOjbectAction_End:
-		{
-			break;
-		}
-		default:
-		{
-			break;
-		}
-		}
-		break;
-	}
-	default:
-	{
-		break;
-	}
-	}
-}
+	_property_tree.clear();
 
-ptree & Board::GetPropertyTree(ptree & propert_tree)
-{
-	ptree pt_element;
-
-	propert_tree.push_back(
-		ptree::value_type(
-			_up_map->GetNameForPTree(), 
+	{
+		ptree pt_element;
+		_property_tree.add_child(
+			QUOTES(_up_map),
 			_up_map->GetPropertyTree(pt_element)
+		);
+	}
+
+	property_tree.push_back(
+		ptree::value_type(
+			GetNameForPTree(),
+			_property_tree
 		)
 	);
-	return propert_tree;
+	return property_tree;
+}
+
+void Board::OnIterateCallback(std::string key, std::string value, int level)
+{
+	throw std::logic_error("not implemented");
+}
+
+void Board::UpdateByPropertyTree(ptree& propert_tree)
+{
+	throw std::logic_error("not implemented");
 }

@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameServer.cpp" />
     <ClCompile Include="XuanwuTcpSvr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,9 @@
     <ProjectReference Include="..\XWModel\XWModel.vcxproj">
       <Project>{2a923120-8868-440b-a8ac-c972b41cd968}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

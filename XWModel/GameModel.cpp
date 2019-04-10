@@ -13,67 +13,34 @@ GameModel::~GameModel()
 
 }
 
-
-void GameModel::TakeRequest(GamePlayRequest& request)
+ptree& GameModel::GetPropertyTree(ptree & property_tree)
 {
-	up_game_board->TakeRequest(request);
+	_property_tree.clear();
 
-	/*for test purpose, need to remove*/
-	_notifyUpdate();
-}
+	{
+		ptree pt_element;
+		_property_tree.add_child(
+			QUOTES(up_game_board),
+			up_game_board->GetPropertyTree(pt_element)
+		);
+	}
 
-void GameModel::BindConnection(ConnectionMgr * p_onnectionMgr)
-{
-	_p_connectionMgr = p_onnectionMgr;
-}
-
-int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
-{
-	return OnReceivedMsgCallback(up_message.get());
-}
-
-int GameModel::OnReceivedMsgCallback(NetPackMsg * p_message)
-{
-	GamePlayRequest gpr = GamePlayRequest{ p_message->GetContent() };
-	TakeRequest(gpr);
-
-	return 0;
-}
-
-int GameModel::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
-{
-	return 0;
-}
-
-ptree& GameModel::GetPropertyTree(ptree & propert_tree)
-{
-	ptree pt_ele;
-
-	propert_tree.push_back(
+	property_tree.push_back(
 		ptree::value_type(
-			up_game_board->GetNameForPTree(),
-			up_game_board->GetPropertyTree(pt_ele)
+			GetNameForPTree(),
+			_property_tree
 		)
 	);
-	return propert_tree;
+
+	return property_tree;
 }
 
-void GameModel::_notifyUpdate()
+void GameModel::OnIterateCallback(std::string key, std::string value, int level)
 {
-	GamePlayRequest gr;
-	gr.SetScenario(GameScenario_DataModel);
-	gr.SetFromObject(GameOjbect_GameBoard);
-	gr.SetToObject(GameOjbect_GameView);
-	gr.SetActionType(GameOjbectAction_UpdateView);
-
-	ptree property_tree;
-	GetPropertyTree(property_tree);
-	gr.Attach(GetNameForPTree(), property_tree);
-
-	NetPackMsg netMsg;
-	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
-	{
-		_p_connectionMgr->SendMsg(&netMsg);
-	}
+	throw std::logic_error("not implemented");
 }
 
+void GameModel::UpdateByPropertyTree(ptree& propert_tree)
+{
+	throw std::logic_error("not implemented");
+}
