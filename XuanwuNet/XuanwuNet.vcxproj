@@ -26,6 +26,7 @@
     <ClCompile Include="MsgPump.cpp" />
     <ClCompile Include="NetMsgCallback.cpp" />
     <ClCompile Include="NetPackMsgHandler.cpp" />
+    <ClCompile Include="NetSctructure.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="TcpNetPackMsgHandler.cpp" />
   </ItemGroup>

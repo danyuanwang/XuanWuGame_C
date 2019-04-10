@@ -1,133 +1,80 @@
 #pragma once
 #include <boost/asio.hpp>
 #include<memory>
+#include <stdint.h>
+#include <boost/endian/conversion.hpp>
+#include "GZip.h"
+#include <boost/crc.hpp>  // for boost::crc_32_type
 
-#define MAX_TCP_DATA_BUFFER_SIZE 99999999
-#define TCP_DATA_HEADER_SIZE 8
+
+#define MAX_NET_DATA_BUFFER_SIZE 65535
+#define NET_PACK_FORMAT_VER 1
+
+/*
+  The structure for network transfer, the first 8 bytes is header
+  |--two bytes---|-------two bytes -------|one byte--|-one byte----|--------reserved------|--------checksum------|
+  |--body length-|-------offset-----------|-version--|-compression-|----------------------|----------------------|
+  | -----------------------------          body                                                  ----------------|
+*/
+
+
+struct NetPackHeader
+{
+	std::uint16_t body_len; /**/
+	std::uint16_t offset;
+	std::uint8_t version;
+	std::uint8_t compression; // 0 -- no compression;check zlib.h for more values
+	std::uint16_t reserved;
+	std::uint32_t checksum;
+};
+
+
 class NetPackMsg
 {
 public:
-		
-	NetPackMsg(int length)
-	{ 
-		_header_length = enum_header_length;
-		_body_length = length;
-		_length = _body_length + _header_length;
-		_p_buffer =  new char[_length];
-		std::memset(_p_buffer, 0, _length);
-		_p_header = _p_buffer;
-		_p_body = _p_buffer + _header_length;
+	NetPackMsg();
 
-		_encode_header();
-	}
 
-	NetPackMsg(const char* p_message_content)
-	{
-		_header_length = enum_header_length;
-		_body_length = (int)std::strlen(p_message_content) + 1/*the string terminator*/;
-		_length = _body_length + _header_length;
-		_p_buffer = new char[_length];
-		std::memset(_p_buffer, 0, _length);
-		_p_header = _p_buffer;
-		_p_body = _p_buffer + _header_length;
-		std::strcpy(_p_body, p_message_content);
+	NetPackMsg(const NetPackMsg& netPackMsg);
 
-		_encode_header();
+	NetPackMsg& operator=(const NetPackMsg& netPackMsg);
 
-	}
+	NetPackMsg(NetPackMsg&& netPackMsg);
 
-	NetPackMsg(const NetPackMsg& netPackMsg)
-	{ 
-		_copy(netPackMsg);
-	}
+	~NetPackMsg();
 
-	NetPackMsg& operator=(const NetPackMsg& netPackMsg)
-	{
-		_destroy();
-		_copy(netPackMsg);
-	}
+	void* GetBuffer();
+	int GetBufferLength();
+	const NetPackHeader* GetHeader();
+	int SetHeader(const void* pheader_data_from_network);
 
-	NetPackMsg(NetPackMsg&& netPackMsg)
-	{
-		_destroy();
+	int GetHeaderLength();
+	void* GetBody();
+	int GetBodyLength();
+	const char* GetContent();
+	int SetConent(const char* p_message_content_raw);
+	int GetContentLength();
 
-		_header_length = netPackMsg._header_length;
-		_body_length = netPackMsg._body_length;
-		_length = netPackMsg._length;
-
-		_p_buffer = netPackMsg._p_buffer;
-		_p_header = netPackMsg._p_header;
-		_p_body = netPackMsg._p_body;
-
-		netPackMsg._p_buffer = nullptr;
-		netPackMsg._p_header = nullptr;
-		netPackMsg._p_body = nullptr;
-
-		netPackMsg._header_length = 0;
-		netPackMsg._body_length = 0;
-		netPackMsg._length = 0;
-	}
-
-	~NetPackMsg() { _destroy(); };
-
-	void* Buffer() { return _p_buffer; }
-	int Length() { return _length; }
-	void* Header() { return _p_header; }
-	int HeaderLen() { return _header_length; }
-	void* Body() { return _p_body; }
-	int BodyLen() { return _body_length; }
+	static int GetHeaderSize();
 
 private:
-	enum { enum_header_length = TCP_DATA_HEADER_SIZE};
-
-	int _length;
-	int _body_length;
+	int _buffer_length;
 	int _header_length;
 	char* _p_buffer;
-	char* _p_header;
+	NetPackHeader* _p_header;
 	char* _p_body;
+	int _content_length;
+	char* _p_content;
+	GZip _zipper;
+	boost::crc_32_type  _crc_result;
 
-	void _copy(const NetPackMsg& netPackMsg)
-	{
-		_header_length = netPackMsg._header_length;
-		_body_length = netPackMsg._body_length;
-		_length = netPackMsg._length;
+	void _copy(const NetPackMsg& netPackMsg);
 
-		if (netPackMsg._length >= 0 && netPackMsg._p_buffer)
-		{
-			_p_buffer = new char[_length] ;
-			std::memcpy(_p_buffer, netPackMsg._p_buffer, _length);
-		}
+	int _encode_header();
 
-		_p_header = _p_buffer;
-		_p_body = _p_buffer + _header_length;
-	}
+	int _decode_header(const void* pheader_data_from_network);
+	void _destroy();
 
-	void _encode_header()
-	{
-		char header[enum_header_length + 1] = "";
-		std::strncpy(header,  std::to_string(_body_length).c_str(), enum_header_length);
-		std::memcpy(_p_header, header, enum_header_length);
-		_header_length = enum_header_length;
-	}
-
-	void _decode_header()
-	{
-		char header[enum_header_length + 1] = "";
-		std::strncat(header, _p_header, enum_header_length);
-		_body_length = std::atoi(header);
-		_header_length = enum_header_length;
-	}
-
-	void _destroy()
-	{
-		if(_p_buffer) delete _p_buffer;
-		_length = 0;
-		_p_buffer = nullptr;
-		_body_length = 0;
-		_p_header = nullptr;
-		_p_body = nullptr;
-	}
 };
 
 

@@ -10,7 +10,7 @@ GameModel::GameModel()
 
 GameModel::~GameModel()
 {
-	
+
 }
 
 
@@ -34,7 +34,7 @@ int GameModel::OnReceivedMsgCallback(std::unique_ptr<NetPackMsg> up_message)
 
 int GameModel::OnReceivedMsgCallback(NetPackMsg * p_message)
 {
-	GamePlayRequest gpr = GamePlayRequest{ (char*)p_message->Body() };
+	GamePlayRequest gpr = GamePlayRequest{ p_message->GetContent() };
 	TakeRequest(gpr);
 
 	return 0;
@@ -51,7 +51,7 @@ ptree& GameModel::GetPropertyTree(ptree & propert_tree)
 
 	propert_tree.push_back(
 		ptree::value_type(
-			up_game_board->GetNameForPTree(), 
+			up_game_board->GetNameForPTree(),
 			up_game_board->GetPropertyTree(pt_ele)
 		)
 	);
@@ -70,7 +70,10 @@ void GameModel::_notifyUpdate()
 	GetPropertyTree(property_tree);
 	gr.Attach(GetNameForPTree(), property_tree);
 
-	NetPackMsg netMsg{ gr.ToJson().c_str() };
-	_p_connectionMgr->SendMsg(&netMsg);
+	NetPackMsg netMsg;
+	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
+	{
+		_p_connectionMgr->SendMsg(&netMsg);
+	}
 }
 

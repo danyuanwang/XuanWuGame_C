@@ -78,7 +78,7 @@ void ConnectionMgr::SendMsg(NetPackMsg * p_message)
 
 #if _DEBUG
 	std::cout << __FUNCTION__ << " : " << _sent_message_counter << " : " << std::endl;
-	std::cout << std::string{ (const char*)p_message->Body() } << std::endl;
+	std::cout << std::string{ (const char*)p_message->GetContent() } << std::endl;
 #endif
 
 }

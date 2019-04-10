@@ -18,9 +18,6 @@ public:
 protected:
 	NetPackMsgHandler();
 
-
-	int _header_len = TCP_DATA_HEADER_SIZE;
-
 	NetMsgCallback* _p_netMsgCallback; //using ordinary pointer means no ownership.
 
 };

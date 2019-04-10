@@ -28,7 +28,7 @@ int main(int, char**) {
 		while (up_msp->Poll(up_msg))
 		{
 			//handle network messages
-			GamePlayRequest gpr{ (char*)up_msg->Body() }; 
+			GamePlayRequest gpr{ up_msg->GetContent() };
 			up_game_board->TakeRequest(gpr);
 
 		}

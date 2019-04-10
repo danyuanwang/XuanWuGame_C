@@ -24,8 +24,9 @@ void Board::CheckSdlEvent(SDL_Event & e)
 	up_gpr->SetActionType(GameOjbectAction_Restart);
 
 	auto up_netMsg = std::unique_ptr<NetPackMsg>(
-		new NetPackMsg{ up_gpr->ToJson().c_str() }
+		new NetPackMsg
 	);
+	up_netMsg->SetConent(up_gpr->ToJson().c_str());
 
 	/*<< END for test purpose*/
 
