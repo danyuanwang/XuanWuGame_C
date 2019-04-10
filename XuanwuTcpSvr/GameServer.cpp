@@ -38,7 +38,7 @@ void GameServer::_notifyUpdate()
 	GamePlayRequest gr;
 	gr.SetScenario(GameScenario_DataModel);
 	gr.SetFromObject(GameOjbect_GameBoard);
-	gr.SetToObject(GameOjbect_GameView);
+	gr.SetToObject(GameOjbect_GameModel);
 	gr.SetActionType(GameOjbectAction_UpdateView);
 
 	gr.AddChild(up_game_model->GetNameForPTree(), up_game_model->GetPropertyTree());
