@@ -2,13 +2,15 @@
 #include "GamePlayRequest.h"
 #include "ConnectionMgr.h"
 #include "GameEngine.h"
-
-class GameView
+#include "BoardView.h"
+class GameView: public BaseView
 {
 
 public:
 	GameView();
 	~GameView();
-	void Draw();
+	void Draw(const GameModel &gamemodel);
+private:
+	BoardView _board_view;
 };
 

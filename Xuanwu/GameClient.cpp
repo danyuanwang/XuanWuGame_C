@@ -38,7 +38,7 @@ void GameClient::CheckSdlEvent(SDL_Event & e)
 
 	up_gameController->CheckSdlEvent(e);
 
-	up_gameView->Draw();
+	up_gameView->Draw(*up_gameModel);
 
 }
 
@@ -63,5 +63,5 @@ void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 		}
 	}
 
-	up_gameView->Draw();
+	up_gameView->Draw(*up_gameModel);
 }
