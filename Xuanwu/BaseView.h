@@ -1,11 +1,11 @@
 #pragma once
-#include "GameModel.h"
+#include "ModelObject.h"
 class BaseView
 {
 public:
 	BaseView();
 	virtual ~BaseView();
-	virtual void Draw(const GameModel &game_model) = 0;
+	virtual void Draw(const ModelObject *p_game_model) = 0;
 
 
 };

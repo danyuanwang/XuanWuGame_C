@@ -9,7 +9,7 @@ class BoardView :
 public:
 	BoardView();
 	virtual ~BoardView();
-	void Draw(const GameModel &gamemodel);
+	void Draw(const ModelObject *p_game_model);
 private:
 	MapView _map_view;
 	PanelView _panel_view;

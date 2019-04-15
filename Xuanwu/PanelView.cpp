@@ -11,6 +11,6 @@ PanelView::~PanelView()
 {
 }
 
-void PanelView::Draw(const GameModel &gamemodel)
+void PanelView::Draw(const ModelObject *p_gamemodel)
 {
 }

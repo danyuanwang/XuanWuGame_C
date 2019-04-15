@@ -12,6 +12,6 @@ CellView::~CellView()
 {
 }
 
-void CellView::Draw(const GameModel &gamemodel)
+void CellView::Draw(const ModelObject *p_gamemodel)
 {
 }

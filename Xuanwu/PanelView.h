@@ -7,6 +7,6 @@ class PanelView :
 public:
 	PanelView();
 	virtual ~PanelView();
-	void Draw(const GameModel &gamemodel);
+	void Draw(const ModelObject *p_gamemodel);
 };
 

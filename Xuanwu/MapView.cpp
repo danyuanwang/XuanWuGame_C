@@ -1,5 +1,5 @@
 #include "MapView.h"
-
+#include "Map.h"
 
 
 MapView::MapView()
@@ -11,22 +11,24 @@ MapView::~MapView()
 {
 }
 
-void MapView::Draw(const GameModel &gamemodel)
+void MapView::Draw(const ModelObject *p_gamemodel)
 {
-	for (int i = 0; i < gamemodel.GetBoard()->GetMap()->GetTotalCellNumber(); i++) {
-		//gamemodel.GetBoard()->GetMap()->GetCell(i);
+
+	_vector_cell.clear();
+	_vector_mine.clear();
+
+	const Map* p_map = static_cast<const Map*>(p_gamemodel);
+
+	for (int i = 0; i < p_map->GetTotalCellNumber(); i++) {
 		CellView cellView(i);
 		_vector_cell.push_back(cellView);
+		cellView.Draw(p_map->GetCell(i));
 	}
-	for (int i = 0; 1 < gamemodel.GetBoard()->GetMap()->GetTotalMineNumber(); i++) {
+
+	for (int i = 0; 1 < p_map->GetTotalMineNumber(); i++) {
 		MineView mineView(i);
 		_vector_mine.push_back(mineView);
-	}
-	for (auto iter = _vector_cell.begin(); iter < _vector_cell.end(); iter++) {
-		(iter)->Draw(gamemodel);
-	}
-	for (auto iter = _vector_mine.begin(); iter < _vector_mine.end(); iter++) {
-		(iter)->Draw(gamemodel);
+		mineView.Draw(p_map->GetMine(i));
 	}
 
 }

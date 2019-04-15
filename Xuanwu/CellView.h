@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseView.h"
+#include "Cell.h"
 class CellView :
 	public BaseView
 {
@@ -8,6 +9,6 @@ private:
 public:
 	CellView(int index);
 	virtual ~CellView();
-	void Draw(const GameModel &gamemodel);
+	void Draw(const ModelObject *p_gamemodel);
 };
 
