@@ -45,3 +45,7 @@ void Board::UpdateByPropertyTree(const ptree& propert_tree)
 	_property_tree = propert_tree.get_child(GetNameForPTree());
 	_up_map->UpdateByPropertyTree(_property_tree.get_child(QUOTES(_up_map)));
 }
+
+const Map* Board::GetMap() const {
+	return _up_map.get();
+}

@@ -15,7 +15,7 @@ public:
 	const char* GetNameForPTree() const { return "Board"; }
 	void OnIterateCallback(std::string key, std::string value, int level);
 	void UpdateByPropertyTree(const ptree& propert_tree);
-
+	const Map* GetMap() const;
 private:
 	std::unique_ptr<Map> _up_map;
 

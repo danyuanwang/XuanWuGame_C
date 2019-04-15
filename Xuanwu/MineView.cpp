@@ -3,7 +3,8 @@
 
 
 
-MineView::MineView()
+MineView::MineView(int index):
+	_index(index)
 {
 }
 

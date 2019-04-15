@@ -26,6 +26,6 @@ public:
 	void OnIterateCallback(std::string key, std::string value, int level);
 	void UpdateByPropertyTree(const ptree& propert_tree);
 
-
+	const Board* GetBoard() const ;
 };
 

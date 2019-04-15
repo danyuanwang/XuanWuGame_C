@@ -46,3 +46,8 @@ void GameModel::UpdateByPropertyTree(const ptree& propert_tree)
 	_property_tree = propert_tree;
 	up_game_board->UpdateByPropertyTree(_property_tree.get_child(QUOTES(up_game_board)));
 }
+
+const Board* GameModel::GetBoard() const {
+	return up_game_board.get();
+}
+

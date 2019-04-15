@@ -167,3 +167,21 @@ void Map::UpdateByPropertyTree(const ptree& propert_tree)
 	}
 
 }
+
+const Cell* Map::GetCell (int index) const {
+	return _list_cell[index].get();
+}
+
+const Mine* Map::GetMine(int index) const {
+	return _list_mine[index].get();
+}
+
+int Map::GetTotalCellNumber() const
+{
+	return (int)_list_cell.size();
+}
+
+int Map::GetTotalMineNumber() const
+{
+	return (int)_list_cell.size();
+}

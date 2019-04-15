@@ -2,7 +2,8 @@
 
 
 
-CellView::CellView()
+CellView::CellView(int index) :
+	_index(index)
 {
 }
 
