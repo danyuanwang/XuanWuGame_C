@@ -9,7 +9,7 @@ class GameView: public BaseView
 public:
 	GameView();
 	~GameView();
-	void Draw(const ModelObject *p_gamemodel);
+	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine);
 private:
 	BoardView _board_view;
 };

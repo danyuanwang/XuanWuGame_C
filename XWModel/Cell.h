@@ -40,8 +40,8 @@ public:
 	void OnIterateCallback(std::string key, std::string value, int level);
 	void UpdateByPropertyTree(const ptree& propert_tree);
 
-	CellType GetCellType() { return _type;  };
-	int GetRowIndex() { return _row_index; };
-	int GetColIndex() { return _col_index; };
+	CellType GetCellType() const { return _type;  };
+	int GetRowIndex() const { return _row_index; };
+	int GetColIndex() const { return _col_index; };
 };
 

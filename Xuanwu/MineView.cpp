@@ -14,7 +14,7 @@ MineView::~MineView()
 }
 
 
-void MineView::Draw(const ModelObject *p_gamemodel)
+void MineView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine)
 {
 	
 

@@ -110,7 +110,7 @@ int getting_an_image_on_the_screen(  )
 			SDL_UpdateWindowSurface( gWindow );
 
 			//Wait two seconds
-			SDL_Delay( 2000 );
+			SDL_Delay( 20000 );
 		}
 	}
 

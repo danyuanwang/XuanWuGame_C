@@ -9,6 +9,6 @@ private:
 public:
 	CellView(int index);
 	virtual ~CellView();
-	void Draw(const ModelObject *p_gamemodel);
+	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine);
 };
 

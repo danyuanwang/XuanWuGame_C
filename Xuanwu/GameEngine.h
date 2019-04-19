@@ -5,7 +5,7 @@
 #include <sdl_image.h>
 #include <sdl_ttf.h>
 #include <sdl_mixer.h>
-
+#include "constants.h"
 
 class GameEngine
 {
@@ -31,5 +31,6 @@ public:
 	int PollEvent(SDL_Event & e);
 	void BlitMe(SDL_Surface* xOut);
 	void Flip(void);
+	void DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color) const;
 };
 

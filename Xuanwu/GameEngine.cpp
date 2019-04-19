@@ -11,6 +11,7 @@ void GameEngine::Check_Initialized()
 
 GameEngine::GameEngine()
 {
+
 }
 
 
@@ -111,6 +112,10 @@ void GameEngine::Flip()
 	}
 
 }
+void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color)const
+{
+	//SDL_RenderFillRect()
+}
 /*
 	for test purpose
 */
@@ -147,4 +152,5 @@ std::string GameEngine::GetResourcePath(const std::string &subDir) {
 	//If we want a specific subdirectory path in the resource directory
 	//append it to the base path. This would be something like Lessons/res/Lesson0
 	return subDir.empty() ? baseRes : baseRes + subDir + PATH_SEP;
+
 }

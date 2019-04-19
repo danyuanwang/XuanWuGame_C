@@ -9,7 +9,7 @@ class MapView :
 public:
 	MapView();
 	virtual ~MapView();
-	void Draw(const ModelObject *p_game_model);
+	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine);
 private:
 	std::vector<CellView> _vector_cell;
 	std::vector<MineView> _vector_mine;
