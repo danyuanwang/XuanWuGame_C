@@ -183,5 +183,5 @@ int Map::GetTotalCellNumber() const
 
 int Map::GetTotalMineNumber() const
 {
-	return (int)_list_cell.size();
+	return (int)_list_mine.size();
 }
