@@ -19,6 +19,9 @@ private:
 	//The surface contained by the window 
 	SDL_Surface* m_sdlScreenSurface = NULL;
 
+	//renderer
+	SDL_Renderer* m_sdlRenderer = NULL;
+
 	int m_startTicks = 0;
 	int m_intervalOfFlips = 0;
 public:

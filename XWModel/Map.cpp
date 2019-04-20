@@ -100,7 +100,7 @@ void Map::_init_map()
 			_list_cell.push_back(std::move(up_cell));
 		}
 	}
-	while (stone_to_generate > 0 && iron_to_generate > 0 && diamond_to_generate)
+	while (stone_to_generate > 0 || iron_to_generate > 0 || diamond_to_generate > 0)
 	{
 		int index_selected_cell = _rand_in_range(0, (int)list_of_mountain_cell_no.size() - 1);
 		int cell_index = list_of_mountain_cell_no[index_selected_cell];

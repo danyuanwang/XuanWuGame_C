@@ -65,6 +65,16 @@ void GameEngine::Initialize()
 			std::string("Surface could not be got! SDL_Error: %s", SDL_GetError())
 		);
 	}
+	if (m_sdlRenderer == NULL) {
+		m_sdlRenderer = SDL_CreateRenderer(m_sdlWindow, -1, SDL_RENDERER_ACCELERATED);
+		CHECK_VALUE(
+			m_sdlRenderer != NULL,
+			XW_ERROR_CODE::GE_SDL_RENDERER_CREATION_FAILED,
+			std::string("renderer could not be created: %s", SDL_GetError())
+
+		)
+	}
+	
 
 	SDL_FillRect(
 		m_sdlScreenSurface,
@@ -83,7 +93,7 @@ void GameEngine::Initialize()
 
 	SDL_UpdateWindowSurface(m_sdlWindow);
 
-	SDL_Delay(2000);
+
 }
 
 int GameEngine::PollEvent(SDL_Event &e)
@@ -114,7 +124,9 @@ void GameEngine::Flip()
 }
 void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color)const
 {
-	//SDL_RenderFillRect()
+	SDL_Rect cell_rect = { pos_x, pos_y, width, height };
+	SDL_SetRenderDrawColor(m_sdlRenderer, color.Red, color.Green, color.Blue, 0xFF);
+	SDL_RenderFillRect(m_sdlRenderer, &cell_rect);
 }
 /*
 	for test purpose

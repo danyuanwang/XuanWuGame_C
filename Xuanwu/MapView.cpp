@@ -25,7 +25,7 @@ void MapView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engi
 		cellView.Draw(p_map->GetCell(i), p_game_engine);
 	}
 
-	for (int i = 0; 1 < p_map->GetTotalMineNumber(); i++) {
+	for (int i = 0; i < p_map->GetTotalMineNumber(); i++) {
 		MineView mineView(i);
 		_vector_mine.push_back(mineView);
 		mineView.Draw(p_map->GetMine(i), p_game_engine);
