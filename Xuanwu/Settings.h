@@ -14,7 +14,7 @@ namespace GameSettings
 	const int NumOfBoardCol = 16;
 	const int CellWidth = MapWidth / NumOfBoardRow;
 	const int CellHeight = CellWidth;
-	const int CellMarginX = CellWidth / 50;
+	const int CellMarginX = 1;
 	const int CellMarginY = CellMarginX;
 	const int MarginOfBoardX = MapWidth/20;
 	const int MarginOfBoardY = MarginOfBoardX;

@@ -75,7 +75,8 @@ ptree & Map::GetPropertyTree()
 
 void Map::_init_map()
 {
-	int stone_to_generate = _num_of_stone_mine;
+
+int stone_to_generate = _num_of_stone_mine;
 	int iron_to_generate = _num_of_iron_mine;
 	int diamond_to_generate = _num_of_diamond_mine;
 

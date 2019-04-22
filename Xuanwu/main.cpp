@@ -35,8 +35,7 @@ int main(int, char**) {
 			up_game->CheckSdlEvent(e);
 		}
 
-		//game_board.Draw();
-		//game_engine.Flip();
+		up_game_engine->Flip();
 	}
 
 	up_client->Stop();

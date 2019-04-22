@@ -114,6 +114,7 @@ void GameEngine::Flip()
 	Check_Initialized();
 
 	SDL_UpdateWindowSurface(m_sdlWindow);
+	SDL_RenderPresent(m_sdlRenderer);
 
 	/* ensure the frame per second */
 	Uint32 timeout = SDL_GetTicks() + m_intervalOfFlips;
