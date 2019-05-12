@@ -30,6 +30,10 @@ public:
 	ptree & GetPropertyTree();
 	void OnIterateCallback(std::string key, std::string value, int level);
 	void UpdateByPropertyTree(const ptree& propert_tree);
+	MineType GetMineType() const;
+	int GetRowIndex() const;
+	int GetColIndex()const;
+
 
 private:
 	const int _value_of_mine_type[MineType_Total] = { 5, 15, 25 };
@@ -42,6 +46,7 @@ private:
 	CellType _cell_type;
 	MineType _type;
 	int _value_fore_sale;
+	
 
 	std::string _str_name_id;
 

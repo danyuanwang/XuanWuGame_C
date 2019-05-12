@@ -10,5 +10,6 @@ public:
 	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine);
 private:
 	int _index;
+	const char* GetImagePath(MineType mine_type) const;
 };
 

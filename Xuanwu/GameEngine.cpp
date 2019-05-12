@@ -123,12 +123,22 @@ void GameEngine::Flip()
 	}
 
 }
+
 void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color)const
 {
 	SDL_Rect cell_rect = { pos_x, pos_y, width, height };
 	SDL_SetRenderDrawColor(m_sdlRenderer, color.Red, color.Green, color.Blue, 0xFF);
 	SDL_RenderFillRect(m_sdlRenderer, &cell_rect);
 }
+
+void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const
+{
+	SDL_Surface* picture = SDL_LoadBMP(picture_path);
+	SDL_Rect size = {0, 0, width, height };
+	SDL_Rect position = { pos_x, pos_y, 0, 0 };
+	SDL_BlitSurface(picture, &size, m_sdlScreenSurface, &position);
+}
+
 /*
 	for test purpose
 */

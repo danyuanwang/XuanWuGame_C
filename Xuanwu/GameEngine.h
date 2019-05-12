@@ -35,5 +35,6 @@ public:
 	void BlitMe(SDL_Surface* xOut);
 	void Flip(void);
 	void DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color) const;
+	void RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const;
 };
 

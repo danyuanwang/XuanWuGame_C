@@ -57,3 +57,18 @@ void Mine::UpdateByPropertyTree(const ptree& propert_tree)
 	PTREE_GET_T(_cell_type, CellType);
 	PTREE_GET_T(_type, MineType);
 }
+
+MineType Mine::GetMineType() const
+{
+	return _type;
+}
+
+int Mine::GetRowIndex() const
+{
+	return _row_index;
+}
+
+int Mine::GetColIndex() const
+{
+	return _col_index;
+}
