@@ -116,7 +116,8 @@
       <Command>xcopy $(SolutionDir)SDL\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_image\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_mixer\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
-xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI</Command>
+xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
+xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +143,8 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(
       <Command>xcopy $(SolutionDir)SDL\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_image\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_mixer\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
-xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI</Command>
+xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
+xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -172,7 +174,8 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(
       <Command>xcopy $(SolutionDir)SDL\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_image\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_mixer\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
-xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI</Command>
+xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
+xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -202,7 +205,8 @@ xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(
       <Command>xcopy $(SolutionDir)SDL\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_image\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
 xcopy $(SolutionDir)SDL2_mixer\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
-xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI</Command>
+xcopy $(SolutionDir)SDL2_ttf\lib\$(PlatformTargetAsMSBuildArchitecture)\*.dll $(OutDir). /DYI
+xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

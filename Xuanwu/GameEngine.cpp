@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include "SDL_image.h"
 
-void GameEngine::Check_Initialized()
+void GameEngine::Check_Initialized() const
 {
 	CHECK_VALUE(m_initialized, XW_ERROR_CODE::GE_NOT_INITED, "Please call 'GameEngine::Initialize()' to initialize the engine first");
 	CHECK_VALUE(m_sdlWindow != NULL, XW_ERROR_CODE::GE_NOT_INITED, "Please call 'GameEngine::Initialize()' to initialize the engine first");
@@ -132,18 +132,20 @@ void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Co
 	SDL_RenderFillRect(m_sdlRenderer, &cell_rect);
 }
 
-void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const
+void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const char* relative_picture_path) const
 {
-	SDL_Surface* picture = IMG_Load(picture_path);
+	std::string res_path = GetResourcePath(std::string()) + std::string(relative_picture_path);
+	SDL_Surface* picture = IMG_Load(res_path.c_str());
 	SDL_Rect size = {0, 0, width, height };
 	SDL_Rect position = { pos_x, pos_y, 0, 0 };
 	SDL_BlitSurface(picture, &size, m_sdlScreenSurface, &position);
 }
 
 /*
-	for test purpose
+	retrieve the absolute path for a resource file
 */
-std::string GameEngine::GetResourcePath(const std::string &subDir) {
+std::string GameEngine::GetResourcePath(const std::string &subDir) const
+{
 
 	Check_Initialized();
 
@@ -171,7 +173,7 @@ std::string GameEngine::GetResourcePath(const std::string &subDir) {
 
 		//We replace the last bin/ with res/ to get the the resource path
 		size_t pos = baseRes.rfind("bin");
-		baseRes = baseRes.substr(0, pos) + "res" + PATH_SEP;
+		baseRes = baseRes.substr(0, pos) + "resource" + PATH_SEP;
 	}
 	//If we want a specific subdirectory path in the resource directory
 	//append it to the base path. This would be something like Lessons/res/Lesson0

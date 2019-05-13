@@ -11,7 +11,7 @@ class GameEngine
 {
 private: 
 	bool m_initialized = false;
-	void Check_Initialized();
+	void Check_Initialized() const;
 
 	//The window we'll be rendering to 
 	SDL_Window* m_sdlWindow = NULL; 
@@ -29,7 +29,7 @@ public:
 
 	~GameEngine();
 
-	std::string GetResourcePath(const std::string &subDir = "");
+	std::string GetResourcePath(const std::string &subDir = "") const;
 	void Initialize();
 	int PollEvent(SDL_Event & e);
 	void BlitMe(SDL_Surface* xOut);

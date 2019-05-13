@@ -33,13 +33,13 @@ const char * MineView::GetImagePath(MineType mine_type) const
 	switch (mine_type)
 	{
 	case MineType_Stone:
-		return "C:\\Users\\Danyuan\\source\\repos\\XuanWuGame_C\\Xuanwu\\resource\\stone_mine.png";
+		return "stone_mine.png";
 		break;
 	case MineType_Iron:
-		return "C:\\Users\\Danyuan\\source\\repos\\XuanWuGame_C\\Xuanwu\\resource\\iron_mine.png";
+		return "iron_mine.png";
 		break;
 	case MineType_Diamond:
-		return "C:\\Users\\Danyuan\\source\\repos\\XuanWuGame_C\\Xuanwu\\resource\\diamond_mine.png";
+		return "diamond_mine.png";
 		break;
 	default:
 		return NULL;
