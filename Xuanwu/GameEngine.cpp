@@ -136,9 +136,8 @@ void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const ch
 {
 	std::string res_path = GetResourcePath(std::string()) + std::string(relative_picture_path);
 	SDL_Surface* picture = IMG_Load(res_path.c_str());
-	SDL_Rect size = {0, 0, width, height };
-	SDL_Rect position = { pos_x, pos_y, 0, 0 };
-	SDL_BlitSurface(picture, &size, m_sdlScreenSurface, &position);
+	SDL_Rect position = { pos_x, pos_y, width,  height };
+	SDL_BlitScaled(picture, NULL, m_sdlScreenSurface, &position);
 	SDL_FreeSurface(picture);
 }
 
