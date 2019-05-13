@@ -139,6 +139,7 @@ void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const ch
 	SDL_Rect size = {0, 0, width, height };
 	SDL_Rect position = { pos_x, pos_y, 0, 0 };
 	SDL_BlitSurface(picture, &size, m_sdlScreenSurface, &position);
+	SDL_FreeSurface(picture);
 }
 
 /*
