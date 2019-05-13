@@ -105,7 +105,7 @@ int stone_to_generate = _num_of_stone_mine;
 	{
 		int index_selected_cell = _rand_in_range(0, (int)list_of_mountain_cell_no.size() - 1);
 		int cell_index = list_of_mountain_cell_no[index_selected_cell];
-		int row_index = cell_index / _num_of_col;
+		int row_index = (cell_index / _num_of_col);
 		int col_index = cell_index % _num_of_col;
 		MineType mine_type = MineType_Stone;
 

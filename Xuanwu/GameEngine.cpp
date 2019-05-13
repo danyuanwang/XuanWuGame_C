@@ -1,6 +1,7 @@
 #include"Settings.h"
 #include "GameEngine.h"
 #include <SDL.h>
+#include "SDL_image.h"
 
 void GameEngine::Check_Initialized()
 {
@@ -133,7 +134,7 @@ void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Co
 
 void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const
 {
-	SDL_Surface* picture = SDL_LoadBMP(picture_path);
+	SDL_Surface* picture = IMG_Load(picture_path);
 	SDL_Rect size = {0, 0, width, height };
 	SDL_Rect position = { pos_x, pos_y, 0, 0 };
 	SDL_BlitSurface(picture, &size, m_sdlScreenSurface, &position);
