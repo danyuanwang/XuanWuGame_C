@@ -42,6 +42,6 @@ const char * MineView::GetImagePath(MineType mine_type) const
 		return "C:\\Users\\Danyuan\\source\\repos\\XuanWuGame_C\\Xuanwu\\resource\\diamond_mine.png";
 		break;
 	default:
-		NULL;
+		return NULL;
 	}
 }
