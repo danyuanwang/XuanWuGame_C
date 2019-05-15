@@ -10,6 +10,16 @@ void GameEngine::Check_Initialized() const
 	CHECK_VALUE(m_sdlScreenSurface != NULL, XW_ERROR_CODE::GE_NOT_INITED, "Please call 'GameEngine::Initialize()' to initialize the engine first");
 }
 
+SDL_Texture * GameEngine::LoadTexture(std::string path) const
+
+{
+	SDL_Texture* newTexture = NULL;
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	newTexture = SDL_CreateTextureFromSurface(m_sdlRenderer, loadedSurface);
+	SDL_FreeSurface(loadedSurface);
+	return newTexture;
+}
+
 GameEngine::GameEngine()
 {
 
@@ -114,7 +124,7 @@ void GameEngine::Flip()
 {
 	Check_Initialized();
 
-	SDL_UpdateWindowSurface(m_sdlWindow);
+	//SDL_UpdateWindowSurface(m_sdlWindow);
 	SDL_RenderPresent(m_sdlRenderer);
 
 	/* ensure the frame per second */
@@ -135,10 +145,13 @@ void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Co
 void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const char* relative_picture_path) const
 {
 	std::string res_path = GetResourcePath(std::string()) + std::string(relative_picture_path);
-	SDL_Surface* picture = IMG_Load(res_path.c_str());
-	SDL_Rect position = { pos_x, pos_y, width,  height };
-	SDL_BlitScaled(picture, NULL, m_sdlScreenSurface, &position);
-	SDL_FreeSurface(picture);
+
+	SDL_Texture* texture = NULL;
+	texture = LoadTexture(res_path);
+	const SDL_Rect position = { pos_x, pos_y, width,  height };
+	SDL_RenderCopy(m_sdlRenderer, texture, NULL, &position);
+	SDL_DestroyTexture(texture);
+
 }
 
 /*

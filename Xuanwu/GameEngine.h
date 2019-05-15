@@ -24,6 +24,7 @@ private:
 
 	int m_startTicks = 0;
 	int m_intervalOfFlips = 0;
+	SDL_Texture* LoadTexture(std::string path) const;
 public:
 	GameEngine();
 
@@ -36,5 +37,6 @@ public:
 	void Flip(void);
 	void DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color) const;
 	void RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const;
+	
 };
 
