@@ -27,9 +27,9 @@ Map::Map()
 	_num_of_row = MAP_NUM_OF_ROW;
 	_num_of_col = MAP_NUM_OF_COL;
 
-	_num_of_stone_mine = _rand_in_range(1, 5);
-	_num_of_iron_mine = _rand_in_range(1, 3);
-	_num_of_diamond_mine = _rand_in_range(1, 1);
+	_num_of_stone_mine = _rand_in_range(1, 6);
+	_num_of_iron_mine = _rand_in_range(1, 4);
+	_num_of_diamond_mine = _rand_in_range(1, 2);
 
 	_init_map();
 }
@@ -91,7 +91,9 @@ int stone_to_generate = _num_of_stone_mine;
 			{
 			case CellType_Mountain:
 			{
+				
 				list_of_mountain_cell_no.push_back(r*_num_of_col + c);
+				
 				break;
 			}
 			default:

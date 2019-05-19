@@ -20,7 +20,8 @@ private:
 
 	int _rand_in_range(int userBeg, int userEnd)
 	{
-		return std::rand() % ((userEnd - userBeg) + 1) + userBeg;
+		std::srand((unsigned int)time(NULL));
+		return (std::rand() % ((userEnd - userBeg) + 1)) + userBeg;
 	}
 public:
 	Map();
