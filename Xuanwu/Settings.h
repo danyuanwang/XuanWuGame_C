@@ -4,10 +4,11 @@
 namespace GameSettings
 {
 	const XW_RGB_Color BackgroundColor = XW_RGB_Color(XW_Color_Value::WHITE);
+	const XW_RGB_Color PanelColor = XW_RGB_Color(XW_Color_Value::WHITE);
 	const int WidthOfWindowX = 1200;
 	const int HeightWindowY = 800;
 	static const char* WindowCaption = "Xuanwu Game";
-	const int PanelWidth = WidthOfWindowX / 6;
+	const int PanelWidth = WidthOfWindowX / 4;
 	const int MapWidth = (((WidthOfWindowX - PanelWidth)/22)*20);
 	
 	const int NumOfBoardRow = 20;
@@ -21,9 +22,10 @@ namespace GameSettings
 	const int CellMarginX = 1;
 	const int CellMarginY = CellMarginX;
 	const int MarginOfBoardX = MapWidth/20;
-	const int MarginOfBoardY = MarginOfBoardX;
-	const int MapHeight = HeightWindowY - (2 * MarginOfBoardY);
-	const int PanelHeight = HeightWindowY - (2 * MarginOfBoardY);
+	const int MapHeight = (CellHeight + CellMarginY)* NumOfBoardCol;
+	const int MarginOfBoardY = (HeightWindowY - MapHeight)/2;
+	
+	const int PanelHeight = MapHeight;
 	const XW_RGB_Color CellColorMap[] = {
 		XW_RGB_Color(XW_Color_Value::WHITE),
 		XW_RGB_Color(XW_Color_Value::BLUE_L),

@@ -21,8 +21,10 @@ void MineView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_eng
 	MineType mine_type = p_mine->GetMineType();
 	int cell_index_col = p_mine->GetColIndex();
 	int cell_index_row = p_mine->GetRowIndex();
-	int cell_x = (cell_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth)) + GameSettings::MineMarginX;
-	int cell_y = (cell_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight)) + GameSettings::MineMarginY;
+	int cell_x = ((cell_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth)) + GameSettings::MineMarginX)
+		+(GameSettings::MarginOfBoardX +GameSettings::PanelWidth);
+	int cell_y = ((cell_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight)) + GameSettings::MineMarginY)
+		+ GameSettings::MarginOfBoardY;
 	p_game_engine->RenderPic(cell_x, cell_y, GameSettings::Minewidth,GameSettings::MineHeight, GetImagePath(mine_type));
 
 
