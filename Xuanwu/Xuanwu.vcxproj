@@ -210,6 +210,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseController.cpp" />
     <ClCompile Include="BaseView.cpp" />
     <ClCompile Include="BoardView.cpp" />
     <ClCompile Include="CellView.cpp" />
@@ -223,6 +224,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="PanelView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseController.h" />
     <ClInclude Include="BaseView.h" />
     <ClInclude Include="BoardView.h" />
     <ClInclude Include="CellView.h" />

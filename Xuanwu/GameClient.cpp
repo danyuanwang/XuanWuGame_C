@@ -7,7 +7,7 @@ GameClient::GameClient(GameEngine* pge, ConnectionMgr* pcmr) :
 {
 	up_gameModel = std::unique_ptr<GameModel>{ new GameModel() };
 	up_gameView = std::unique_ptr<GameView>{ new GameView() };
-	up_gameController = std::unique_ptr<GameController>{ new GameController() };
+	up_gameController = std::unique_ptr<GameController>{ new GameController(up_gameView.get(), up_gameModel.get()) };
 }
 
 
