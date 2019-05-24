@@ -35,5 +35,7 @@ public:
 	const Mine* GetMine(int index) const;
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
+	int GetNumberOfCol()const;
+	int GetNumberOfRow() const;
 };
 
