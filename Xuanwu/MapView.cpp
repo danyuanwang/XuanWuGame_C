@@ -46,3 +46,23 @@ void MapView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engi
 	}
 
 }
+
+BaseView * MapView::intercepts(int mouse_x, int mouse_y)
+{
+	BaseView* p_view = nullptr;
+	for (auto itr = _vector_mine.begin(); itr < _vector_mine.end(); itr++)
+	{
+		p_view = ((itr)->intercepts(mouse_x, mouse_y));
+		if (p_view != nullptr) break;
+	}
+	if (p_view == nullptr)
+	{
+		for (auto itr = _vector_cell.begin(); itr < _vector_cell.end(); itr++)
+		{
+			p_view = ((itr)->intercepts(mouse_x, mouse_y));
+			if (p_view != nullptr) break;
+		}
+	}
+
+	return p_view;
+}

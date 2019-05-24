@@ -6,12 +6,19 @@
 class BaseController
 {
 protected:
-	BaseView* _view; //no ownership
-	ModelObject* _model; //no ownership
+	BaseView* _p_view; //no ownership
+	ModelObject* _p_model; //no ownership
+
+	virtual bool OnKeyDown(SDL_Event & e);
+	virtual bool OnKeyUp(SDL_Event & e);
+	virtual bool OnMouseMove(SDL_Event & e);
+	virtual bool OnMouseButtonDown(SDL_Event & e);
+	virtual bool OnMouseButtonUp(SDL_Event & e);
+	virtual bool OnMouseWheel(SDL_Event & e);
 
 public:
 	BaseController(BaseView* p_view, ModelObject* p_model);
 	virtual ~BaseController();
-	virtual void CheckSdlEvent(SDL_Event & e) = 0;
+	virtual bool HandleSdlEvent(SDL_Event & e);
 };
 

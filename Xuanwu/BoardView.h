@@ -10,9 +10,11 @@ public:
 	BoardView(int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~BoardView();
 	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine);
+
+	BaseView* intercepts(int mouse_x, int mouse_y) override;
 private:
 	MapView _map_view;
 	PanelView _panel_view;
-
+	BaseView* _selected_view;
 };
 
