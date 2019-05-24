@@ -36,7 +36,7 @@ void GameClient::CheckSdlEvent(SDL_Event & e)
 
 	/*<< END for test purpose*/
 
-	up_gameController->CheckSdlEvent(e);
+	up_gameController->HandleSdlEvent(e);
 
 	up_gameView->Draw(up_gameModel.get(),mp_game_engine);
 
