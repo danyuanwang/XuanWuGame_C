@@ -5,7 +5,7 @@ class MineView :
 	public BaseView
 {
 public:
-	MineView(int index);
+	MineView(int index, int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~MineView();
 	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine);
 private:

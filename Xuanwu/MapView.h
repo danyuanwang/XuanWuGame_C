@@ -7,7 +7,7 @@ class MapView :
 	public BaseView
 {
 public:
-	MapView();
+	MapView(int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~MapView();
 	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine);
 private:

@@ -188,3 +188,13 @@ int Map::GetTotalMineNumber() const
 {
 	return (int)_list_mine.size();
 }
+
+int Map::GetNumberOfCol() const
+{
+	return _num_of_col;
+}
+
+int Map::GetNumberOfRow() const
+{
+	return _num_of_row;
+}
