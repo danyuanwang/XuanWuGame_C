@@ -7,7 +7,7 @@ class BoardView :
 	public BaseView
 {
 public:
-	BoardView();
+	BoardView(int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~BoardView();
 	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine);
 private:

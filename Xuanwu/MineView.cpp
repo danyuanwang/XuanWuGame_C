@@ -4,8 +4,8 @@
 
 
 
-MineView::MineView(int index):
-	_index(index)
+MineView::MineView(int index, int x, int y, int width, int height, int margin_x, int margin_y)
+	:BaseView(x, y, width, height, margin_x, margin_y), _index(index)
 {
 }
 
@@ -19,13 +19,8 @@ void MineView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_eng
 {
 	const Mine* p_mine = static_cast<const Mine*>(p_gamemodel);
 	MineType mine_type = p_mine->GetMineType();
-	int cell_index_col = p_mine->GetColIndex();
-	int cell_index_row = p_mine->GetRowIndex();
-	int cell_x = ((cell_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth)) + GameSettings::MineMarginX)
-		+(GameSettings::MarginOfBoardX +GameSettings::PanelWidth);
-	int cell_y = ((cell_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight)) + GameSettings::MineMarginY)
-		+ GameSettings::MarginOfBoardY;
-	p_game_engine->RenderPic(cell_x, cell_y, GameSettings::Minewidth,GameSettings::MineHeight, GetImagePath(mine_type));
+	
+	p_game_engine->RenderPic(_x, _y, _width,_height, GetImagePath(mine_type));
 
 
 }
