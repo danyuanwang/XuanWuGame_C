@@ -14,7 +14,7 @@ BaseView::~BaseView()
 {
 }
 
-BaseView* BaseView::intercepts(int mouse_x, int mouse_y)
+const BaseView* BaseView::intercepts(int mouse_x, int mouse_y) const
 {
-	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height))) ? this : nullptr;
+	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height))) ? const_cast<const BaseView*>(this) : nullptr;
 }

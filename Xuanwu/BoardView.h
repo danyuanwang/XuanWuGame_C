@@ -13,7 +13,7 @@ public:
 	virtual ~BoardView();
 	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine) override;
 
-	BaseView* intercepts(int mouse_x, int mouse_y) override;
+	const BaseView* intercepts(int mouse_x, int mouse_y) const override;
 	
 private:
 	MapView _map_view;

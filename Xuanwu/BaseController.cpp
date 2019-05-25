@@ -20,58 +20,47 @@ bool BaseController::HandleSdlEvent(SDL_Event & e)
 	bool result = false;
 	switch (e.type)
 	{
-	case SDL_KEYDOWN:
-	{
-		result = OnKeyDown(e);
-		break;
-	}
-	case SDL_KEYUP:
-	{
-		result = OnKeyUp(e);
-		break;
-	}
-	case SDL_MOUSEBUTTONDOWN:
-	{
-		if (_p_view != nullptr&&_p_view->intercepts(e.button.x, e.button.y))
+		case SDL_KEYDOWN:
+		{
+			result = OnKeyDown(e);
+			break;
+		}
+		case SDL_KEYUP:
+		{
+			result = OnKeyUp(e);
+			break;
+		}
+		case SDL_MOUSEBUTTONDOWN:
 		{
 			result = OnMouseButtonDown(e);
+			break;
 		}
-		break;
-	}
-	case SDL_MOUSEBUTTONUP:
-	{
-		if (_p_view != nullptr&&_p_view->intercepts(e.button.x, e.button.y))
+		case SDL_MOUSEBUTTONUP:
 		{
 			result = OnMouseButtonUp(e);
+			break;
 		}
-		break;
-	}
-	case SDL_MOUSEWHEEL:
-	{
-		if (_p_view != nullptr&&_p_view->intercepts(e.wheel.x, e.wheel.y))
+		case SDL_MOUSEWHEEL:
 		{
 			result = OnMouseWheel(e);
+			break;
 		}
-		break;
-	}
-	case SDL_MOUSEMOTION:
-	{
-		if (_p_view != nullptr&&_p_view->intercepts(e.motion.x, e.motion.y))
+		case SDL_MOUSEMOTION:
 		{
 			result = OnMouseMove(e);
+			break;
 		}
-		break;
-	}
-	default:
-	{
-		break;
-	}
+		default:
+		{
+			break;
+		}
 	}
 	return result;
 
 }
 bool BaseController::OnKeyDown(SDL_Event & e)
 {
+	bool result = false;
 	switch (e.key.keysym.sym)
 	{
 	case SDLK_UP:
@@ -95,27 +84,27 @@ bool BaseController::OnKeyDown(SDL_Event & e)
 		break;
 	}
 	}
-	return true;
+	return result;
 }
 
 bool BaseController::OnKeyUp(SDL_Event & e)
 {
-	return true;
+	return false;
 }
 
 bool BaseController::OnMouseMove(SDL_Event & e)
 {
-	return true;
+	return false;
 }
 
 bool BaseController::OnMouseButtonDown(SDL_Event & e)
 {
-	return true;
+	return false;
 }
 
 bool BaseController::OnMouseButtonUp(SDL_Event & e)
 {
-	return true;
+	return false;
 }
 
 bool BaseController::OnMouseWheel(SDL_Event & e)
