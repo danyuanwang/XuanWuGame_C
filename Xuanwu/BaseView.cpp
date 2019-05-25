@@ -1,7 +1,4 @@
 #include "BaseView.h"
-
-
-
 BaseView::BaseView(int x, int y, int width, int height, int margin_x, int margin_y)
 {
 	_x = x;
@@ -17,7 +14,7 @@ BaseView::~BaseView()
 {
 }
 
-bool BaseView::intercepts(int mouse_x, int mouse_y)
+BaseView* BaseView::intercepts(int mouse_x, int mouse_y)
 {
-	return  ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height)));
+	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height))) ? this : nullptr;
 }

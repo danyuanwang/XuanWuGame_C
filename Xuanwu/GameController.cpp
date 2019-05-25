@@ -12,4 +12,3 @@ GameController::GameController(BaseView* p_view, ModelObject* p_model)
 GameController::~GameController()
 {
 }
-
