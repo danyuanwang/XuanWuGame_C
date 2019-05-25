@@ -212,6 +212,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
   <ItemGroup>
     <ClCompile Include="BaseController.cpp" />
     <ClCompile Include="BaseView.cpp" />
+    <ClCompile Include="BoardController.cpp" />
     <ClCompile Include="BoardView.cpp" />
     <ClCompile Include="CellView.cpp" />
     <ClCompile Include="GameController.cpp" />
@@ -226,6 +227,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
   <ItemGroup>
     <ClInclude Include="BaseController.h" />
     <ClInclude Include="BaseView.h" />
+    <ClInclude Include="BoardController.h" />
     <ClInclude Include="BoardView.h" />
     <ClInclude Include="CellView.h" />
     <ClInclude Include="GameController.h" />

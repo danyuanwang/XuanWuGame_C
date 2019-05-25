@@ -40,3 +40,13 @@ BaseView* BoardView::intercepts(int mouse_x, int mouse_y)
 	}
 	return p_view;
 }
+
+const MapView * BoardView::GetMapView() const
+{
+	return &_map_view;
+}
+
+const PanelView * BoardView::GetPanelView() const
+{
+	return &_panel_view;
+}

@@ -1,14 +1,36 @@
 #include "GameController.h"
+#include"GameView.h"
 
 
-
-GameController::GameController(BaseView* p_view, ModelObject* p_model)
+GameController::GameController(GameView* p_view, GameModel* p_model)
 	:
-	BaseController(p_view, p_model)
+	BaseController(p_view, p_model),
+	_boardController(const_cast<BoardView*>(GetGameView()->GetBoardView()), const_cast<Board*>(GetGameModel()->GetBoard()))
 {
 }
 
 
 GameController::~GameController()
 {
+}
+
+const BoardController * GameController::GetBoardController() const
+{
+	return &_boardController;
+}
+
+bool GameController::HandleSdlEvent(SDL_Event & e)
+{
+	//pass down to board controller;
+	return _boardController.HandleSdlEvent(e);
+}
+
+GameView * GameController::GetGameView() const
+{
+	return static_cast<GameView*>(_p_view);
+}
+
+GameModel * GameController::GetGameModel() const
+{
+	return static_cast<GameModel*>(_p_model);
 }
