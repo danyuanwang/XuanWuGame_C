@@ -43,11 +43,19 @@ bool BoardController::HandleSdlEvent(SDL_Event & e)
 	}
 	if (captured_controller != nullptr &&captured_controller != _p_captured_controller)
 	{
-		_p_captured_controller->CaptureFocus(false);
+		if(_p_captured_controller) _p_captured_controller->CaptureFocus(false);
 		_p_captured_controller = captured_controller;
 		_p_captured_controller->CaptureFocus(true);
 		_panel_controller.SetFocusedController(_p_captured_controller);
 	}
 
 	return result;
+}
+
+void BoardController::Invalidate()
+{
+	BaseController::Invalidate();
+
+	_map_controller.Invalidate();
+	_panel_controller.Invalidate();
 }

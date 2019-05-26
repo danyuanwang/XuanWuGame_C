@@ -76,7 +76,7 @@ ptree & Map::GetPropertyTree()
 void Map::_init_map()
 {
 
-int stone_to_generate = _num_of_stone_mine;
+	int stone_to_generate = _num_of_stone_mine;
 	int iron_to_generate = _num_of_iron_mine;
 	int diamond_to_generate = _num_of_diamond_mine;
 
@@ -91,9 +91,9 @@ int stone_to_generate = _num_of_stone_mine;
 			{
 			case CellType_Mountain:
 			{
-				
+
 				list_of_mountain_cell_no.push_back(r*_num_of_col + c);
-				
+
 				break;
 			}
 			default:
@@ -141,7 +141,7 @@ void Map::OnIterateCallback(std::string key, std::string value, int level)
 	throw std::logic_error("not implemented");
 }
 
-void Map::UpdateByPropertyTree(const ptree& propert_tree)
+void Map::UpdateByPropertyTree(const ptree & propert_tree)
 {
 	_property_tree = propert_tree.get_child(GetNameForPTree());
 
@@ -171,7 +171,7 @@ void Map::UpdateByPropertyTree(const ptree& propert_tree)
 
 }
 
-const Cell* Map::GetCell (int index) const {
+const Cell* Map::GetCell(int index) const {
 	return _list_cell[index].get();
 }
 

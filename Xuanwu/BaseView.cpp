@@ -9,7 +9,6 @@ BaseView::BaseView(int x, int y, int width, int height, int margin_x, int margin
 	_margin_y = margin_y;
 
 	_high_lighted = false;
-
 }
 
 
@@ -25,4 +24,9 @@ bool BaseView::intercepts(int mouse_x, int mouse_y) const
 void BaseView::HighLight(bool high_lighted)
 {
 	_high_lighted = high_lighted;
+}
+
+void BaseView::Invalidate(const ModelObject *p_gamemodel)
+{
+
 }

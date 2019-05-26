@@ -13,7 +13,6 @@ public:
 
 	ptree&  GetPropertyTree();
 	const char* GetNameForPTree() const override { return "Board"; }
-	void OnIterateCallback(std::string key, std::string value, int level) override;
 	void UpdateByPropertyTree(const ptree& propert_tree) override;
 
 	const Map* GetMap() const;

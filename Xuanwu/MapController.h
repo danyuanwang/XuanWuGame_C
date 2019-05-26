@@ -9,6 +9,7 @@ class MapController :
 {
 private:
 	MapView* GetMapView() const;
+	Map* GetMapModel() const;
 
 	std::vector<CellController> _cell_controllers;
 	std::vector<MineController> _mine_controllers;
@@ -22,6 +23,8 @@ public:
 	virtual bool HandleSdlEvent(SDL_Event & e) override;
 	BaseController* GetFocusedController() const override;
 	void CaptureFocus(bool captured) override;
+
+	void Invalidate() override;
 
 };
 

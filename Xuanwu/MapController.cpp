@@ -3,26 +3,12 @@
 MapController::MapController(MapView* p_view, Map* p_model) :
 	BaseController(p_view, p_model)
 {
-	for (int i = 0; i < p_view->_vector_cell.size(); i++)
-	{
-		CellView* p_cell_view = &(p_view->_vector_cell[i]);
-		int index = p_cell_view->GetIndex();
-		CellController cell_controller(p_cell_view, const_cast<Cell*>(p_model->GetCell(index)));
-		_cell_controllers.push_back(cell_controller);
-	}
-
-	for (int i = 0; i < p_view->_vector_mine.size(); i++)
-	{
-		MineView* p_mine_view = &(p_view->_vector_mine[i]);
-		int index = p_mine_view->GetIndex();
-		MineController mine_controller(p_mine_view, const_cast<Mine*>(p_model->GetMine(index)));
-		_mine_controllers.push_back(mine_controller);
-	}
 	_p_focused_controller = nullptr;
 }
 
 MapController::~MapController()
 {
+
 }
 
 bool MapController::HandleSdlEvent(SDL_Event & e)
@@ -70,9 +56,38 @@ void MapController::CaptureFocus(bool captured)
 	}
 }
 
+void MapController::Invalidate()
+{
+	BaseController::Invalidate();
+
+	_cell_controllers.clear();
+	for (int i = 0; i < GetMapView()->_vector_cell.size(); i++)
+	{
+		CellView* p_cell_view = &(GetMapView()->_vector_cell[i]);
+		int index = p_cell_view->GetIndex();
+		CellController cell_controller(p_cell_view, const_cast<Cell*>(GetMapModel()->GetCell(index)));
+		_cell_controllers.push_back(cell_controller);
+	}
+
+	_mine_controllers.clear();
+	for (int i = 0; i < GetMapView()->_vector_mine.size(); i++)
+	{
+		MineView* p_mine_view = &(GetMapView()->_vector_mine[i]);
+		int index = p_mine_view->GetIndex();
+		MineController mine_controller(p_mine_view, const_cast<Mine*>(GetMapModel()->GetMine(index)));
+		_mine_controllers.push_back(mine_controller);
+	}
+
+}
+
 MapView * MapController::GetMapView() const
 {
 	return static_cast<MapView *>(_p_view);
+}
+
+Map * MapController::GetMapModel() const
+{
+	return static_cast<Map *>(_p_model);
 }
 
 

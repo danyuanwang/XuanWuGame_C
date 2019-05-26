@@ -40,12 +40,6 @@ ptree & Mine::GetPropertyTree()
 	return _property_tree;
 }
 
-
-void Mine::OnIterateCallback(std::string key, std::string value, int level)
-{
-	throw std::logic_error("not implemented");
-}
-
 void Mine::UpdateByPropertyTree(const ptree& propert_tree)
 {
 	_property_tree = propert_tree;

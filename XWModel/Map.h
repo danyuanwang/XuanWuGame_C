@@ -28,9 +28,9 @@ public:
 	~Map();
 	const char* GetNameForPTree() const { return "Map"; }
 
-	ptree &  GetPropertyTree();
+	ptree &  GetPropertyTree() override;
 	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(const ptree& propert_tree);
+	void UpdateByPropertyTree(const ptree& propert_tree) override;
 	const Cell* GetCell(int index) const;
 	const Mine* GetMine(int index) const;
 	int GetTotalCellNumber() const;

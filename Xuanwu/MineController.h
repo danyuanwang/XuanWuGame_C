@@ -20,5 +20,7 @@ public:
 
 	bool HandleSdlEvent(SDL_Event & e) override;
 
+	void Invalidate() override;
+
 };
 

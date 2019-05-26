@@ -12,6 +12,12 @@ PanelActionView::~PanelActionView()
 {
 }
 
-void PanelActionView::Draw(const ModelObject * p_gamemodel, const GameEngine * p_game_engine)
+void PanelActionView::Invalidate(const ModelObject * p_gamemodel)
 {
+	BaseView::Invalidate(p_gamemodel);
+}
+
+void PanelActionView::Draw(const GameEngine * p_game_engine)
+{
+
 }

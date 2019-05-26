@@ -6,10 +6,12 @@ class CellView :
 {
 private:
 	int _index;
+	CellType _cell_type;
 public:
-	CellView(int index, int x, int y, int width, int height, int margin_x, int margin_y);
+	CellView(int index, CellType cell_type, int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~CellView();
-	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine) override;
+	void Draw(const GameEngine *p_game_engine) override;
+	void Invalidate(const ModelObject *p_game_model) override;
 
 	int GetIndex() const;
 };

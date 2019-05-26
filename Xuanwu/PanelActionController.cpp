@@ -16,3 +16,8 @@ bool PanelActionController::HandleSdlEvent(SDL_Event & e)
 {
 	return BaseController::HandleSdlEvent(e);
 }
+
+void PanelActionController::Invalidate()
+{
+	BaseController::Invalidate();
+}

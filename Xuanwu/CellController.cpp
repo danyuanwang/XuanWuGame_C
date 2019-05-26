@@ -17,6 +17,11 @@ bool CellController::HandleSdlEvent(SDL_Event & e)
 	return BaseController::HandleSdlEvent(e);
 }
 
+void CellController::Invalidate()
+{
+	BaseController::Invalidate();
+}
+
 CellView * CellController::GetCellView() const
 {
 	return static_cast<CellView*>(_p_view);

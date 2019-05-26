@@ -5,14 +5,16 @@ class MineView :
 	public BaseView
 {
 public:
-	MineView(int index, int x, int y, int width, int height, int margin_x, int margin_y);
+	MineView(int index, MineType mine_type, int x, int y, int width, int height, int margin_x, int margin_y);
 	virtual ~MineView();
-	void Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine) override;
+	void Draw(const GameEngine *p_game_engine) override;
+	void Invalidate(const ModelObject *p_game_model) override;
 
 	int GetIndex() const;
 
 private:
 	int _index;
+	MineType _mine_type;
 	const char* GetImagePath(MineType mine_type) const;
 };
 

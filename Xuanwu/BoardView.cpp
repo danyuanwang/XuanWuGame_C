@@ -14,10 +14,10 @@ BoardView::~BoardView()
 {
 }
 
-void BoardView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine)
+void BoardView::Draw(const GameEngine *p_game_engine)
 {
-	_map_view.Draw(static_cast<const Board*>(p_gamemodel)->GetMap(), p_game_engine);
-	_panel_view.Draw(static_cast<const Board*>(p_gamemodel)->GetPanel(), p_game_engine);
+	_map_view.Draw( p_game_engine);
+	_panel_view.Draw( p_game_engine);
 }
 
 const MapView * BoardView::GetMapView() const
@@ -28,4 +28,11 @@ const MapView * BoardView::GetMapView() const
 const PanelView * BoardView::GetPanelView() const
 {
 	return &_panel_view;
+}
+
+void BoardView::Invalidate(const ModelObject * p_game_model)
+{
+	_map_view.Invalidate(static_cast<const Board*>(p_game_model)->GetMap());
+	_panel_view.Invalidate(static_cast<const Board*>(p_game_model)->GetPanel());
+	BaseView::Invalidate(p_game_model);
 }

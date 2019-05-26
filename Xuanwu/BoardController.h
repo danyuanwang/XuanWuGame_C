@@ -22,5 +22,7 @@ public:
 	virtual ~BoardController();
 	virtual bool HandleSdlEvent(SDL_Event & e) override;
 
+	void Invalidate() override;
+
 };
 

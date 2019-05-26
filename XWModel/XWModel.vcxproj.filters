@@ -48,6 +48,12 @@
     <ClInclude Include="Panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PanelScale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameModel.cpp">
@@ -81,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelScale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

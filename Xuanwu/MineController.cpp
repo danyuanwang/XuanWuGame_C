@@ -17,6 +17,12 @@ bool MineController::HandleSdlEvent(SDL_Event & e)
 	return BaseController::HandleSdlEvent(e);
 }
 
+void MineController::Invalidate()
+{
+	BaseController::Invalidate();
+
+}
+
 MineView * MineController::GetMineView() const
 {
 	return static_cast<MineView*>(_p_view);

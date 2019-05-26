@@ -15,8 +15,11 @@ protected:
 public:
 	BaseView(int x, int y, int width, int height, int margin_x, int margin_y );
 	virtual ~BaseView();
-	virtual void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine) = 0;
+	virtual void Draw(const GameEngine *p_game_engine) = 0;
 	virtual bool intercepts(int mouse_x, int mouse_y) const;
 
 	virtual void HighLight(bool high_lighted);
+
+	virtual void Invalidate(const ModelObject *p_game_model) = 0;
+
 };

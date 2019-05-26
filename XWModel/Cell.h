@@ -10,6 +10,7 @@ enum CellType
 	CellType_Water,
 	CellType_Grass,
 
+	CellType_Undefined,
 	CellType_Total,
 };
 

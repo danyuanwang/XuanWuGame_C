@@ -25,5 +25,9 @@ public:
 	virtual void CaptureFocus(bool captured);
 	virtual BaseController* GetFocusedController() const;
 
+	virtual void Invalidate() = 0;
+
+	BaseView* GetView() const;
+	ModelObject* GetModel() const;
 };
 

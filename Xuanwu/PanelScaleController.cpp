@@ -16,3 +16,8 @@ bool PanelScaleController::HandleSdlEvent(SDL_Event & e)
 {
 	return BaseController::HandleSdlEvent(e);
 }
+
+void PanelScaleController::Invalidate()
+{
+	BaseController::Invalidate();
+}

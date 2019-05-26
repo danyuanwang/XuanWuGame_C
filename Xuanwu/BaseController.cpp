@@ -8,7 +8,7 @@ BaseController::BaseController(BaseView * p_view, ModelObject * p_model)
 	_p_model(p_model),
 	_focus_captured(false)
 {
-
+	Invalidate();
 }
 
 BaseController::~BaseController()
@@ -70,6 +70,21 @@ void BaseController::CaptureFocus(bool captured)
 BaseController * BaseController::GetFocusedController() const
 {
 	return _focus_captured ? const_cast<BaseController *>(this) : nullptr;
+}
+
+void BaseController::Invalidate()
+{
+	_p_view->Invalidate(_p_model);
+}
+
+BaseView * BaseController::GetView() const
+{
+	return _p_view;
+}
+
+ModelObject * BaseController::GetModel() const
+{
+	return _p_model;
 }
 
 bool BaseController::OnKeyDown(SDL_Event & e)

@@ -19,5 +19,8 @@ public:
 
 	const BoardController* GetBoardController() const;
 	bool HandleSdlEvent(SDL_Event & e) override;
+
+	void Invalidate() override;
+
 };
 

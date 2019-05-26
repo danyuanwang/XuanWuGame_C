@@ -29,6 +29,8 @@
     <ClInclude Include="Mine.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Panel.h" />
+    <ClInclude Include="PanelAction.h" />
+    <ClInclude Include="PanelScale.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +44,8 @@
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="PanelAction.cpp" />
+    <ClCompile Include="PanelScale.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

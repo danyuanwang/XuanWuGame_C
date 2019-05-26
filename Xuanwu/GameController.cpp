@@ -25,6 +25,12 @@ bool GameController::HandleSdlEvent(SDL_Event & e)
 	return _boardController.HandleSdlEvent(e);
 }
 
+void GameController::Invalidate()
+{
+	BaseController::Invalidate();
+	_boardController.Invalidate();
+}
+
 GameView * GameController::GetGameView() const
 {
 	return static_cast<GameView*>(_p_view);

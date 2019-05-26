@@ -16,13 +16,18 @@ GameView::~GameView()
 }
 
 
-void GameView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine)
+void GameView::Draw(const GameEngine *p_game_engine)
 {
 	//	CHECK_VALUE(m_pScreen != NULL, XW_ERROR_CODE::BD_SDL_SURFACE_NOT_INITED, "Please call 'Board::SetScreen' to set screen");
-	_board_view.Draw(static_cast<const GameModel*>(p_gamemodel)->GetBoard(), p_game_engine);
+	_board_view.Draw(p_game_engine);
 }
 
 const BoardView * GameView::GetBoardView() const
 {
 	return &_board_view;
+}
+
+void GameView::Invalidate(const ModelObject *p_gamemodel)
+{
+	BaseView::Invalidate(static_cast<const GameModel*>(p_gamemodel)->GetBoard());
 }

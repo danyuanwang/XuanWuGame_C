@@ -8,6 +8,7 @@ enum MineType
 	MineType_Iron,
 	MineType_Diamond,
 
+	MineType_Undefined,
 	MineType_Total
 };
 
@@ -28,7 +29,6 @@ public:
 	const char* GetNameForPTree() const { return  _str_name_id.c_str(); }
 
 	ptree & GetPropertyTree();
-	void OnIterateCallback(std::string key, std::string value, int level);
 	void UpdateByPropertyTree(const ptree& propert_tree);
 	MineType GetMineType() const;
 	int GetRowIndex() const;
