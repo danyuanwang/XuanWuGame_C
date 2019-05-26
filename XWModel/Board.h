@@ -1,8 +1,8 @@
 #pragma once
 #include "GamePlayRequest.h"
 #include "Map.h"
+#include "Panel.h"
 #include <memory>
-#include"ModelObject.h"
 #include "DataModel.h"
 
 class Board :public ModelObject
@@ -12,12 +12,16 @@ public:
 	~Board();
 
 	ptree&  GetPropertyTree();
-	const char* GetNameForPTree() const { return "Board"; }
-	void OnIterateCallback(std::string key, std::string value, int level);
-	void UpdateByPropertyTree(const ptree& propert_tree);
+	const char* GetNameForPTree() const override { return "Board"; }
+	void OnIterateCallback(std::string key, std::string value, int level) override;
+	void UpdateByPropertyTree(const ptree& propert_tree) override;
+
 	const Map* GetMap() const;
+	const Panel* GetPanel() const;
+
 private:
 	std::unique_ptr<Map> _up_map;
+	std::unique_ptr<Panel> _up_panel;
 
 };
 

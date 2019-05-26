@@ -17,15 +17,7 @@ BoardView::~BoardView()
 void BoardView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engine)
 {
 	_map_view.Draw(static_cast<const Board*>(p_gamemodel)->GetMap(), p_game_engine);
-	_panel_view.Draw(p_gamemodel, p_game_engine);
-}
-
-const BaseView* BoardView::intercepts(int mouse_x, int mouse_y) const
-{
-	//for now only map view accept the mouse click
-	const BaseView* p_view = _map_view.intercepts(mouse_x, mouse_y);
-
-	return p_view;
+	_panel_view.Draw(static_cast<const Board*>(p_gamemodel)->GetPanel(), p_game_engine);
 }
 
 const MapView * BoardView::GetMapView() const

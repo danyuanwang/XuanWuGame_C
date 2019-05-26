@@ -23,3 +23,8 @@ void CellView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_eng
 	
 
 }
+
+int CellView::GetIndex() const
+{
+	return _index;
+}

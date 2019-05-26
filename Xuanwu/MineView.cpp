@@ -25,6 +25,11 @@ void MineView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_eng
 
 }
 
+int MineView::GetIndex() const
+{
+	return _index;
+}
+
 const char * MineView::GetImagePath(MineType mine_type) const
 {
 	switch (mine_type)

@@ -14,6 +14,7 @@ public:
 	virtual std::string ToJson();
 	virtual const char* GetNameForPTree() const = 0;
 	unsigned long GetModelObjectID() { return _id; };
+	virtual void OnIterateCallback(std::string key, std::string value, int level) override;
 
 protected:
 

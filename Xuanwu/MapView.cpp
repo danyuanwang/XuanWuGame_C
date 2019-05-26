@@ -46,23 +46,3 @@ void MapView::Draw(const ModelObject *p_gamemodel, const GameEngine *p_game_engi
 	}
 
 }
-
-const BaseView * MapView::intercepts(int mouse_x, int mouse_y) const
-{
-	BaseView* p_view = nullptr;
-	for (auto itr = _vector_mine.cbegin(); itr < _vector_mine.cend(); itr++)
-	{
-		p_view = const_cast<BaseView*>((itr)->intercepts(mouse_x, mouse_y));
-		if (p_view != nullptr) break;
-	}
-	if (p_view == nullptr)
-	{
-		for (auto itr = _vector_cell.cbegin(); itr < _vector_cell.cend(); itr++)
-		{
-			p_view = const_cast<BaseView*>((itr)->intercepts(mouse_x, mouse_y));
-			if (p_view != nullptr) break;
-		}
-	}
-
-	return const_cast<const BaseView*>(p_view);
-}

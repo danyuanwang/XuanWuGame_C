@@ -7,6 +7,9 @@ BaseView::BaseView(int x, int y, int width, int height, int margin_x, int margin
 	_height = height;
 	_margin_x = margin_x;
 	_margin_y = margin_y;
+
+	_high_lighted = false;
+
 }
 
 
@@ -14,7 +17,12 @@ BaseView::~BaseView()
 {
 }
 
-const BaseView* BaseView::intercepts(int mouse_x, int mouse_y) const
+bool BaseView::intercepts(int mouse_x, int mouse_y) const
 {
-	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height))) ? const_cast<const BaseView*>(this) : nullptr;
+	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height)));
+}
+
+void BaseView::HighLight(bool high_lighted)
+{
+	_high_lighted = high_lighted;
 }

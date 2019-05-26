@@ -13,8 +13,11 @@ Board * BoardController::GetBoardModel()
 }
 
 BoardController::BoardController(BoardView* p_view, Board* p_model) :
-	BaseController(p_view, p_model)
+	BaseController(p_view, p_model),
+	_map_controller(const_cast<MapView*>(GetBoardView()->GetMapView()), const_cast<Map*>(GetBoardModel()->GetMap())),
+	_panel_controller(const_cast<PanelView*>(GetBoardView()->GetPanelView()), const_cast<Panel*>(GetBoardModel()->GetPanel()))
 {
+	_p_captured_controller = false;
 }
 
 
@@ -22,19 +25,29 @@ BoardController::~BoardController()
 {
 }
 
-bool BoardController::OnKeyUp(SDL_Event & e)
+bool BoardController::HandleSdlEvent(SDL_Event & e)
 {
-	return false;
-}
+	bool result = _map_controller.HandleSdlEvent(e);
+	BaseController* captured_controller = nullptr;
+	if (result)
+	{
+		captured_controller = _map_controller.GetFocusedController();
+	}
+	else
+	{
+		result = _panel_controller.HandleSdlEvent(e);
+		if (result)
+		{
+			captured_controller = _panel_controller.GetFocusedController();
+		}
+	}
+	if (captured_controller != nullptr &&captured_controller != _p_captured_controller)
+	{
+		_p_captured_controller->CaptureFocus(false);
+		_p_captured_controller = captured_controller;
+		_p_captured_controller->CaptureFocus(true);
+		_panel_controller.SetFocusedController(_p_captured_controller);
+	}
 
-bool BoardController::OnMouseMove(SDL_Event & e)
-{
-	return false;
-}
-
-bool BoardController::OnMouseButtonUp(SDL_Event & e)
-{
-	const BaseView* pview = GetBoardView()->GetMapView()->intercepts(e.button.x, e.button.y);
-
-	return false;
+	return result;
 }

@@ -22,3 +22,8 @@ std::string ModelObject::ToJson()
 
 	return json.str();
 }
+
+void ModelObject::OnIterateCallback(std::string key, std::string value, int level)
+{
+	throw std::logic_error("not implemented");
+}

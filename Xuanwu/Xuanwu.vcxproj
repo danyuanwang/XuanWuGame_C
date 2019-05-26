@@ -214,14 +214,22 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="BaseView.cpp" />
     <ClCompile Include="BoardController.cpp" />
     <ClCompile Include="BoardView.cpp" />
+    <ClCompile Include="CellController.cpp" />
     <ClCompile Include="CellView.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GameClient.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapController.cpp" />
     <ClCompile Include="MapView.cpp" />
+    <ClCompile Include="MineController.cpp" />
     <ClCompile Include="MineView.cpp" />
+    <ClCompile Include="PanelActionController.cpp" />
+    <ClCompile Include="PanelActionView.cpp" />
+    <ClCompile Include="PanelController.cpp" />
+    <ClCompile Include="PanelScaleController.cpp" />
+    <ClCompile Include="PanelScaleView.cpp" />
     <ClCompile Include="PanelView.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +237,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="BaseView.h" />
     <ClInclude Include="BoardController.h" />
     <ClInclude Include="BoardView.h" />
+    <ClInclude Include="CellController.h" />
     <ClInclude Include="CellView.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameView.h" />
@@ -236,8 +245,15 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="ErrorHandling.h" />
     <ClInclude Include="GameClient.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="MapController.h" />
     <ClInclude Include="MapView.h" />
+    <ClInclude Include="MineController.h" />
     <ClInclude Include="MineView.h" />
+    <ClInclude Include="PanelActionController.h" />
+    <ClInclude Include="PanelActionView.h" />
+    <ClInclude Include="PanelController.h" />
+    <ClInclude Include="PanelScaleController.h" />
+    <ClInclude Include="PanelScaleView.h" />
     <ClInclude Include="PanelView.h" />
     <ClInclude Include="Settings.h" />
   </ItemGroup>

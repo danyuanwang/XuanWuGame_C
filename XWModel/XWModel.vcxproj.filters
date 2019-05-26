@@ -45,6 +45,9 @@
     <ClInclude Include="CommonStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameModel.cpp">
@@ -75,6 +78,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CommonStructure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

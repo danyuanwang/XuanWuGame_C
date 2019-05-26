@@ -28,6 +28,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mine.h" />
     <ClInclude Include="ModelObject.h" />
+    <ClInclude Include="Panel.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +41,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mine.cpp" />
     <ClCompile Include="ModelObject.cpp" />
+    <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

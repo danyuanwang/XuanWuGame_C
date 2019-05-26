@@ -54,6 +54,30 @@
     <ClCompile Include="BoardController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PanelController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CellController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MineController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelScaleView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelActionView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelActionController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PanelScaleController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -99,6 +123,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BoardController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CellController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MineController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelScaleView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelActionView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelActionController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PanelScaleController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

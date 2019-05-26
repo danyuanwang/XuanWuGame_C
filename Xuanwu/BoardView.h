@@ -13,17 +13,14 @@ public:
 	virtual ~BoardView();
 	void Draw(const ModelObject *p_game_model, const GameEngine *p_game_engine) override;
 
-	const BaseView* intercepts(int mouse_x, int mouse_y) const override;
-	
+	const MapView* GetMapView() const;
+	const PanelView* GetPanelView() const;
+
 private:
 	MapView _map_view;
 	PanelView _panel_view;
 	BaseView* _selected_view;
 
 protected:
-	const MapView* GetMapView() const;
-	const PanelView* GetPanelView() const;
-	friend class  BoardController;
-
 };
 
