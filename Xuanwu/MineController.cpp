@@ -5,6 +5,8 @@
 MineController::MineController(MineView* p_view, Mine* p_model):
 	BaseController(p_view, p_model)
 {
+	Invalidate();
+
 }
 
 

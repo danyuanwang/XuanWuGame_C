@@ -1,23 +1,13 @@
 #include "BoardController.h"
-
-
-
-BoardView * BoardController::GetBoardView()
-{
-	return static_cast<BoardView*>(_p_view);
-}
-
-Board * BoardController::GetBoardModel()
-{
-	return static_cast<Board*>(_p_model);
-}
-
 BoardController::BoardController(BoardView* p_view, Board* p_model) :
 	BaseController(p_view, p_model),
 	_map_controller(const_cast<MapView*>(GetBoardView()->GetMapView()), const_cast<Map*>(GetBoardModel()->GetMap())),
 	_panel_controller(const_cast<PanelView*>(GetBoardView()->GetPanelView()), const_cast<Panel*>(GetBoardModel()->GetPanel()))
 {
 	_p_captured_controller = false;
+
+	Invalidate();
+
 }
 
 
@@ -58,4 +48,15 @@ void BoardController::Invalidate()
 
 	_map_controller.Invalidate();
 	_panel_controller.Invalidate();
+}
+
+
+BoardView * BoardController::GetBoardView()
+{
+	return static_cast<BoardView*>(_p_view);
+}
+
+Board * BoardController::GetBoardModel()
+{
+	return static_cast<Board*>(_p_model);
 }

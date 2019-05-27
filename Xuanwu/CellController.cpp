@@ -5,6 +5,7 @@
 CellController::CellController(CellView* p_view, Cell* p_model) :
 	BaseController(p_view, p_model)
 {
+	Invalidate();
 }
 
 

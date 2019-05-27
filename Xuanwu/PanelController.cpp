@@ -7,6 +7,8 @@ PanelController::PanelController(PanelView* p_view, Panel* p_model) :
 	BaseController(p_view, p_model)
 {
 	_p_focused_controller = nullptr;
+
+	Invalidate();
 }
 
 

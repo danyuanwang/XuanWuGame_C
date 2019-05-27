@@ -7,6 +7,7 @@ GameController::GameController(GameView* p_view, GameModel* p_model)
 	BaseController(p_view, p_model),
 	_boardController(const_cast<BoardView*>(GetGameView()->GetBoardView()), const_cast<Board*>(GetGameModel()->GetBoard()))
 {
+	Invalidate();
 }
 
 

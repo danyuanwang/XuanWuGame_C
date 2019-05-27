@@ -4,6 +4,8 @@ MapController::MapController(MapView* p_view, Map* p_model) :
 	BaseController(p_view, p_model)
 {
 	_p_focused_controller = nullptr;
+
+	Invalidate();
 }
 
 MapController::~MapController()

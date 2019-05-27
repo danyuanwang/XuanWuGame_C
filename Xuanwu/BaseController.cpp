@@ -8,7 +8,6 @@ BaseController::BaseController(BaseView * p_view, ModelObject * p_model)
 	_p_model(p_model),
 	_focus_captured(false)
 {
-	Invalidate();
 }
 
 BaseController::~BaseController()
