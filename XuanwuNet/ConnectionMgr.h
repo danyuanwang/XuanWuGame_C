@@ -14,7 +14,7 @@ public:
 	virtual ~ConnectionMgr();
 
 	void AddSession(tcp::socket socket);
-	void AddSession(udp::socket socket) { throw E_NOTIMPL; }
+	void AddSession(udp::socket socket) { throw std::logic_error("Function not yet implemented"); }
 
 	void AddMsgListener(NetMsgCallback* callback);
 

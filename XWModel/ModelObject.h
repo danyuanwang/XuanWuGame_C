@@ -1,5 +1,5 @@
 #pragma once
-#include"commonstructure.h"
+#include "CommonStructure.h"
 #include "GamePlayRequest.h"
 
 class ModelObject :

@@ -1,4 +1,4 @@
-#include"commonstructure.h"
+#include"CommonStructure.h"
 #include "GamePlayRequest.h"
 
 GamePlayRequest::GamePlayRequest()
