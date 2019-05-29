@@ -24,4 +24,5 @@ void PanelScaleView::Invalidate(const ModelObject * p_gamemodel)
 void PanelScaleView::Draw(const GameEngine * p_game_engine)
 {
 	p_game_engine->DrawRect(_x, _y, _width, _height, _background_color);
+	p_game_engine->RenderText("hello world",XW_RGB_Color(XW_Color_Value::RED));
 }

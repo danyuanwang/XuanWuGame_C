@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "SDL_image.h"
 
+
 void GameEngine::Check_Initialized() const
 {
 	CHECK_VALUE(m_initialized, XW_ERROR_CODE::GE_NOT_INITED, "Please call 'GameEngine::Initialize()' to initialize the engine first");
@@ -66,6 +67,7 @@ void GameEngine::Initialize()
 			XW_ERROR_CODE::GE_SDL_WINDOW_CREATION_FAILED,
 			std::string("Window could not be created! SDL_Error: %s", SDL_GetError())
 		);
+
 	}
 
 	if (m_sdlScreenSurface == NULL) {
@@ -83,6 +85,16 @@ void GameEngine::Initialize()
 			XW_ERROR_CODE::GE_SDL_RENDERER_CREATION_FAILED,
 			std::string("renderer could not be created: %s", SDL_GetError())
 
+		)
+	}
+	if (m_ttf_inited == false){
+		if (TTF_Init() != -1) {
+			m_ttf_inited = true;
+		}
+		CHECK_VALUE(
+			m_ttf_inited == true,
+			XW_ERROR_CODE::GE_TTF_INITIALIZATION_FAILED,
+			std::string("TTF could not be initialized: %s", SDL_GetError())
 		)
 	}
 	
@@ -152,6 +164,21 @@ void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const ch
 	SDL_RenderCopy(m_sdlRenderer, texture, NULL, &position);
 	SDL_DestroyTexture(texture);
 
+}
+void GameEngine::RenderText(const char* text, XW_RGB_Color color) const {
+	std::string res_path = GetResourcePath(std::string()) + std::string("Walkway_Bold.ttf");
+	TTF_Font* font = TTF_OpenFont(res_path.c_str(), 26);
+	SDL_Color sdl_color;
+	sdl_color.r = color.Red;
+	sdl_color.g = color.Green;
+	sdl_color.b = color.Blue;
+	SDL_Surface* ttf_surface = TTF_RenderText_Solid(font, text, sdl_color);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_sdlRenderer, ttf_surface);
+	SDL_RenderCopy(m_sdlRenderer, texture, NULL, NULL);
+	//freeing surfaces
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(ttf_surface);
+	TTF_CloseFont(font);
 }
 
 /*
