@@ -2,7 +2,7 @@
 #include"ModelObject.h"
 #include<memory>
 #include "Cell.h"
-#include "mine.h"
+#include "Mine.h"
 
 class Map :public ModelObject
 {
