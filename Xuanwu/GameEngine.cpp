@@ -165,16 +165,17 @@ void GameEngine::RenderPic(int pos_x, int pos_y, int width, int height, const ch
 	SDL_DestroyTexture(texture);
 
 }
-void GameEngine::RenderText(const char* text, XW_RGB_Color color) const {
+void GameEngine::RenderText(const char* text, XW_RGB_Color color, int pos_x, int pos_y, int width, int height) const {
 	std::string res_path = GetResourcePath(std::string()) + std::string("Walkway_Bold.ttf");
-	TTF_Font* font = TTF_OpenFont(res_path.c_str(), 26);
+	TTF_Font* font = TTF_OpenFont(res_path.c_str(), 16);
 	SDL_Color sdl_color;
 	sdl_color.r = color.Red;
 	sdl_color.g = color.Green;
 	sdl_color.b = color.Blue;
+	const SDL_Rect position = { pos_x, pos_y, width, height };
 	SDL_Surface* ttf_surface = TTF_RenderText_Solid(font, text, sdl_color);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_sdlRenderer, ttf_surface);
-	SDL_RenderCopy(m_sdlRenderer, texture, NULL, NULL);
+	SDL_RenderCopy(m_sdlRenderer, texture, NULL, &position);
 	//freeing surfaces
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(ttf_surface);

@@ -9,6 +9,8 @@ class PanelScale :
 private:
 	MineType _mine_type;
 	CellType _cell_type;
+	std::string _title;
+	std::string _information;
 
 public:
 	PanelScale();
@@ -22,5 +24,6 @@ public:
 
 	MineType GetMineType() const;
 	CellType GetCellType() const;
+	const char* GetTitle() const;
+	const char* GetInformation() const;
 };
-

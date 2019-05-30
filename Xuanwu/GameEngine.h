@@ -39,7 +39,7 @@ public:
 	void Flip(void);
 	void DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color) const;
 	void RenderPic(int pos_x, int pos_y, int width, int height, const char* picture_path) const;
-	void RenderText(const char* text, XW_RGB_Color color) const;
+	void RenderText(const char* text, XW_RGB_Color color, int pos_x, int pos_y, int width, int height) const;
 	
 };
 

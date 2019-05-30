@@ -5,8 +5,8 @@
 
 PanelView::PanelView(int x, int y, int width, int height, int margin_x, int margin_y)
 	: BaseView(x, y, width, height, margin_x, margin_y),
-	_action_view(x, y, width / 2, height / 2 , margin_x, margin_y), //TODO:need to re-caculate
-	_scale_view(x, y, width / 2, height / 2, margin_x, margin_y)  //TODO:need to re-caculate
+	_action_view(x , y, width, height / 2 , margin_x, margin_y), //TODO:need to re-caculate
+	_scale_view(x + GameSettings::PanelMarginX, y + GameSettings::PanelMarginY, width / 2, height / 2, margin_x, margin_y)  //TODO:need to re-caculate
 {
 }
 

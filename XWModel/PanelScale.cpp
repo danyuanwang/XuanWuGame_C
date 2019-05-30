@@ -46,11 +46,15 @@ void PanelScale::TakeDataObject(const ModelObject * p_model)
 		{
 			const Mine* p_mine= static_cast<const Mine*>(p_model);
 			_mine_type = p_mine->GetMineType();
+			_title = "mine";//TODO: refine the value to _title and _information
+			_information = "this is a mine";
 		}
 		else if (typeid(*p_model) == typeid(Cell))
 		{
 			const Cell* p_cell= static_cast<const Cell*>(p_model);
 			_cell_type = p_cell->GetCellType();
+			_title = "Cell";//TODO: refine the value to _title and _information
+			_information = "this is a cell";
 		}
 	}
 }
@@ -63,4 +67,14 @@ MineType PanelScale::GetMineType() const
 CellType PanelScale::GetCellType() const
 {
 	return _cell_type;
+}
+
+const char* PanelScale::GetTitle() const
+{
+	return _title.c_str();
+}
+
+const char* PanelScale::GetInformation() const
+{
+	return _information.c_str();
 }
