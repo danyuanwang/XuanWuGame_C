@@ -1,8 +1,9 @@
 #pragma once
-#include <stdarg.h>
 #include <memory>
 #include <mutex>
 #include <string>
+#include <stdarg.h>
+
 namespace XWCommon {
 	class Logger
 	{
