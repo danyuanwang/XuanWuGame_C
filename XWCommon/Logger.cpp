@@ -7,7 +7,9 @@
 #include <fstream>
 #include <iomanip>
 #include <boost/core/null_deleter.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/date_time/posix_time/posix_time_io.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/attributes.hpp>
@@ -19,6 +21,7 @@
 #include <boost/log/sinks/sync_frontend.hpp>
 #include <boost/log/sinks/text_file_backend.hpp>
 #include <boost/log/sinks/text_ostream_backend.hpp>
+#include <boost/log/support/date_time.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/value_ref.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
@@ -41,11 +44,11 @@ namespace XWCommon {
 	namespace keywords = boost::log::keywords;
 	using severity_level = logging::trivial::severity_level;
 
-	BOOST_LOG_ATTRIBUTE_KEYWORD(line_id, "LineID", unsigned int)
-	BOOST_LOG_ATTRIBUTE_KEYWORD(severity, "Severity", severity_level)
-	BOOST_LOG_ATTRIBUTE_KEYWORD(tag_attr, "Tag", std::string)
-	BOOST_LOG_ATTRIBUTE_KEYWORD(scope, "Scope", attrs::named_scope::value_type)
-	BOOST_LOG_ATTRIBUTE_KEYWORD(timeline, "Timeline", attrs::timer::value_type)
+	BOOST_LOG_ATTRIBUTE_KEYWORD(ak_line_id, "LineID", unsigned int)
+	BOOST_LOG_ATTRIBUTE_KEYWORD(ak_severity, "Severity", severity_level)
+	BOOST_LOG_ATTRIBUTE_KEYWORD(ak_tag_attr, "Tag", std::string)
+	BOOST_LOG_ATTRIBUTE_KEYWORD(ak_scope, "Scope", attrs::named_scope::value_type)
+	BOOST_LOG_ATTRIBUTE_KEYWORD(ak_time_stamp, "TimeStamp", attrs::local_clock::value_type)
 		
 	static src::severity_logger< severity_level > s_logger;
 
@@ -54,12 +57,10 @@ namespace XWCommon {
 
 	void my_formatter(logging::record_view const& rec, logging::formatting_ostream& strm)
 	{
-		
-		//strm << expr::format_date_time< boost::posix_time::ptime >("Timeline", "%Y-%m-%d %H:%M:%S");
-		strm << logging::extract< attrs::timer::value_type >("Timeline", rec) << "| ";
+		strm << logging::extract< attrs::local_clock::value_type >("TimeStamp", rec) << "| ";
 
 		// Get the LineID attribute value and put it into the stream
-		strm << logging::extract< unsigned int >("LineID", rec) << ": ";
+		strm << std::hex << std::setw(8) << std::setfill('0') << logging::extract< unsigned int >("LineID", rec) << ": ";
 
 		// The same for the severity level.
 		// The simplified syntax is possible if attribute keywords are used.
@@ -74,12 +75,10 @@ namespace XWCommon {
 	void Logger::_init(const char* logfilename)
 	{
 		s_logger.add_attribute("LineID", attrs::counter< unsigned int >(1));
-		s_logger.add_attribute("Timeline", attrs::local_clock());
+		s_logger.add_attribute("TimeStamp", attrs::local_clock());
 		s_logger.add_attribute("Tag", attrs::constant< std::string >("XWGame"));
+		s_logger.add_attribute("Scope", attrs::named_scope());
 
-		/*BOOST_LOG_NAMED_SCOPE("named_scope_logging");
-		BOOST_LOG_SCOPED_THREAD_ATTR("Timeline", attrs::timer());
-*/
 		// Construct the sink
 		typedef sinks::synchronous_sink< sinks::text_ostream_backend > text_sink;
 		boost::shared_ptr< text_sink > sink = boost::make_shared< text_sink >();
@@ -102,14 +101,6 @@ namespace XWCommon {
 		//	//<< std::hex << std::setw(8) << std::setfill('0') << expr::attr< unsigned int >("LineID")
 		//	//<< ": <" << logging::trivial::severity
 		//	//<< "> " << expr::smessage
-
-		//	<< expr::format_date_time< boost::posix_time::ptime >("Timeline", "%Y-%m-%d %H:%M:%S")
-		//	<< "|"
-		//	<< expr::format("%1%: <%2%> %3%")
-		//	% expr::attr< unsigned int >("LineID")
-		//	% logging::trivial::severity
-		//	% expr::smessage
-		//);
 
 		// Register the sink in the logging core
 		logging::core::get()->add_sink(sink);
