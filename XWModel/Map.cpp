@@ -118,23 +118,24 @@ void Map::_init_map()
 			{
 			case CellType_Mountain:
 			{
-
 				list_of_mountain_cell_no.push_back(r*_num_of_col + c);
-				
-				
-
 				break;
 			}
-			case CellType_Forest:
+			case CellType_Forest: 
+			{
 				list_of_forest_cell_no.push_back(r*_num_of_col + c);
 				break;
+			}
 			case CellType_Grass:
+			{
 				list_of_grass_cell_no.push_back(r*_num_of_col + c);
 				break;
+			}
 			case CellType_Ice:
+			{
 				list_of_ice_cell_no.push_back(r*_num_of_col + c);
 				break;
-
+			}
 			default:
 				break;
 			}
@@ -151,38 +152,6 @@ void Map::_init_map()
 	_generate_mines(list_of_grass_cell_no, _num_of_small_log_mine, MineType_Small_Hunt);
 	_generate_mines(list_of_ice_cell_no, _num_of_gold_mine, MineType_Gold);
 
-	/*
-	while (stone_to_generate > 0 || iron_to_generate > 0 || diamond_to_generate > 0)
-	{
-		int index_selected_cell = _rand_in_range(0, (int)list_of_mountain_cell_no.size() - 1);
-		int cell_index = list_of_mountain_cell_no[index_selected_cell];
-		int row_index = (cell_index / _num_of_col);
-		int col_index = cell_index % _num_of_col;
-		MineType mine_type = MineType_Stone;
-
-		if (stone_to_generate > 0)
-		{
-			mine_type = MineType_Stone;
-			stone_to_generate--;
-		}
-		else if (iron_to_generate > 0)
-		{
-			mine_type = MineType_Iron;
-			iron_to_generate--;
-		}
-		else if (diamond_to_generate > 0)
-		{
-			mine_type = MineType_Diamond;
-			diamond_to_generate--;
-		}
-		auto up_mine = std::unique_ptr<Mine>(
-			new Mine(row_index, col_index, _list_cell[cell_index]->GetCellType(), mine_type)
-			);
-
-		_list_mine.push_back(std::move(up_mine));
-
-		list_of_mountain_cell_no.erase(list_of_mountain_cell_no.cbegin() + index_selected_cell);
-	}*/
 }
 
 void Map::OnIterateCallback(std::string key, std::string value, int level)
