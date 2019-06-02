@@ -16,12 +16,15 @@ configure_file (
 #include_directories("${PROJECT_SOURCE_DIR}/include")
 
 include_directories ("${PROJECT_SOURCE_DIR}/../boost")
+include_directories ("${PROJECT_SOURCE_DIR}/../XWCommon")
 include_directories ("${PROJECT_SOURCE_DIR}/../XuanwuNet")
 include_directories ("${PROJECT_SOURCE_DIR}/../XWModel")
 
+add_subdirectory (../XWCommon ${PROJECT_BINARY_DIR}/XWCommon)
 add_subdirectory (../XWModel ${PROJECT_BINARY_DIR}/XWModel)
 add_subdirectory (../XuanwuNet ${PROJECT_BINARY_DIR}XuanwuNet)
 
+set (EXTRA_LIBS ${EXTRA_LIBS} XWCommon)
 set (EXTRA_LIBS ${EXTRA_LIBS} XWModel)
 set (EXTRA_LIBS ${EXTRA_LIBS} XuanwuNet)
 
@@ -29,7 +32,7 @@ set(Boost_USE_MULTITHREADED      ON)
 
 set( BOOST_ROOT "${PROJECT_SOURCE_DIR}/../boost" CACHE PATH "${PROJECT_SOURCE_DIR}/../boost/stage/lib" )
 
-FIND_PACKAGE( Boost 1.67 REQUIRED COMPONENTS system thread iostreams)
+FIND_PACKAGE( Boost 1.67 REQUIRED COMPONENTS system thread iostreams log)
 INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
 
 

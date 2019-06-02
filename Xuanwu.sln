@@ -14,10 +14,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XuanwuTcpSvr", "XuanwuTcpSv
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_Lesson", "SDL_Lesson\SDL_Lesson.vcxproj", "{10BBAED0-57B7-467F-8161-170AE1D3D755}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01} = {DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XWModel", "XWModel\XWModel.vcxproj", "{2A923120-8868-440B-A8AC-C972B41CD968}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XuanwuNet", "XuanwuNet\XuanwuNet.vcxproj", "{70AA3F39-8154-4964-BC3E-3D399A56BA1E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XWCommon", "XWCommon\XWCommon.vcxproj", "{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +72,14 @@ Global
 		{70AA3F39-8154-4964-BC3E-3D399A56BA1E}.Release|x64.Build.0 = Release|x64
 		{70AA3F39-8154-4964-BC3E-3D399A56BA1E}.Release|x86.ActiveCfg = Release|Win32
 		{70AA3F39-8154-4964-BC3E-3D399A56BA1E}.Release|x86.Build.0 = Release|Win32
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Debug|x64.ActiveCfg = Debug|x64
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Debug|x64.Build.0 = Debug|x64
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Debug|x86.ActiveCfg = Debug|Win32
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Debug|x86.Build.0 = Debug|Win32
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Release|x64.ActiveCfg = Release|x64
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Release|x64.Build.0 = Release|x64
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Release|x86.ActiveCfg = Release|Win32
+		{DF41ADF7-DA3F-431A-B9EC-AF959FD71F01}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
