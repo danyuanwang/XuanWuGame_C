@@ -46,6 +46,21 @@ const char * MineView::GetImagePath(MineType mine_type) const
 	case MineType_Diamond:
 		return "diamond_mine.png";
 		break;
+	case MineType_Big_Log:
+		return "big_log_mine.png";
+		break;
+	case MineType_Small_Log:
+		return "small_log_mine.png";
+		break;
+	case MineType_Big_Hunt:
+		return "big_hunting_mine.png";
+		break;
+	case MineType_Small_Hunt:
+		return "small_hunting_mine.png";
+		break;
+	case MineType_Gold:
+		return "gold_mine.png";
+		break;
 	default:
 		return NULL;
 	}

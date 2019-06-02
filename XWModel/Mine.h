@@ -2,12 +2,16 @@
 #include "ModelObject.h"
 #include "Cell.h"
 
-enum MineType 
+enum MineType
 {
 	MineType_Stone,
 	MineType_Iron,
 	MineType_Diamond,
-
+	MineType_Big_Log,
+	MineType_Small_Log,
+	MineType_Big_Hunt,
+	MineType_Small_Hunt,
+	MineType_Gold,
 	MineType_Undefined,
 	MineType_Total
 };

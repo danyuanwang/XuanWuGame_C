@@ -15,6 +15,11 @@ private:
 	int _num_of_stone_mine;
 	int _num_of_iron_mine;
 	int _num_of_diamond_mine;
+	int _num_of_big_log_mine;
+	int _num_of_small_log_mine;
+	int _num_of_big_hunt_mine;
+	int _num_of_small_hunt_mine;
+	int _num_of_gold_mine;
 
 	void _init_map();
 
@@ -23,6 +28,7 @@ private:
 		std::srand((unsigned int)time(NULL));
 		return (std::rand() % ((userEnd - userBeg) + 1)) + userBeg;
 	}
+	void _generate_mines(std::vector<int> &cell_list, int number_of_mines, MineType minetype);
 public:
 	Map();
 	~Map();
