@@ -1,7 +1,5 @@
 #include "TcpNetPackMsgHandler.h"
-#if _DEBUG
-#include <iostream>
-#endif
+#include "Logger.h"
 
 TcpNetPackMsgHandler::TcpNetPackMsgHandler(tcp::socket socket)
 	:_socket(std::move(socket))
@@ -42,10 +40,7 @@ int TcpNetPackMsgHandler::ReadAsync()
 							if (!ec)
 							{
 
-#if _DEBUG
-								std::cout << __FUNCTION__ << " : " << sp_read_message->GetBodyLength() << " vs " << bytes_transferred << " : " << std::endl;
-								std::cout << std::string{ (const char*)sp_read_message->GetContent() } << std::endl;
-#endif
+								LOGTRACE((const char*)sp_read_message->GetContent());
 								if (_p_netMsgCallback != nullptr)
 								{
 									_p_netMsgCallback->OnReceivedMsgCallback(sp_read_message.get());

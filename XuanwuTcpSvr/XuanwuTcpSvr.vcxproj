@@ -166,6 +166,9 @@
     <ProjectReference Include="..\XuanwuNet\XuanwuNet.vcxproj">
       <Project>{70aa3f39-8154-4964-bc3e-3d399a56ba1e}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\XWCommon\XWCommon.vcxproj">
+      <Project>{df41adf7-da3f-431a-b9ec-af959fd71f01}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\XWModel\XWModel.vcxproj">
       <Project>{2a923120-8868-440b-a8ac-c972b41cd968}</Project>
     </ProjectReference>

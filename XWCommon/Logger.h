@@ -30,3 +30,4 @@ namespace XWCommon {
 #define LOGWARN(e, ...)  XWCommon::Logger::GetSingleton()->Print(__FILE__, __LINE__, __func__, 3/*warn*/, e,   __VA_ARGS__)
 #define LOGERROR(e, ...) XWCommon::Logger::GetSingleton()->Print(__FILE__, __LINE__, __func__, 4/*error*/, e,  __VA_ARGS__)
 #define LOGFATAL(e, ...) XWCommon::Logger::GetSingleton()->Print(__FILE__, __LINE__, __func__, 5/*fatal*/, e,  __VA_ARGS__)
+

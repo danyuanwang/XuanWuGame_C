@@ -114,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS ;_WIN32_WINNT=0x0501;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)XWCommon;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,7 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS ;_WIN32_WINNT=0x0501;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)XWCommon;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS ;_WIN32_WINNT=0x0501;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)XWCommon;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -165,7 +165,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS ;_WIN32_WINNT=0x0501;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)XWCommon;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
