@@ -119,7 +119,7 @@ namespace XWCommon {
 		(
 			logging::trivial::severity >= 
 #if _DEBUG
-			logging::trivial::debug
+			logging::trivial::trace
 #else
 			logging::trivial::info
 #endif
@@ -144,145 +144,6 @@ namespace XWCommon {
 
 	}
 
-	int Logger::LogTraceF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-
-		result = _print(logging::trivial::severity_level::trace, fmt, argp);
-
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogDebugF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-		result = _print(logging::trivial::severity_level::debug, fmt, argp);
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogInfoF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-		result = _print(logging::trivial::severity_level::info, fmt, argp);
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogWarningF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-		result = _print(logging::trivial::severity_level::warning, fmt, argp);
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogErrorF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-		result = _print(logging::trivial::severity_level::error, fmt, argp);
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogFatalF(const char* fmt, ...)
-	{
-		int result = 0;
-		va_list argp;
-		va_start(argp, fmt);
-		result = _print(logging::trivial::severity_level::fatal, fmt, argp);
-		va_end(argp);
-		return result;
-	}
-
-	int Logger::LogTrace(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::trace) << str;
-		return 0;
-	}
-
-	int Logger::LogDebug(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::debug) << str;
-		return 0;
-	}
-
-	int Logger::LogInfo(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::info) << str;
-		return 0;
-	}
-
-	int Logger::LogWarning(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::warning) << str;
-		return 0;
-	}
-
-	int Logger::LogError(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::error) << str;
-		return 0;
-	}
-
-	int Logger::LogFatal(const char * str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::fatal) << str;
-		return 0;
-	}
-
-	int Logger::LogTrace(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::trace) << str;
-
-		return 0;
-	}
-
-	int Logger::LogDebug(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::debug) << str;
-
-		return 0;
-	}
-
-	int Logger::LogInfo(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::info) << str;
-
-		return 0;
-	}
-
-	int Logger::LogWarning(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::warning) << str;
-
-		return 0;
-	}
-
-	int Logger::LogError(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::error) << str;
-
-		return 0;
-	}
-
-	int Logger::LogFatal(const std::string & str)
-	{
-		BOOST_LOG_SEV(s_logger, logging::trivial::severity_level::fatal) << str;
-
-		return 0;
-	}
 
 	Logger * Logger::GetSingleton()
 	{
@@ -298,14 +159,14 @@ namespace XWCommon {
 		return ps_logger.get();
 	}
 
-	int Logger::_print(int level, const char* fmt, ...)
+	int Logger::Print(const char* file_path, int line_no, const char* function, int level, const char* fmt, ...)
 	{
 		int result = 0;
 		char c_buf[max_print_buffer] = "\0";
 
 		va_list argp;
 		va_start(argp, fmt);
-		result = std::snprintf(c_buf, sizeof(c_buf), fmt, argp);
+		result = std::vsnprintf(c_buf, sizeof(c_buf), fmt, argp);
 		va_end(argp);
 		auto s_level = (logging::trivial::severity_level)level;
 
