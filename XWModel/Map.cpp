@@ -3,7 +3,7 @@
 #define MAP_NUM_OF_ROW 16
 
 static const CellType mapdata[MAP_NUM_OF_ROW][MAP_NUM_OF_COL] = {
-	{CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water},
+		{CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water},
 		{CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Ice},
 		{CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Mountain, CellType_Mountain, CellType_Forest, CellType_Forest, CellType_Forest, CellType_River, CellType_Forest, CellType_Forest, CellType_Water, CellType_Water, CellType_Water, CellType_Water, CellType_Ice, CellType_Water, CellType_Ice},
 		{CellType_Water, CellType_Water, CellType_Mountain, CellType_Ice, CellType_Water, CellType_Water, CellType_Grass, CellType_Mountain, CellType_Forest, CellType_Forest, CellType_River, CellType_River, CellType_Forest, CellType_Forest, CellType_Water, CellType_Water, CellType_Water, CellType_Ice, CellType_Water, CellType_Water},
@@ -108,38 +108,47 @@ void Map::_init_map()
 	std::vector<int> list_of_forest_cell_no;
 	std::vector<int> list_of_grass_cell_no;
 	std::vector<int> list_of_ice_cell_no;
+	std::vector<int> list_of_center_cells_no;
 
 	for (int r = 0; r < _num_of_row; r++)
 	{
 		for (int c = 0; c < _num_of_col; c++)
 		{
+			int cell_num = r * _num_of_col + c;
 			auto up_cell = std::unique_ptr<Cell>(new Cell(r, c, mapdata[r][c]));
 			switch (up_cell->GetCellType())
 			{
 			case CellType_Mountain:
 			{
-				list_of_mountain_cell_no.push_back(r*_num_of_col + c);
+				list_of_mountain_cell_no.push_back(cell_num);
 				break;
 			}
 			case CellType_Forest: 
 			{
-				list_of_forest_cell_no.push_back(r*_num_of_col + c);
+				list_of_forest_cell_no.push_back(cell_num);
 				break;
 			}
 			case CellType_Grass:
 			{
-				list_of_grass_cell_no.push_back(r*_num_of_col + c);
+				list_of_grass_cell_no.push_back(cell_num);
 				break;
 			}
 			case CellType_Ice:
 			{
-				list_of_ice_cell_no.push_back(r*_num_of_col + c);
+				list_of_ice_cell_no.push_back(cell_num);
 				break;
 			}
 			default:
 				break;
 			}
-
+			if (r >= (_num_of_row/2) - 1 && r <= (_num_of_row/2) + 2) {
+				if (c >= (_num_of_col / 2) - 1 && c <= (_num_of_col / 2) + 2)
+					if (CellType_Water)
+					{
+						break;
+					}
+					list_of_center_cells_no.push_back(cell_num);
+			}
 			_list_cell.push_back(std::move(up_cell));
 		}
 	}

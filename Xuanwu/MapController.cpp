@@ -33,7 +33,7 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			result = (itr)->HandleSdlEvent(e);
 			if (result)
 			{
-				_p_focused_controller = (MineController*)itr._Ptr;
+				_p_focused_controller = (CellController*)itr._Ptr;
 				break;
 			}
 		}
