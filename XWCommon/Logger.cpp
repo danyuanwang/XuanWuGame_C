@@ -68,6 +68,8 @@ namespace XWCommon {
 
 		strm << "[" << logging::extract< std::string  >("Tag", rec) << "] ";
 
+		strm << "::" << std::endl;
+
 		// Finally, put the record message to the stream
 		strm << rec[expr::smessage];
 	}
