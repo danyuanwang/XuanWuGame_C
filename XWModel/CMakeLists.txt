@@ -1,5 +1,10 @@
 cmake_minimum_required (VERSION 3.0)
 project (XWModel)
+
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF)
+
 add_Library(XWModel 
 Board.cpp
 Cell.cpp
@@ -19,4 +24,4 @@ Player.cpp
 
 include_directories ("${PROJECT_SOURCE_DIR}/../boost")
 include_directories ("${PROJECT_SOURCE_DIR}/../XuanwuNet")
-include_directories ("${PROJECT_SOURCE_DIR}/../XWModel")
+

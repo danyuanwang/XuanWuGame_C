@@ -4,31 +4,38 @@ project (XuanwuTcpSvr)
 set (XuanwuTcpSvr_VERSION_MAJOR 1)
 set (XuanwuTcpSvr_VERSION_MINOR 0)
  
+#set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_CXX_STANDARD_REQUIRED ON)
+#set(CMAKE_CXX_EXTENSIONS OFF)
+
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file (
 	"${PROJECT_SOURCE_DIR}/XuanwuConfig.h.in"
 	"${PROJECT_SOURCE_DIR}/XuanwuConfig.h"
   )
+#add compile macros
+ADD_DEFINITIONS(-DBOOST_LOG_DYN_LINK)
  
 # add the binary tree to the search path for include files
 # so that we will find XuanwuConfig.h
 #include_directories("${PROJECT_SOURCE_DIR}/include")
 
 include_directories ("${PROJECT_SOURCE_DIR}/../boost")
-include_directories ("${PROJECT_SOURCE_DIR}/../XWCommon")
 include_directories ("${PROJECT_SOURCE_DIR}/../XuanwuNet")
 include_directories ("${PROJECT_SOURCE_DIR}/../XWModel")
+include_directories ("${PROJECT_SOURCE_DIR}/../XWCommon")
 
 add_subdirectory (../XWCommon ${PROJECT_BINARY_DIR}/XWCommon)
 add_subdirectory (../XWModel ${PROJECT_BINARY_DIR}/XWModel)
 add_subdirectory (../XuanwuNet ${PROJECT_BINARY_DIR}XuanwuNet)
 
-set (EXTRA_LIBS ${EXTRA_LIBS} XWCommon)
 set (EXTRA_LIBS ${EXTRA_LIBS} XWModel)
 set (EXTRA_LIBS ${EXTRA_LIBS} XuanwuNet)
+set (EXTRA_LIBS ${EXTRA_LIBS} XWCommon)
 
-set(Boost_USE_MULTITHREADED      ON)
+#SET(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
 
 set( BOOST_ROOT "${PROJECT_SOURCE_DIR}/../boost" CACHE PATH "${PROJECT_SOURCE_DIR}/../boost/stage/lib" )
 
