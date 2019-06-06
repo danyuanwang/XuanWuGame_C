@@ -26,6 +26,7 @@ void Map::_generate_mines(std::vector<int> &cell_list, int number_of_mines, Mine
 {
 	while (number_of_mines > 0)
 	{
+
 		int index_selected_cell = _rand_in_range(0, (int)cell_list.size() - 1);
 		int cell_index = cell_list[index_selected_cell];
 		int row_index = (cell_index / _num_of_col);

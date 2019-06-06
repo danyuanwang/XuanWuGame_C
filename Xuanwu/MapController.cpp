@@ -14,15 +14,28 @@ MapController::~MapController()
 }
 
 bool MapController::HandleSdlEvent(SDL_Event & e)
+
 {
 	bool result = false;
-	for (auto itr = _mine_controllers.begin(); itr < _mine_controllers.end(); itr++)
+	
 	{
-		result = (itr)->HandleSdlEvent(e);
+		result = (_up_shop_controller)->HandleSdlEvent(e);
 		if (result)
 		{
-			_p_focused_controller = (MineController*)itr._Ptr;
-			break;
+			_p_focused_controller = (ShopController*)_up_shop_controller.get();
+		}
+	}
+
+	if (!result)
+	{
+		for (auto itr = _mine_controllers.begin(); itr < _mine_controllers.end(); itr++)
+		{
+			result = (itr)->HandleSdlEvent(e);
+			if (result)
+			{
+				_p_focused_controller = (MineController*)itr._Ptr;
+				break;
+			}
 		}
 	}
 
@@ -38,6 +51,9 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			}
 		}
 	}
+
+
+	
 
 	return result;
 }
@@ -55,13 +71,18 @@ void MapController::CaptureFocus(bool captured)
 	if (_p_focused_controller)
 	{
 		_p_focused_controller->CaptureFocus(captured);
+
+		if (!captured)
+		{
+			_p_focused_controller = nullptr;
+		}
 	}
 }
 
 void MapController::Invalidate()
 {
 	BaseController::Invalidate();
-
+	
 	_cell_controllers.clear();
 	for (int i = 0; i < GetMapView()->_vector_cell.size(); i++)
 	{
@@ -79,6 +100,11 @@ void MapController::Invalidate()
 		MineController mine_controller(p_mine_view, const_cast<Mine*>(GetMapModel()->GetMine(index)));
 		_mine_controllers.push_back(mine_controller);
 	}
+
+
+
+	ShopView* p_shop_view = (GetMapView()->_up_shop.get());
+	_up_shop_controller = std::move(std::unique_ptr<ShopController>{ new ShopController(p_shop_view, const_cast<Shop*>(GetMapModel()->GetShop())) });
 
 }
 

@@ -42,7 +42,14 @@ void PanelScale::TakeDataObject(const ModelObject * p_model)
 {
 	if (p_model)
 	{
-		if (typeid(*p_model) == typeid(Mine))
+		if (typeid(*p_model) == typeid(Shop))
+		{
+			const Shop* p_shop = static_cast<const Shop*>(p_model);
+			_title = "Shop";//TODO: refine the value to _title and _information
+			_information = "this is a shop";
+
+		}
+		else if (typeid(*p_model) == typeid(Mine))
 		{
 			const Mine* p_mine= static_cast<const Mine*>(p_model);
 			_mine_type = p_mine->GetMineType();
@@ -56,6 +63,7 @@ void PanelScale::TakeDataObject(const ModelObject * p_model)
 			_title = "Cell";//TODO: refine the value to _title and _information
 			_information = "this is a cell";
 		}
+		
 	}
 }
 

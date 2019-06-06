@@ -2,7 +2,7 @@
 #include "ModelObject.h"
 #include "Mine.h"
 #include "Cell.h"
-
+#include "Shop.h"
 class PanelScale :
 	public ModelObject
 {
