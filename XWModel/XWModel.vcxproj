@@ -32,6 +32,7 @@
     <ClInclude Include="PanelAction.h" />
     <ClInclude Include="PanelScale.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Shop.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="PanelAction.cpp" />
     <ClCompile Include="PanelScale.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Shop.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

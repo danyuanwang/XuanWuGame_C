@@ -78,6 +78,9 @@
     <ClCompile Include="PanelScaleController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShopView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PanelScaleController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

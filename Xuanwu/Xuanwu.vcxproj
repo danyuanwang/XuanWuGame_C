@@ -231,6 +231,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="PanelScaleController.cpp" />
     <ClCompile Include="PanelScaleView.cpp" />
     <ClCompile Include="PanelView.cpp" />
+    <ClCompile Include="ShopView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseController.h" />
@@ -256,6 +257,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="PanelScaleView.h" />
     <ClInclude Include="PanelView.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="ShopView.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XuanwuNet\XuanwuNet.vcxproj">
