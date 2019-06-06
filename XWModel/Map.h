@@ -3,12 +3,14 @@
 #include<memory>
 #include "Cell.h"
 #include "Mine.h"
+#include "Shop.h"
 
 class Map :public ModelObject
 {
 private:
 	std::vector<std::unique_ptr<Cell>> _list_cell;
 	std::vector< std::unique_ptr<Mine>> _list_mine;
+	std::unique_ptr<Shop> _up_shop;
 	int _num_of_row;
 	int _num_of_col;
 
@@ -39,6 +41,7 @@ public:
 	void UpdateByPropertyTree(const ptree& propert_tree) override;
 	const Cell* GetCell(int index) const;
 	const Mine* GetMine(int index) const;
+	const Shop* GetShop() const;
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
 	int GetNumberOfCol()const;

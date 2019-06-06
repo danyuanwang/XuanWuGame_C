@@ -94,6 +94,16 @@ ptree & Map::GetPropertyTree()
 
 	_property_tree.add_child(QUOTES(_list_mine), pt_mines);
 
+	ptree pt_shop;
+	pt_shop.push_back(
+		ptree::value_type(
+		_up_shop->GetNameForPTree(),
+			_up_shop->GetPropertyTree()
+		)
+	);
+	_property_tree.add_child(QUOTES(_up_shop), pt_shop);
+
+
 	return _property_tree;
 }
 
@@ -140,14 +150,15 @@ void Map::_init_map()
 			}
 			default:
 				break;
-			}
-			if (r >= (_num_of_row/2) - 1 && r <= (_num_of_row/2) + 2) {
+			}//switch
+
+			if (r >= (_num_of_row/2) - 1 && r <= (_num_of_row/2) + 2)
+			{
 				if (c >= (_num_of_col / 2) - 1 && c <= (_num_of_col / 2) + 2)
-					if (CellType_Water)
+					if (up_cell->GetCellType() != CellType_Water)
 					{
-						break;
+						list_of_center_cells_no.push_back(cell_num);
 					}
-					list_of_center_cells_no.push_back(cell_num);
 			}
 			_list_cell.push_back(std::move(up_cell));
 		}
@@ -161,6 +172,13 @@ void Map::_init_map()
 	_generate_mines(list_of_grass_cell_no, _num_of_small_log_mine, MineType_Small_Hunt);
 	_generate_mines(list_of_ice_cell_no, _num_of_gold_mine, MineType_Gold);
 
+	/*select random cell to put shop*/
+	int index_selected_cell = _rand_in_range(0, (int)list_of_center_cells_no.size() - 1);
+	int cell_index = list_of_center_cells_no[index_selected_cell];
+	int row_index = (cell_index / _num_of_col);
+	int col_index = cell_index % _num_of_col;
+	_up_shop = std::move(std::unique_ptr<Shop>{ new Shop(row_index,col_index) });
+	
 }
 
 void Map::OnIterateCallback(std::string key, std::string value, int level)
@@ -196,6 +214,19 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 		}
 	}
 
+
+	ptree pt_shop = _property_tree.get_child(QUOTES(_up_shop));
+	BOOST_FOREACH(ptree::value_type const&v, pt_shop)
+	{
+		const std::string & key = v.first; // key
+		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
+		if (key == QUOTES(Shop))
+		{
+			_up_shop = std::move(std::unique_ptr<Shop>(new Shop(subtree)));
+		}
+	}
+
+
 }
 
 const Cell* Map::GetCell(int index) const {
@@ -204,6 +235,11 @@ const Cell* Map::GetCell(int index) const {
 
 const Mine* Map::GetMine(int index) const {
 	return _list_mine[index].get();
+}
+
+const Shop * Map::GetShop() const
+{
+	return _up_shop.get();
 }
 
 int Map::GetTotalCellNumber() const
