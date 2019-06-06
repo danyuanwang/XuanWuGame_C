@@ -5,14 +5,14 @@
 int main(int, char**) {
 	std::string	str_host("127.0.0.1"), str_port("2014");
 
-	auto up_msp = std::unique_ptr<NetMsgPump>(new NetMsgPump);
-	auto up_cnmgr = std::unique_ptr<ConnectionMgr>(new ConnectionMgr());
-	auto up_client = std::unique_ptr<Client>(new Client(str_host, str_port, up_cnmgr.get()));
+	std::unique_ptr<NetMsgPump> up_msp (new NetMsgPump);
+	std::unique_ptr<ConnectionMgr> up_cnmgr (new ConnectionMgr());
+	std::unique_ptr<Client> up_client (new Client(str_host, str_port, up_cnmgr.get()));
 
-	auto up_game_engine = std::unique_ptr<GameEngine>(new GameEngine);
+	std::unique_ptr<GameEngine> up_game_engine (new GameEngine);
 	up_game_engine->Initialize();
 
-	auto up_game = std::unique_ptr<GameClient>(new GameClient(up_game_engine.get(), up_cnmgr.get()));
+	std::unique_ptr<GameClient> up_game (new GameClient(up_game_engine.get(), up_cnmgr.get()));
 
 	up_cnmgr->AddMsgListener(up_msp.get());
 	up_client->Start();

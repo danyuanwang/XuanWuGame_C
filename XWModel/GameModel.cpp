@@ -4,7 +4,7 @@
 
 GameModel::GameModel()
 {
-	up_game_board =  std::unique_ptr<Board>{ new Board() } ;
+	up_game_board =  std::move(std::unique_ptr<Board>{ new Board() } );
 }
 
 

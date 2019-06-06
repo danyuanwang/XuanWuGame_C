@@ -29,5 +29,7 @@ const BoardView * GameView::GetBoardView() const
 
 void GameView::Invalidate(const ModelObject *p_gamemodel)
 {
-	BaseView::Invalidate(static_cast<const GameModel*>(p_gamemodel)->GetBoard());
+	_board_view.Invalidate(static_cast<const GameModel*>(p_gamemodel)->GetBoard());
+
+	BaseView::Invalidate(p_gamemodel);
 }

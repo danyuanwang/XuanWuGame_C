@@ -29,6 +29,7 @@ bool GameController::HandleSdlEvent(SDL_Event & e)
 void GameController::Invalidate()
 {
 	BaseController::Invalidate();
+
 	_boardController.Invalidate();
 }
 

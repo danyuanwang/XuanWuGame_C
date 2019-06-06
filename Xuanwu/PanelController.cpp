@@ -1,6 +1,7 @@
 #include "PanelController.h"
 #include "MineController.h"
 #include "CellController.h"
+#include "ShopController.h"
 #include <typeinfo>
 
 PanelController::PanelController(PanelView* p_view, Panel* p_model) :
@@ -27,7 +28,13 @@ void PanelController::SetFocusedController(BaseController * p_controller)
 
 	if (_p_focused_controller)
 	{
-		if (typeid(*_p_focused_controller) == typeid(MineController))
+		if (typeid(*_p_focused_controller) == typeid(ShopController))
+		{
+			ShopController* p_shop_controller = static_cast<ShopController*>(_p_focused_controller);
+			PanelScale* p_scale = const_cast<PanelScale*>(GetPanelModel()->GetScale());
+			p_scale->TakeDataObject(const_cast<const ModelObject *>(p_shop_controller->GetModel()));
+		}
+		else if (typeid(*_p_focused_controller) == typeid(MineController))
 		{
 			MineController* p_mine_controller = static_cast<MineController*>(_p_focused_controller);
 			PanelScale* p_scale = const_cast<PanelScale*>(GetPanelModel()->GetScale());
@@ -38,7 +45,6 @@ void PanelController::SetFocusedController(BaseController * p_controller)
 			CellController* p_cell_controller = static_cast<CellController*>(_p_focused_controller);
 			PanelScale* p_scale = const_cast<PanelScale*>(GetPanelModel()->GetScale());
 			p_scale->TakeDataObject(const_cast<const ModelObject *>(p_cell_controller->GetModel()));
-
 		}
 	}
 }

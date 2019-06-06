@@ -3,8 +3,8 @@
 
 Board::Board()
 {
-	_up_map = std::unique_ptr<Map>{ new Map() };
-	_up_panel = std::unique_ptr<Panel>{new Panel()};
+	_up_map = std::move(std::unique_ptr<Map>{ new Map() });
+	_up_panel = std::move(std::unique_ptr<Panel>{new Panel()});
 }
 
 
@@ -23,7 +23,7 @@ ptree & Board::GetPropertyTree()
 		pt_map.push_back(
 			ptree::value_type(
 				_up_map->GetNameForPTree(),
-			_up_map->GetPropertyTree()
+				_up_map->GetPropertyTree()
 			)
 		);
 	}

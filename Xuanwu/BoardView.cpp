@@ -32,7 +32,10 @@ const PanelView * BoardView::GetPanelView() const
 
 void BoardView::Invalidate(const ModelObject * p_game_model)
 {
-	_map_view.Invalidate(static_cast<const Board*>(p_game_model)->GetMap());
-	_panel_view.Invalidate(static_cast<const Board*>(p_game_model)->GetPanel());
+	const Board* p_board = static_cast<const Board*>(p_game_model);
+
+	_map_view.Invalidate(p_board->GetMap());
+	_panel_view.Invalidate(p_board->GetPanel());
+
 	BaseView::Invalidate(p_game_model);
 }

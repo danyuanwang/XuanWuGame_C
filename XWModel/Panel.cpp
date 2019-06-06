@@ -4,8 +4,8 @@
 
 Panel::Panel()
 {
-	_up_scale = std::unique_ptr<PanelScale>{ new PanelScale() };
-	_up_action = std::unique_ptr<PanelAction>{ new PanelAction() };
+	_up_scale = std::move(std::unique_ptr<PanelScale>{ new PanelScale() });
+	_up_action = std::move(std::unique_ptr<PanelAction>{ new PanelAction() });
 
 }
 

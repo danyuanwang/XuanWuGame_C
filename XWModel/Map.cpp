@@ -98,7 +98,7 @@ ptree & Map::GetPropertyTree()
 	ptree pt_shop;
 	pt_shop.push_back(
 		ptree::value_type(
-		_up_shop->GetNameForPTree(),
+			_up_shop->GetNameForPTree(),
 			_up_shop->GetPropertyTree()
 		)
 	);
@@ -126,7 +126,8 @@ void Map::_init_map()
 		for (int c = 0; c < _num_of_col; c++)
 		{
 			int cell_num = r * _num_of_col + c;
-			auto up_cell = std::unique_ptr<Cell>(new Cell(r, c, mapdata[r][c]));
+			std::unique_ptr<Cell> up_cell(new Cell(r, c, mapdata[r][c]));
+
 			switch (up_cell->GetCellType())
 			{
 			case CellType_Mountain:
@@ -134,7 +135,7 @@ void Map::_init_map()
 				list_of_mountain_cell_no.push_back(cell_num);
 				break;
 			}
-			case CellType_Forest: 
+			case CellType_Forest:
 			{
 				list_of_forest_cell_no.push_back(cell_num);
 				break;
@@ -153,7 +154,7 @@ void Map::_init_map()
 				break;
 			}//switch
 
-			if (r >= (_num_of_row/2) - 1 && r <= (_num_of_row/2) + 2)
+			if (r >= (_num_of_row / 2) - 1 && r <= (_num_of_row / 2) + 2)
 			{
 				if (c >= (_num_of_col / 2) - 1 && c <= (_num_of_col / 2) + 2)
 					if (up_cell->GetCellType() != CellType_Water)
@@ -178,8 +179,8 @@ void Map::_init_map()
 	int cell_index = list_of_center_cells_no[index_selected_cell];
 	int row_index = (cell_index / _num_of_col);
 	int col_index = cell_index % _num_of_col;
-	_up_shop = std::move(std::unique_ptr<Shop>{ new Shop(row_index,col_index) });
-	
+	_up_shop = std::move(std::unique_ptr<Shop>{ new Shop(row_index, col_index) });
+
 }
 
 void Map::OnIterateCallback(std::string key, std::string value, int level)
@@ -191,27 +192,42 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 {
 	_property_tree = propert_tree.get_child(GetNameForPTree());
 
-	_list_cell.clear();
 	ptree pt_cells = _property_tree.get_child(QUOTES(_list_cell));
+	int index_cell = 0;
 	BOOST_FOREACH(ptree::value_type const&v, pt_cells)
 	{
 		const std::string & key = v.first; // key
 		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
 		if (key == QUOTES(Cell))
 		{
-			_list_cell.push_back(std::move(std::unique_ptr<Cell>(new Cell(subtree))));
+			if (_list_cell.size() <= index_cell)
+			{
+				_list_cell.push_back(std::move(std::unique_ptr<Cell>(new Cell(subtree))));
+			}
+			else
+			{
+				_list_cell[index_cell]->UpdateByPropertyTree(subtree);
+			}
 		}
+		index_cell++;
 	}
 
-	_list_mine.clear();
 	ptree pt_mines = _property_tree.get_child(QUOTES(_list_mine));
+	int index_mine = 0;
 	BOOST_FOREACH(ptree::value_type const&v, pt_mines)
 	{
 		const std::string & key = v.first; // key
 		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
 		if (key == QUOTES(Mine))
 		{
-			_list_mine.push_back(std::move(std::unique_ptr<Mine>(new Mine(subtree))));
+			if (_list_mine.size() <= index_mine)
+			{
+				_list_mine.push_back(std::move(std::unique_ptr<Mine>(new Mine(subtree))));
+			}
+			else
+			{
+				_list_mine[index_mine]->UpdateByPropertyTree(subtree);
+			}
 		}
 	}
 
@@ -223,7 +239,14 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
 		if (key == QUOTES(Shop))
 		{
-			_up_shop = std::move(std::unique_ptr<Shop>(new Shop(subtree)));
+			if (_up_shop.get() == nullptr)
+			{
+				_up_shop = std::move(std::unique_ptr<Shop>(new Shop(subtree)));
+			}
+			else
+			{
+				_up_shop->UpdateByPropertyTree(subtree);
+			}
 		}
 	}
 
