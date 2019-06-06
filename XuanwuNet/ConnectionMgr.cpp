@@ -1,8 +1,5 @@
 #include "ConnectionMgr.h"
-#if _DEBUG
-#include <iostream>
-#endif
-
+#include "Logger.h"
 
 
 ConnectionMgr::ConnectionMgr() :
@@ -49,11 +46,6 @@ int ConnectionMgr::OnReceivedMsgCallback(NetPackMsg * p_message)
 
 	_received_message_counter++;
 
-	//#if _DEBUG
-	//	std::cout << __FUNCTION__ << " : " << _received_message_counter << " : " << std::endl;
-	//	std::cout << std::string{ (const char*)up_message->Body() } << std::endl;
-	//#endif
-
 	return 0;
 
 }
@@ -76,11 +68,7 @@ void ConnectionMgr::SendMsg(NetPackMsg * p_message)
 		p->get()->Deliver(p_message);
 	}
 
-#if _DEBUG
-	std::cout << __FUNCTION__ << " : " << _sent_message_counter << " : " << std::endl;
-	std::cout << std::string{ (const char*)p_message->GetContent() } << std::endl;
-#endif
-
+	LOGTRACE((const char*)p_message->GetContent());
 }
 
 

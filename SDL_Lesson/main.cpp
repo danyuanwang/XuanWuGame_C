@@ -1,6 +1,5 @@
 #include<string>
 #include<stdarg.h>
-#include<iostream>
 #include "Logger.h"
 
 int main(int argc, char* args[])
