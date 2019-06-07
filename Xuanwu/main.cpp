@@ -17,6 +17,8 @@ int main(int, char**) {
 	up_cnmgr->AddMsgListener(up_msp.get());
 	up_client->Start();
 
+	up_game->Start();
+
 	SDL_Event e;
 	e.type = SDL_FIRSTEVENT;
 

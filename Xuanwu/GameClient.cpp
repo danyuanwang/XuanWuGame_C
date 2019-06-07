@@ -12,7 +12,6 @@ GameClient::GameClient(GameEngine* pge, ConnectionMgr* pcmr) :
 
 	up_gameController = std::move(std::unique_ptr<GameController>{ new GameController(up_gameView.get(), up_gameModel.get()) });
 
-	up_gameView->Draw(mp_game_engine);
 }
 
 
@@ -23,24 +22,6 @@ GameClient::~GameClient()
 
 void GameClient::CheckSdlEvent(SDL_Event & e)
 {
-	/*for test purpose START >>*/
-	auto up_gpr = std::unique_ptr<GamePlayRequest>(
-		new GamePlayRequest
-		);
-
-	up_gpr->SetScenario(GameScenario_GameBoard);
-	up_gpr->SetFromObject(GameOjbect_GameView);
-	up_gpr->SetToObject(GameOjbect_GameBoard);
-	up_gpr->SetActionType(GameOjbectAction_Restart);
-
-	auto up_netMsg = std::unique_ptr<NetPackMsg>(
-		new NetPackMsg
-		);
-	up_netMsg->SetConent(up_gpr->ToJson().c_str());
-	mp_connection_mgr->SendMsg(up_netMsg.get());
-
-	/*<< END for test purpose*/
-
 	if (up_gameController->HandleSdlEvent(e))
 	{
 		up_gameController->Invalidate();
@@ -72,4 +53,25 @@ void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 
 	up_gameController->Invalidate();
 	up_gameView->Draw(mp_game_engine);
+}
+
+void GameClient::Start()
+{
+	/*send game start request to server*/
+	auto up_gpr = std::unique_ptr<GamePlayRequest>(
+		new GamePlayRequest
+		);
+
+	up_gpr->SetScenario(GameScenario_GameBoard);
+	up_gpr->SetFromObject(GameOjbect_GameView);
+	up_gpr->SetToObject(GameOjbect_GameBoard);
+	up_gpr->SetActionType(GameOjbectAction_Restart);
+
+	auto up_netMsg = std::unique_ptr<NetPackMsg>(
+		new NetPackMsg
+		);
+	up_netMsg->SetConent(up_gpr->ToJson().c_str());
+	mp_connection_mgr->SendMsg(up_netMsg.get());
+
+
 }

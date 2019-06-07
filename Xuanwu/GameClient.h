@@ -20,5 +20,7 @@ public:
 
 	void CheckSdlEvent(SDL_Event &e);
 	void ProcessGameRequest(GamePlayRequest& gpr);
+
+	void Start();
 };
 
