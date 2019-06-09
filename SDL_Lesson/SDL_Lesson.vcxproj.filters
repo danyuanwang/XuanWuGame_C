@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="02_getting_an_image_on_the_screen\02_getting_an_image_on_the_screen.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="32_text_input_and_clipboard_handling\32_text_input_and_clipboard_handling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

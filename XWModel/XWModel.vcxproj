@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CommonStructure.h" />
     <ClInclude Include="DataModel.h" />
@@ -36,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CommonStructure.cpp" />
     <ClCompile Include="DataModel.cpp" />

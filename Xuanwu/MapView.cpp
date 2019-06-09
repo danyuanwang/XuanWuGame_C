@@ -26,8 +26,8 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 		{//if the cell is added newly
 			int cell_index_col = p_cell->GetColIndex();
 			int cell_index_row = p_cell->GetRowIndex();
-			int cell_x = ((cell_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth))) + _x;
-			int cell_y = ((cell_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight))) + _y;
+			int cell_x = ((cell_index_col * (GameSettings::CellMarginX*2 + GameSettings::CellWidth))+ GameSettings::CellMarginX) + _x;
+			int cell_y = ((cell_index_row * (GameSettings::CellMarginY*2 + GameSettings::CellHeight)) + GameSettings::CellMarginY) + _y;
 			CellView cellView(i, p_cell->GetCellType(), cell_x, cell_y, GameSettings::CellWidth, GameSettings::CellHeight, GameSettings::CellMarginX, GameSettings::CellMarginY);
 			_vector_cell.push_back(cellView);
 		}
@@ -43,8 +43,8 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 		{//if the cell is added newly
 			int mine_index_col = p_mine->GetColIndex();
 			int mine_index_row = p_mine->GetRowIndex();
-			int mine_x = ((mine_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
-			int mine_y = ((mine_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
+			int mine_x = ((mine_index_col * (GameSettings::CellMarginX*2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
+			int mine_y = ((mine_index_row * (GameSettings::CellMarginY*2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
 			MineView mineView(i, p_mine->GetMineType(), mine_x, mine_y, GameSettings::Minewidth, GameSettings::MineHeight, GameSettings::MineMarginX, GameSettings::MineMarginY);
 			_vector_mine.push_back(mineView);
 		}
@@ -59,8 +59,8 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 	{
 		int shop_index_col = p_shop->get_col_index();
 		int shop_index_row = p_shop->get_row_index();
-		int shop_x = ((shop_index_col * (GameSettings::CellMarginX + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
-		int shop_y = ((shop_index_row * (GameSettings::CellMarginY + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
+		int shop_x = ((shop_index_col * (GameSettings::CellMarginX*2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
+		int shop_y = ((shop_index_row * (GameSettings::CellMarginY*2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
 		_up_shop = std::move(
 			std::unique_ptr<ShopView>{
 			new ShopView(

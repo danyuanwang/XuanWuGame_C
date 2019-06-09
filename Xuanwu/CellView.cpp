@@ -21,6 +21,11 @@ void CellView::Invalidate(const ModelObject * p_game_model)
 
 }
 
+bool CellView::intercepts(int mouse_x, int mouse_y) const
+{
+	return ((mouse_x > _x) && (mouse_x < (_x + _width)) && (mouse_y > _y) && (mouse_y < (_y + _height)));;
+}
+
 void CellView::Draw(const GameEngine *p_game_engine)
 {
 	p_game_engine->DrawRect(_x, _y, _width, _height, GameSettings::CellColorMap[_cell_type]);

@@ -12,6 +12,7 @@ public:
 	virtual ~CellView();
 	void Draw(const GameEngine *p_game_engine) override;
 	void Invalidate(const ModelObject *p_game_model) override;
+	bool intercepts(int mouse_x, int mouse_y) const override;
 
 	int GetIndex() const;
 };

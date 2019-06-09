@@ -4,11 +4,11 @@
 class BaseView
 {
 protected:
-	int _x;
-	int _y;
-	int _width;
-	int _height;
-	int _margin_x;
+	int _x; //inner
+	int _y; //inner
+	int _width; //inner
+	int _height; // inner
+	int _margin_x; 
 	int _margin_y;
 	bool _high_lighted;
 

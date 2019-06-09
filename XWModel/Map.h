@@ -4,12 +4,14 @@
 #include "Cell.h"
 #include "Mine.h"
 #include "Shop.h"
+#include "Castle.h"
 
 class Map :public ModelObject
 {
 private:
 	std::vector<std::unique_ptr<Cell>> _list_cell;
 	std::vector< std::unique_ptr<Mine>> _list_mine;
+	std::vector<std::unique_ptr<Castle>> _list_castle;
 	std::unique_ptr<Shop> _up_shop;
 	int _num_of_row;
 	int _num_of_col;
