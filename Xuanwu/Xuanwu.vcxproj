@@ -99,7 +99,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWCommon;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
@@ -126,7 +126,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWCommon;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
@@ -155,7 +155,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWCommon;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
@@ -186,7 +186,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SDL\include;$(SolutionDir)SDL2_image\include;$(SolutionDir)SDL2_ttf\include;$(SolutionDir)SDL2_mixer\include;$(SolutionDir)Boost;$(SolutionDir)XWCommon;$(SolutionDir)XWModel;$(SolutionDir)Xuanwunet</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501</PreprocessorDefinitions>
     </ClCompile>
