@@ -20,6 +20,7 @@ Panel.cpp
 PanelAction.cpp
 PanelScale.cpp
 Player.cpp
+Shop.cpp
 )
 
 include_directories ("${PROJECT_SOURCE_DIR}/../boost")
