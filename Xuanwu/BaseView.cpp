@@ -18,7 +18,7 @@ BaseView::~BaseView()
 
 bool BaseView::intercepts(int mouse_x, int mouse_y) const
 {
-	return ((mouse_x > _x - _margin_x) && (mouse_x < (_x + _width)+ _margin_x) && (mouse_y > _y-_margin_y) && (mouse_y < (_y + _height)+ _margin_y));
+	return ((mouse_x >= _x - _margin_x) && (mouse_x <= (_x + _width)+ _margin_x) && (mouse_y >= _y-_margin_y) && (mouse_y <= (_y + _height)+ _margin_y));
 }
 
 void BaseView::HighLight(bool high_lighted)
