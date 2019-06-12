@@ -95,7 +95,9 @@ namespace XWCommon {
 		// We have to provide an empty deleter to avoid destroying the global stream object
 		boost::shared_ptr< std::ostream > stream(&std::clog, boost::null_deleter());
 		sink->locked_backend()->add_stream(stream);
-
+#if _DEBUG
+		sink->locked_backend()->auto_flush(true);
+#endif
 		sink->set_formatter(&my_formatter);
 		//(
 		//	expr::stream
@@ -103,6 +105,7 @@ namespace XWCommon {
 		//	//<< std::hex << std::setw(8) << std::setfill('0') << expr::attr< unsigned int >("LineID")
 		//	//<< ": <" << logging::trivial::severity
 		//	//<< "> " << expr::smessage
+
 
 		// Register the sink in the logging core
 		logging::core::get()->add_sink(sink);

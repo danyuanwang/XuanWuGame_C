@@ -1,9 +1,9 @@
 #include "GameClient.h"
 #include "GamePlayRequest.h"
+#include "GameConnection.h"
 
-
-GameClient::GameClient(GameEngine* pge, ConnectionMgr* pcmr) :
-	mp_game_engine(pge), mp_connection_mgr(pcmr)
+GameClient::GameClient(GameEngine* pge) :
+	mp_game_engine(pge)
 {
 	up_gameModel = std::move(std::unique_ptr<GameModel>{  new GameModel() });
 
@@ -67,11 +67,5 @@ void GameClient::Start()
 	up_gpr->SetToObject(GameOjbect_GameBoard);
 	up_gpr->SetActionType(GameOjbectAction_Restart);
 
-	auto up_netMsg = std::unique_ptr<NetPackMsg>(
-		new NetPackMsg
-		);
-	up_netMsg->SetConent(up_gpr->ToJson().c_str());
-	mp_connection_mgr->SendMsg(up_netMsg.get());
-
-
+	GameConnection::GetSingleton()->SendContent(up_gpr->ToJson().c_str());
 }

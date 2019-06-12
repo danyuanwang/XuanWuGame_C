@@ -1,20 +1,19 @@
 #include "GameEngine.h"
 #include"GameClient.h"
 #include "Client.h"
+#include "GameConnection.h"
 
 int main(int, char**) {
 	std::string	str_host("127.0.0.1"), str_port("2014");
 
-	std::unique_ptr<NetMsgPump> up_msp (new NetMsgPump);
-	std::unique_ptr<ConnectionMgr> up_cnmgr (new ConnectionMgr());
-	std::unique_ptr<Client> up_client (new Client(str_host, str_port, up_cnmgr.get()));
+
+	std::unique_ptr<Client> up_client (new Client(str_host, str_port, GameConnection::GetSingleton()));
 
 	std::unique_ptr<GameEngine> up_game_engine (new GameEngine);
 	up_game_engine->Initialize();
 
-	std::unique_ptr<GameClient> up_game (new GameClient(up_game_engine.get(), up_cnmgr.get()));
+	std::unique_ptr<GameClient> up_game (new GameClient(up_game_engine.get()));
 
-	up_cnmgr->AddMsgListener(up_msp.get());
 	up_client->Start();
 
 	up_game->Start();
@@ -24,7 +23,7 @@ int main(int, char**) {
 
 	while (e.type != SDL_QUIT) {
 		std::unique_ptr< NetPackMsg> up_msg;
-		while (up_msp->Poll(up_msg))
+		while (GameConnection::GetSingleton()->PollMsg(up_msg))
 		{
 			//handle network messages
 			GamePlayRequest gpr{ up_msg->GetContent() };

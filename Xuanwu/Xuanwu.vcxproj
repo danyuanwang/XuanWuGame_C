@@ -218,6 +218,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="CastleView.cpp" />
     <ClCompile Include="CellController.cpp" />
     <ClCompile Include="CellView.cpp" />
+    <ClCompile Include="GameConnection.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GameClient.cpp" />
@@ -245,6 +246,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="CastleView.h" />
     <ClInclude Include="CellController.h" />
     <ClInclude Include="CellView.h" />
+    <ClInclude Include="GameConnection.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GameView.h" />
     <ClInclude Include="Constants.h" />
