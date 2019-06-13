@@ -34,12 +34,12 @@ void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 {
 	switch (gpr.GetToType())
 	{
-	case GameOjbect_GameView:
+	case GameObject_GameView:
 	{
 		break;
 	}
-	case GameOjbect_GameBoard:
-	case GameOjbect_GameModel:
+	case GameObject_GameBoard:
+	case GameObject_GameModel:
 	{
 		ptree property_tree = gpr.GetChild(up_gameModel->GetNameForPTree());
 		up_gameModel->UpdateByPropertyTree(property_tree);
@@ -63,9 +63,9 @@ void GameClient::Start()
 		);
 
 	up_gpr->SetScenario(GameScenario_GameBoard);
-	up_gpr->SetFromObject(GameOjbect_GameView);
-	up_gpr->SetToObject(GameOjbect_GameBoard);
-	up_gpr->SetActionType(GameOjbectAction_Restart);
+	up_gpr->SetFromObject(GameObject_GameView);
+	up_gpr->SetToObject(GameObject_GameBoard);
+	up_gpr->SetActionType(GameObjectAction_Restart);
 
 	GameConnection::GetSingleton()->SendContent(up_gpr->ToJson().c_str());
 }

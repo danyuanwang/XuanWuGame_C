@@ -44,19 +44,19 @@ GameScenarioTypeEnum GamePlayRequest::GetScenarioType()
 	return GetKeyValue<GameScenarioTypeEnum>(QUOTES(scenario));
 }
 
-GameOjbectTypeEnum GamePlayRequest::GetFromType()
+GameObjectTypeEnum GamePlayRequest::GetFromType()
 {
-	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(from));
+	return GetKeyValue<GameObjectTypeEnum>(QUOTES(from));
 }
 
-GameOjbectTypeEnum GamePlayRequest::GetToType()
+GameObjectTypeEnum GamePlayRequest::GetToType()
 {
-	return GetKeyValue<GameOjbectTypeEnum>(QUOTES(to));
+	return GetKeyValue<GameObjectTypeEnum>(QUOTES(to));
 }
 
-GameOjbectActionTypeEnum GamePlayRequest::GetActionType()
+GameObjectActionTypeEnum GamePlayRequest::GetActionType()
 {
-	return GetKeyValue<GameOjbectActionTypeEnum>(QUOTES(action));
+	return GetKeyValue<GameObjectActionTypeEnum>(QUOTES(action));
 }
 
 void GamePlayRequest::SetScenario(GameScenarioTypeEnum scenario)
@@ -64,17 +64,17 @@ void GamePlayRequest::SetScenario(GameScenarioTypeEnum scenario)
 	PROPERTY_TREE_PUT(_property_tree, scenario);
 }
 
-void GamePlayRequest::SetFromObject(GameOjbectTypeEnum from)
+void GamePlayRequest::SetFromObject(GameObjectTypeEnum from)
 {
 	PROPERTY_TREE_PUT(_property_tree, from);
 }
 
-void GamePlayRequest::SetToObject(GameOjbectTypeEnum to)
+void GamePlayRequest::SetToObject(GameObjectTypeEnum to)
 {
 	PROPERTY_TREE_PUT(_property_tree, to);
 }
 
-void GamePlayRequest::SetActionType(GameOjbectActionTypeEnum action)
+void GamePlayRequest::SetActionType(GameObjectActionTypeEnum action)
 {
 	PROPERTY_TREE_PUT(_property_tree, action);
 

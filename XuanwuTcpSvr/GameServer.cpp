@@ -37,9 +37,9 @@ void GameServer::_notifyUpdate()
 {
 	GamePlayRequest gr;
 	gr.SetScenario(GameScenario_DataModel);
-	gr.SetFromObject(GameOjbect_GameBoard);
-	gr.SetToObject(GameOjbect_GameModel);
-	gr.SetActionType(GameOjbectAction_UpdateView);
+	gr.SetFromObject(GameObject_GameBoard);
+	gr.SetToObject(GameObject_GameModel);
+	gr.SetActionType(GameObjectAction_UpdateView);
 
 	gr.AddChild(up_game_model->GetNameForPTree(), up_game_model->GetPropertyTree());
 
@@ -53,12 +53,17 @@ void GameServer::_notifyUpdate()
 void GameServer::_processRequest(GamePlayRequest& gpr)
 {
 
-	//switch (gpr.GetScenarioType())
-	//{
-	//default:
-	//	break;
-	//}
+	switch (gpr.GetActionType())
+	{
+		case  GameObjectAction_BuildCastle:
+		{
+			int col = gpr.GetKeyValue<int>("col_index");
+			int row = gpr.GetKeyValue<int>("row_index");
+			break;
+		}
+	default:
+	break;
+	}
 
-	/*for test purpse*/
 	_notifyUpdate();
 }

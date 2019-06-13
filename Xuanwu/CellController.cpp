@@ -23,6 +23,22 @@ void CellController::Invalidate()
 	BaseController::Invalidate();
 }
 
+CellType CellController::GetCellType()
+{
+	Cell* p_cell = static_cast<Cell*>(_p_model);
+	return p_cell->GetCellType();
+}
+
+int CellController::GetColIndex()
+{
+	return static_cast<Cell*>(_p_model)->GetColIndex();
+}
+
+int CellController::GetRowIndex()
+{
+	return static_cast<Cell*>(_p_model)->GetRowIndex();
+}
+
 CellView * CellController::GetCellView() const
 {
 	return static_cast<CellView*>(_p_view);

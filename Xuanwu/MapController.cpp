@@ -1,4 +1,5 @@
 #include "MapController.h"
+#include "BuildCastleCommand.h"
 
 MapController::MapController(MapView* p_view, Map* p_model) :
 	BaseController(p_view, p_model)
@@ -67,6 +68,11 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			if (result)
 			{
 				_p_focused_controller = (CellController*)itr._Ptr;
+				if (itr->GetCellType() != CellType_River && itr->GetCellType() != CellType_Water)
+				{
+					BuildCastleCommand cmd{itr->GetRowIndex(),itr->GetColIndex()};
+					cmd.Execute();
+				}
 				break;
 			}
 		}

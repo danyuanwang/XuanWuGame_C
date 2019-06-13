@@ -15,32 +15,32 @@ enum  GameScenarioTypeEnum
 	GameScenario_Total_Number,
 };
 
-enum  GameOjbectTypeEnum
+enum  GameObjectTypeEnum
 {
-	GameOjbect_Player = 0,
-	GameOjbect_Army,
-	GameOjbect_GameBoard,
-	GameOjbect_GameModel,
+	GameObject_Player = 0,
+	GameObject_Army,
+	GameObject_GameBoard,
+	GameObject_GameModel,
 
-	GameOjbect_GameView,
+	GameObject_GameView,
 
-	GameOjbect_Total_Number,
+	GameObject_Total_Number,
 };
 
-enum  GameOjbectActionTypeEnum
+enum  GameObjectActionTypeEnum
 {
-	GameOjbectAction_Move = 0,
-	GameOjbectAction_Fight,
-	GameOjbectAction_Mine,
-	GameOjbectAction_Buy,
-	GameOjbectAction_Sell,
+	GameObjectAction_Move = 0,
+	GameObjectAction_Fight,
+	GameObjectAction_Mine,
+	GameObjectAction_Buy,
+	GameObjectAction_Sell,
+	GameObjectAction_BuildCastle,
+	GameObjectAction_Restart,
+	GameObjectAction_End,
 
-	GameOjbectAction_Restart,
-	GameOjbectAction_End,
+	GameObjectAction_UpdateView,
 
-	GameOjbectAction_UpdateView,
-
-	GameOjbectAction_Total_Number,
+	GameObjectAction_Total_Number,
 };
 
 class GamePlayRequest : 
@@ -57,14 +57,14 @@ public:
 	ptree& GetChild(const char* key);
 
 	GameScenarioTypeEnum GetScenarioType();
-	GameOjbectTypeEnum GetFromType();
-	GameOjbectTypeEnum GetToType();
-	GameOjbectActionTypeEnum GetActionType();
+	GameObjectTypeEnum GetFromType();
+	GameObjectTypeEnum GetToType();
+	GameObjectActionTypeEnum GetActionType();
 
 	void SetScenario(GameScenarioTypeEnum scenario);
-	void SetFromObject(GameOjbectTypeEnum from);
-	void SetToObject(GameOjbectTypeEnum to);
-	void SetActionType(GameOjbectActionTypeEnum action);
+	void SetFromObject(GameObjectTypeEnum from);
+	void SetToObject(GameObjectTypeEnum to);
+	void SetActionType(GameObjectActionTypeEnum action);
 
 	std::string ToJson();
 
