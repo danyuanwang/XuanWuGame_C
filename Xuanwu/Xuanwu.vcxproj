@@ -267,7 +267,6 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="PanelScaleController.h" />
     <ClInclude Include="PanelScaleView.h" />
     <ClInclude Include="PanelView.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShopController.h" />
     <ClInclude Include="ShopView.h" />
@@ -282,9 +281,6 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ProjectReference Include="..\XWModel\XWModel.vcxproj">
       <Project>{2a923120-8868-440b-a8ac-c972b41cd968}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Xuanwu1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
