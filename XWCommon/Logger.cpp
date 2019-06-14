@@ -33,7 +33,7 @@
 namespace XWCommon {
 
 
-	const int max_print_buffer = 1024;
+	const int max_print_buffer = 1024 * 128;
 	const char* singleton_log_file_name = "logfilename.log";
 
 	namespace logging = boost::log;

@@ -2,6 +2,11 @@
 
 
 
+Castle::Castle(const ptree & propert_tree)
+{
+	UpdateByPropertyTree(propert_tree);
+}
+
 Castle::Castle(int row_index, int col_index)
 {
 	_row_index = row_index;
