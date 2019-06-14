@@ -48,5 +48,6 @@ public:
 	int GetTotalMineNumber() const;
 	int GetNumberOfCol()const;
 	int GetNumberOfRow() const;
+	void AddCastle(int row, int col);
 };
 

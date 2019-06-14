@@ -102,9 +102,22 @@ ptree & Map::GetPropertyTree()
 			_up_shop->GetPropertyTree()
 		)
 	);
+	
 	_property_tree.add_child(QUOTES(_up_shop), pt_shop);
 
 
+	ptree pt_castle;
+	for (auto iter = _list_castle.cbegin(); iter < _list_castle.cend(); iter++)
+	{
+		pt_castle.push_back(
+			ptree::value_type(
+			(*iter)->GetNameForPTree(),
+				(*iter)->GetPropertyTree()
+			)
+		);
+	}
+	_property_tree.add_child(QUOTES(_list_castle), pt_castle);
+	
 	return _property_tree;
 }
 
@@ -229,6 +242,7 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 				_list_mine[index_mine]->UpdateByPropertyTree(subtree);
 			}
 		}
+		index_mine++;
 	}
 
 
@@ -248,6 +262,26 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 				_up_shop->UpdateByPropertyTree(subtree);
 			}
 		}
+	}
+
+	ptree pt_castle = _property_tree.get_child(QUOTES(_list_castle));
+	int index_castle = 0;
+	BOOST_FOREACH(ptree::value_type const&v, pt_castle)
+	{
+		const std::string & key = v.first; // key
+		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
+		if (key == QUOTES(Castle))
+		{
+			if (_list_castle.size() <= index_castle)
+			{
+				_list_castle.push_back(std::move(std::unique_ptr<Castle>(new Castle(subtree))));
+			}
+			else
+			{
+				_list_castle[index_castle]->UpdateByPropertyTree(subtree);
+			}
+		}
+		index_castle++;
 	}
 
 
@@ -284,4 +318,28 @@ int Map::GetNumberOfCol() const
 int Map::GetNumberOfRow() const
 {
 	return _num_of_row;
+}
+
+void Map::AddCastle(int row, int col)
+{
+	
+	bool found_overlap = false;
+	for (auto itr = _list_castle.begin(); itr < _list_castle.end(); itr++) 
+	{
+		if ((*itr)->GetColIndex() == row && (*itr)->GetRowIndex() ==  col)
+		{
+
+			found_overlap = true;
+			break;
+		}
+		
+	}
+	if (found_overlap == false)
+	{
+		std::unique_ptr<Castle> up_castle(
+			new Castle(row, col)
+		);
+		_list_castle.push_back(std::move(up_castle));
+	}
+	
 }

@@ -59,6 +59,10 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 		{
 			int col = gpr.GetKeyValue<int>("col_index");
 			int row = gpr.GetKeyValue<int>("row_index");
+
+			Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
+			p_map->AddCastle(row, col);
+
 			break;
 		}
 	default:
