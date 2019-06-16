@@ -16,10 +16,10 @@ public:
 	void Invalidate(const ModelObject *p_game_model) override;
 
 private:
-	std::vector<CellView> _vector_cell;
-	std::vector<MineView> _vector_mine;
+	std::vector<std::unique_ptr<CellView>> _vector_cell;
+	std::vector<std::unique_ptr<MineView>> _vector_mine;
 	std::unique_ptr<ShopView> _up_shop;
-	std::vector<CastleView> _vector_castle;
+	std::vector<std::unique_ptr<CastleView>> _vector_castle;
 	friend class MapController;
 };
 

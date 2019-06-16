@@ -13,10 +13,10 @@ private:
 	MapView* GetMapView() const;
 	Map* GetMapModel() const;
 
-	std::vector<CellController> _cell_controllers;
-	std::vector<MineController> _mine_controllers;
+	std::vector<std::unique_ptr<CellController>> _cell_controllers;
+	std::vector<std::unique_ptr<MineController>> _mine_controllers;
 	std::unique_ptr<ShopController> _up_shop_controller;
-	std::vector<CastleController> _castle_controllers;
+	std::vector<std::unique_ptr<CastleController>> _castle_controllers;
 	BaseController* _p_focused_controller;
 
 public:
