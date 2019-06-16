@@ -73,27 +73,30 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 	}
 
 	const Shop* p_shop = p_map->GetShop();
-	if (_up_shop.get() == nullptr)
+	if (p_shop != nullptr) 
 	{
-		int shop_index_col = p_shop->get_col_index();
-		int shop_index_row = p_shop->get_row_index();
-		int shop_x = ((shop_index_col * (GameSettings::CellMarginX*2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
-		int shop_y = ((shop_index_row * (GameSettings::CellMarginY*2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
-		_up_shop = std::move(
-			std::unique_ptr<ShopView>{
-			new ShopView(
-				shop_x,
-				shop_y,
-				GameSettings::MineWidth,
-				GameSettings::MineHeight,
-				GameSettings::MineMarginX,
-				GameSettings::MineMarginY
-			)
-		});
-	}
-	else
-	{
-		_up_shop->Invalidate(p_shop);
+		if (_up_shop.get() == nullptr)
+		{
+			int shop_index_col = p_shop->get_col_index();
+			int shop_index_row = p_shop->get_row_index();
+			int shop_x = ((shop_index_col * (GameSettings::CellMarginX * 2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
+			int shop_y = ((shop_index_row * (GameSettings::CellMarginY * 2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
+			_up_shop = std::move(
+				std::unique_ptr<ShopView>{
+				new ShopView(
+					shop_x,
+					shop_y,
+					GameSettings::MineWidth,
+					GameSettings::MineHeight,
+					GameSettings::MineMarginX,
+					GameSettings::MineMarginY
+				)
+			});
+		}
+		else
+		{
+			_up_shop->Invalidate(p_shop);
+		}
 	}
 
 	int num_of_castle = p_map->GetTotalCastleNumber();

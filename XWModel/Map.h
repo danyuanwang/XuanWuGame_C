@@ -52,5 +52,7 @@ public:
 	int GetNumberOfCol()const;
 	int GetNumberOfRow() const;
 	void AddCastle(int row, int col);
+
+	void Reset();
 };
 

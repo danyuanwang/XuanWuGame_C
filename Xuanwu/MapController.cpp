@@ -20,6 +20,7 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 {
 	bool result = false;
 
+	if (_up_shop_controller.get() != nullptr)
 	{
 		result = (_up_shop_controller)->HandleSdlEvent(e);
 		if (result)
@@ -65,7 +66,7 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 				_p_focused_controller = itr._Ptr->get();
 				if ((*itr)->GetCellType() != CellType_River && (*itr)->GetCellType() != CellType_Water)
 				{
-					BuildCastleCommand cmd{(*itr)->GetRowIndex(),(*itr)->GetColIndex()};
+					BuildCastleCommand cmd{ (*itr)->GetRowIndex(),(*itr)->GetColIndex() };
 					cmd.Execute();
 				}
 				break;
@@ -125,7 +126,7 @@ void MapController::Invalidate()
 		int index = p_mine_view->GetIndex();
 		if (_mine_controllers.size() <= i)
 		{
-			std::unique_ptr<MineController> p_mine_controller{new MineController(p_mine_view, const_cast<Mine*>(GetMapModel()->GetMine(index)))};
+			std::unique_ptr<MineController> p_mine_controller{ new MineController(p_mine_view, const_cast<Mine*>(GetMapModel()->GetMine(index))) };
 			_mine_controllers.push_back(std::move(p_mine_controller));
 		}
 		else
@@ -135,14 +136,18 @@ void MapController::Invalidate()
 	}
 
 	ShopView* p_shop_view = (GetMapView()->_up_shop.get());
-	if (_up_shop_controller.get() == nullptr)
+	if (p_shop_view != nullptr)
 	{
-		_up_shop_controller = std::move(std::unique_ptr<ShopController>{ new ShopController(p_shop_view, const_cast<Shop*>(GetMapModel()->GetShop())) });
+		if (_up_shop_controller.get() == nullptr)
+		{
+			_up_shop_controller = std::move(std::unique_ptr<ShopController>{ new ShopController(p_shop_view, const_cast<Shop*>(GetMapModel()->GetShop())) });
+		}
+		else
+		{
+			_up_shop_controller->Invalidate();
+		}
 	}
-	else
-	{
-		_up_shop_controller->Invalidate();
-	}
+
 	for (int i = 0; i < GetMapView()->_vector_castle.size(); i++)
 	{
 		CastleView* p_castle_view = GetMapView()->_vector_castle[i].get();

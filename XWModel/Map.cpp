@@ -56,7 +56,6 @@ Map::Map()
 	_num_of_big_hunt_mine = _rand_in_range(1, 4);
 	_num_of_small_hunt_mine = _rand_in_range(3, 5);
 	_num_of_gold_mine = _rand_in_range(1, 1);
-	_init_map();
 }
 
 
@@ -121,6 +120,10 @@ ptree & Map::GetPropertyTree()
 	return _property_tree;
 }
 
+void Map::Reset()
+{
+	_init_map();
+}
 void Map::_init_map()
 {
 

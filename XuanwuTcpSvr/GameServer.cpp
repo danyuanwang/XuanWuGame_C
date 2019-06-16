@@ -2,7 +2,6 @@
 
 GameServer::GameServer()
 {
-	up_game_model = std::unique_ptr<GameModel>{ new GameModel() };
 }
 
 
@@ -55,18 +54,28 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 
 	switch (gpr.GetActionType())
 	{
-		case  GameObjectAction_BuildCastle:
+	case  GameObjectAction_Restart:
+	{
+		if (up_game_model.get() == nullptr)
 		{
-			int col = gpr.GetKeyValue<int>("col_index");
-			int row = gpr.GetKeyValue<int>("row_index");
-
+			up_game_model = std::unique_ptr<GameModel>{ new GameModel() };
 			Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
-			p_map->AddCastle(row, col);
-
-			break;
+			p_map->Reset();
 		}
+		break;
+	}
+	case  GameObjectAction_BuildCastle:
+	{
+		int col = gpr.GetKeyValue<int>("col_index");
+		int row = gpr.GetKeyValue<int>("row_index");
+
+		Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
+		p_map->AddCastle(row, col);
+
+		break;
+	}
 	default:
-	break;
+		break;
 	}
 
 	_notifyUpdate();
