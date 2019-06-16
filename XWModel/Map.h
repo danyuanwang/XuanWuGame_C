@@ -44,8 +44,11 @@ public:
 	const Cell* GetCell(int index) const;
 	const Mine* GetMine(int index) const;
 	const Shop* GetShop() const;
+	const Castle* GetCastle(int index) const;
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
+	int GetTotalCastleNumber() const;
+
 	int GetNumberOfCol()const;
 	int GetNumberOfRow() const;
 	void AddCastle(int row, int col);

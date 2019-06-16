@@ -45,7 +45,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 			int mine_index_row = p_mine->GetRowIndex();
 			int mine_x = ((mine_index_col * (GameSettings::CellMarginX*2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
 			int mine_y = ((mine_index_row * (GameSettings::CellMarginY*2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
-			MineView mineView(i, p_mine->GetMineType(), mine_x, mine_y, GameSettings::Minewidth, GameSettings::MineHeight, GameSettings::MineMarginX, GameSettings::MineMarginY);
+			MineView mineView(i, p_mine->GetMineType(), mine_x, mine_y, GameSettings::MineWidth, GameSettings::MineHeight, GameSettings::MineMarginX, GameSettings::MineMarginY);
 			_vector_mine.push_back(mineView);
 		}
 		else
@@ -66,7 +66,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 			new ShopView(
 				shop_x,
 				shop_y,
-				GameSettings::Minewidth,
+				GameSettings::MineWidth,
 				GameSettings::MineHeight,
 				GameSettings::MineMarginX,
 				GameSettings::MineMarginY
@@ -77,6 +77,26 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 	{
 		_up_shop->Invalidate(p_shop);
 	}
+
+	int num_of_castle = p_map->GetTotalCastleNumber();
+	for (int i = 0; i < num_of_castle; i++) {
+		const Castle* p_castle = p_map->GetCastle(i);
+
+		if (_vector_castle.size() <= i)
+		{//if the cell is added newly
+			int castle_index_col = p_castle->GetColIndex();
+			int castle_index_row = p_castle->GetRowIndex();
+			int cell_x = ((castle_index_col * (GameSettings::CellMarginX * 2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
+			int cell_y = ((castle_index_row * (GameSettings::CellMarginY * 2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
+			CastleView CastleView(i, cell_x, cell_y, GameSettings::MineWidth, GameSettings::MineHeight, GameSettings::MineMarginX, GameSettings::MineMarginY);
+			_vector_castle.push_back(CastleView);
+		}
+		else
+		{
+			_vector_castle[i].Invalidate(p_castle);
+		}
+	}
+
 
 	BaseView::Invalidate(p_gamemodel);
 }
@@ -92,6 +112,12 @@ void MapView::Draw(const GameEngine *p_game_engine)
 	{
 		itr->Draw(p_game_engine);
 	}
+
 	_up_shop->Draw(p_game_engine);
+
+	for (auto itr = _vector_castle.begin(); itr < _vector_castle.end(); itr++)
+	{
+		itr->Draw(p_game_engine);
+	}
 
 }

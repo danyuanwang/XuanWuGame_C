@@ -34,12 +34,12 @@ void Castle::UpdateByPropertyTree(const ptree & propert_tree)
 	PTREE_GET(_col_index);
 }
 
-int Castle::GetRowIndex()
+int Castle::GetRowIndex() const
 {
 	return _row_index;
 }
 
-int Castle::GetColIndex()
+int Castle::GetColIndex() const
 {
 	return _col_index;
 }

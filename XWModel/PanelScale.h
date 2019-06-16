@@ -3,6 +3,7 @@
 #include "Mine.h"
 #include "Cell.h"
 #include "Shop.h"
+#include "Castle.h"
 class PanelScale :
 	public ModelObject
 {

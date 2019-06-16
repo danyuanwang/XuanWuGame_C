@@ -5,6 +5,7 @@
 #include "CellController.h"
 #include "MineController.h"
 #include "ShopController.h"
+#include "CastleController.h"
 class MapController :
 	public BaseController
 {
@@ -15,7 +16,7 @@ private:
 	std::vector<CellController> _cell_controllers;
 	std::vector<MineController> _mine_controllers;
 	std::unique_ptr<ShopController> _up_shop_controller;
-
+	std::vector<CastleController> _castle_controllers;
 	BaseController* _p_focused_controller;
 
 public:

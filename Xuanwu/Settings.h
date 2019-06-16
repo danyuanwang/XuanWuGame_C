@@ -15,7 +15,7 @@ namespace GameSettings
 	const int NumOfBoardCol = 16;
 	const int CellWidth = MapWidth / NumOfBoardRow;
 	const int MineMarginX = CellWidth / 5;
-	const int Minewidth = MineMarginX * 3;
+	const int MineWidth = MineMarginX * 3;
 	const int CellHeight = CellWidth;
 	const int PanelMarginX = CellWidth / 2;
 	const int PanelMarginY = PanelMarginX;

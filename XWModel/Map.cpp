@@ -300,6 +300,11 @@ const Shop * Map::GetShop() const
 	return _up_shop.get();
 }
 
+const Castle * Map::GetCastle(int index) const
+{
+	return _list_castle[index].get();
+}
+
 int Map::GetTotalCellNumber() const
 {
 	return (int)_list_cell.size();
@@ -308,6 +313,11 @@ int Map::GetTotalCellNumber() const
 int Map::GetTotalMineNumber() const
 {
 	return (int)_list_mine.size();
+}
+
+int Map::GetTotalCastleNumber() const
+{
+	return (int)_list_castle.size();
 }
 
 int Map::GetNumberOfCol() const

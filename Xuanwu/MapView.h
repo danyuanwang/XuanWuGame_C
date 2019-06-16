@@ -3,6 +3,7 @@
 # include "CellView.h"
 #include "MineView.h"
 #include "ShopView.h"
+#include "CastleView.h"
 #include <vector>
 class MapView :
 	public BaseView
@@ -18,6 +19,7 @@ private:
 	std::vector<CellView> _vector_cell;
 	std::vector<MineView> _vector_mine;
 	std::unique_ptr<ShopView> _up_shop;
+	std::vector<CastleView> _vector_castle;
 	friend class MapController;
 };
 

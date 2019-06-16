@@ -63,6 +63,13 @@ void PanelScale::TakeDataObject(const ModelObject * p_model)
 			_title = "Cell";//TODO: refine the value to _title and _information
 			_information = "this is a cell";
 		}
+		else if (typeid(*p_model) == typeid(Castle))
+		{
+			const Castle* p_cell = static_cast<const Castle*>(p_model);
+			_title = "Castle";//TODO: refine the value to _title and _information
+			_information = "this is a castle";
+
+		}
 		
 	}
 }

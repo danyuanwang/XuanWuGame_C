@@ -11,8 +11,8 @@ public:
 
 	ptree & GetPropertyTree();
 	void UpdateByPropertyTree(const ptree& propert_tree);
-	int GetRowIndex();
-	int GetColIndex();
+	int GetRowIndex() const;
+	int GetColIndex() const;
 private:
 	int _row_index;
 	int _col_index;

@@ -1,5 +1,6 @@
 #include "MapController.h"
 #include "BuildCastleCommand.h"
+#include "CastleController.h"
 
 MapController::MapController(MapView* p_view, Map* p_model) :
 	BaseController(p_view, p_model)
@@ -39,6 +40,20 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 				break;
 			}
 		}
+
+	}
+	if (!result)
+	{
+		for (auto itr = _castle_controllers.begin(); itr < _castle_controllers.end(); itr++)
+		{
+			result = (itr)->HandleSdlEvent(e);
+			if (result)
+			{
+				_p_focused_controller = (CastleController*)itr._Ptr;
+				break;
+			}
+		}
+
 	}
 
 	if (!result)
@@ -128,6 +143,20 @@ void MapController::Invalidate()
 	else
 	{
 		_up_shop_controller->Invalidate();
+	}
+	for (int i = 0; i < GetMapView()->_vector_castle.size(); i++)
+	{
+		CastleView* p_castle_view = &(GetMapView()->_vector_castle[i]);
+		int index = p_castle_view->GetIndex();
+		if (_castle_controllers.size() <= i)
+		{
+			CastleController castle_controller(p_castle_view, const_cast<Castle*>(GetMapModel()->GetCastle(index)));
+			_castle_controllers.push_back(castle_controller);
+		}
+		else
+		{
+			_castle_controllers[i].Invalidate();
+		}
 	}
 }
 
