@@ -2,10 +2,12 @@
 #include"GameClient.h"
 #include "Client.h"
 #include "GameConnection.h"
+#include "logger.h"
 
 int main(int, char**) {
 	std::string	str_host("127.0.0.1"), str_port("2014");
 
+	std::string str_hostname = boost::asio::ip::host_name();
 
 	std::unique_ptr<Client> up_client (new Client(str_host, str_port, GameConnection::GetSingleton()));
 
@@ -17,6 +19,8 @@ int main(int, char**) {
 	up_client->Start();
 
 	up_game->Start();
+
+	LOGTRACE("Xuanwu client starts on: %s:%s, connecting to: %s", str_hostname.c_str(), str_port.c_str(), str_host.c_str());
 
 	SDL_Event e;
 	e.type = SDL_FIRSTEVENT;
