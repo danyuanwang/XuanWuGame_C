@@ -4,11 +4,14 @@ class Player :
 	public ModelObject
 {
 public:
-	Player();
+	Player(const char*player_identity);
+	Player(const ptree& property_tree);
 	virtual ~Player();
+	ptree&  GetPropertyTree() override;
 	const char* GetNameForPTree() const { return "Player"; }
+	void UpdateByPropertyTree(const ptree& propert_tree) override;
 
-	void TakeRequest(GamePlayRequest & request);
-	void GetPropertyTree(ptree& propert_tree) const;
+private:
+	std::string _player_identity;
 };
 

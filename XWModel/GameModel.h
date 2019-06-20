@@ -8,14 +8,13 @@
 #include "Board.h"
 #include "ConnectionMgr.h"
 #include "Player.h"
-
+#include <map>
 class GameModel :
 	public ModelObject
 {
 private:
 	std::unique_ptr<Board> up_game_board;
-	std::list<std::unique_ptr<Player>> _list_player; 
-
+	std::map<std::string, std::unique_ptr<Player>> _map_players;
 
 public:
 	GameModel();
@@ -27,5 +26,6 @@ public:
 	void UpdateByPropertyTree(const ptree& propert_tree);
 
 	const Board* GetBoard() const ;
+	void AddPlayer(const char* identity);
 };
 

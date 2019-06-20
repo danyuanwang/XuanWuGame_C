@@ -1,5 +1,7 @@
 #pragma once
 #include "Constants.h"
+#include <string>
+#include "boost/asio.hpp"
 
 namespace GameSettings
 {
@@ -27,7 +29,10 @@ namespace GameSettings
 	const int MapHeight = (CellHeight + CellMarginY)* NumOfBoardCol;
 	const int MarginOfBoardY = (HeightWindowY - MapHeight)/2;
 	
+	
 	const int PanelHeight = MapHeight;
+
+	const  std::string client_name = boost::asio::ip::host_name();;
 	const XW_RGB_Color CellColorMap[] = {
 		XW_RGB_Color(XW_Color_Value::WHITE),
 		XW_RGB_Color(XW_Color_Value::BLUE_L),

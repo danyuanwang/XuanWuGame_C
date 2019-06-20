@@ -236,6 +236,8 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="PanelScaleController.cpp" />
     <ClCompile Include="PanelScaleView.cpp" />
     <ClCompile Include="PanelView.cpp" />
+    <ClCompile Include="RestartCommand.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="ShopController.cpp" />
     <ClCompile Include="ShopView.cpp" />
   </ItemGroup>
@@ -267,6 +269,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="PanelScaleController.h" />
     <ClInclude Include="PanelScaleView.h" />
     <ClInclude Include="PanelView.h" />
+    <ClInclude Include="RestartCommand.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShopController.h" />
     <ClInclude Include="ShopView.h" />

@@ -1,7 +1,7 @@
 #include "GameClient.h"
 #include "GamePlayRequest.h"
 #include "GameConnection.h"
-
+#include "RestartCommand.h"
 GameClient::GameClient(GameEngine* pge) :
 	mp_game_engine(pge)
 {
@@ -56,15 +56,6 @@ void GameClient::ProcessGameRequest(GamePlayRequest & gpr)
 
 void GameClient::Start()
 {
-	/*send game start request to server*/
-	auto up_gpr = std::unique_ptr<GamePlayRequest>(
-		new GamePlayRequest
-		);
-
-	up_gpr->SetScenario(GameScenario_GameBoard);
-	up_gpr->SetFromObject(GameObject_GameView);
-	up_gpr->SetToObject(GameObject_GameBoard);
-	up_gpr->SetActionType(GameObjectAction_Restart);
-
-	GameConnection::GetSingleton()->SendContent(up_gpr->ToJson().c_str());
+	RestartCommand restart_command;
+	restart_command.Execute();
 }

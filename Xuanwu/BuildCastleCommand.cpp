@@ -1,6 +1,7 @@
 #include "BuildCastleCommand.h"
 #include "GamePlayRequest.h"
 #include "GameConnection.h"
+#include "Settings.h"
 
 
 
@@ -29,5 +30,6 @@ void BuildCastleCommand::Execute()
 	up_gpr->SetActionType(GameObjectAction_BuildCastle);
 	up_gpr->AddKeyValue("col_index", std::to_string(_col));
 	up_gpr->AddKeyValue("row_index", std::to_string(_row));
+	up_gpr->AddKeyValue("client_name", GameSettings::client_name);
 	GameConnection::GetSingleton()->SendContent(up_gpr->ToJson().c_str());
 }
