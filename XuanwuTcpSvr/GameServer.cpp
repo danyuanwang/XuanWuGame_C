@@ -62,6 +62,8 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 			Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
 			p_map->Reset();
 		}
+
+		up_game_model->AddPlayer(gpr.GetKeyValue("client_name").c_str());
 		break;
 	}
 	case  GameObjectAction_BuildCastle:

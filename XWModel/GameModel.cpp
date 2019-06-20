@@ -4,7 +4,7 @@
 
 GameModel::GameModel()
 {
-	up_game_board =  std::move(std::unique_ptr<Board>{ new Board() } );
+	up_game_board = std::move(std::unique_ptr<Board>{ new Board() });
 }
 
 
@@ -63,17 +63,14 @@ void GameModel::UpdateByPropertyTree(const ptree& propert_tree)
 	{
 		const std::string & key = v.first; // key, the identify
 		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
-		if (key == QUOTES(Player))
+
+		if (_map_players.find(key) == _map_players.end())
 		{
-			auto player_itr = _map_players.find(key);
-			if (player_itr == _map_players.end())
-			{
-				_map_players[key] = std::move(std::unique_ptr<Player>{ new Player(key.c_str()) });
-			}
-			else
-			{
-				_map_players[key]->UpdateByPropertyTree(subtree);
-			}
+			_map_players[key] = std::move(std::unique_ptr<Player>{ new Player(key.c_str()) });
+		}
+		else
+		{
+			_map_players[key]->UpdateByPropertyTree(subtree);
 		}
 	}
 }
@@ -86,7 +83,7 @@ void GameModel::AddPlayer(const char* identity)
 {
 	auto player_itr = _map_players.find(identity);
 	if (player_itr == _map_players.end()) {
-		_map_players[identity] =std::move( std::unique_ptr<Player>{ new Player(identity) });
+		_map_players[identity] = std::move(std::unique_ptr<Player>{ new Player(identity) });
 	}
 }
 
