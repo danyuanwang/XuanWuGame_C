@@ -26,6 +26,7 @@ public:
 	void UpdateByPropertyTree(const ptree& propert_tree);
 
 	const Board* GetBoard() const ;
+	const std::map < std::string, std::unique_ptr<Player>>* GetPlayers() const;
 	void AddPlayer(const char* identity);
 };
 

@@ -87,3 +87,9 @@ void GameModel::AddPlayer(const char* identity)
 	}
 }
 
+const std::map < std::string, std::unique_ptr<Player>>* GameModel::GetPlayers() const 
+{
+	return &_map_players;
+}
+
+

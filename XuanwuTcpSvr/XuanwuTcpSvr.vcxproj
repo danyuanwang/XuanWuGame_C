@@ -160,6 +160,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp" />
+    <ClCompile Include="ServerBaseController.cpp" />
+    <ClCompile Include="ServerBoardController.cpp" />
+    <ClCompile Include="ServerCastleController.cpp" />
+    <ClCompile Include="ServerCellController.cpp" />
+    <ClCompile Include="ServerGameController.cpp" />
+    <ClCompile Include="ServerMapController.cpp" />
+    <ClCompile Include="ServerMineController.cpp" />
+    <ClCompile Include="ServerPanelController.cpp" />
+    <ClCompile Include="ServerPlayerController.cpp" />
+    <ClCompile Include="ServerShopController.cpp" />
     <ClCompile Include="XuanwuTcpSvr.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +185,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameServer.h" />
+    <ClInclude Include="ServerBaseController.h" />
+    <ClInclude Include="ServerBoardController.h" />
+    <ClInclude Include="ServerCastleController.h" />
+    <ClInclude Include="ServerCellController.h" />
+    <ClInclude Include="ServerGameController.h" />
+    <ClInclude Include="ServerMapController.h" />
+    <ClInclude Include="ServerMineController.h" />
+    <ClInclude Include="ServerPanelController.h" />
+    <ClInclude Include="ServerPlayerController.h" />
+    <ClInclude Include="ServerShopController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

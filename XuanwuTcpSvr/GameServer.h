@@ -2,13 +2,14 @@
 #include <NetMsgCallback.h>
 #include "ConnectionMgr.h"
 #include "GameModel.h"
+#include "ServerGameController.h"
 
 class GameServer :
 	public NetMsgCallback
 {
 private:
-	std::unique_ptr<GameModel> up_game_model;
-
+	std::unique_ptr<GameModel> _up_game_model;
+	std::unique_ptr<ServerGameController> _up_game_controller;
 	ConnectionMgr* _p_connectionMgr;
 
 	void _notifyUpdate();

@@ -40,7 +40,7 @@ void GameServer::_notifyUpdate()
 	gr.SetToObject(GameObject_GameModel);
 	gr.SetActionType(GameObjectAction_UpdateView);
 
-	gr.AddChild(up_game_model->GetNameForPTree(), up_game_model->GetPropertyTree());
+	gr.AddChild(_up_game_model->GetNameForPTree(), _up_game_model->GetPropertyTree());
 
 	NetPackMsg netMsg;
 	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
@@ -56,23 +56,21 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 	{
 	case  GameObjectAction_Restart:
 	{
-		if (up_game_model.get() == nullptr)
+		if (_up_game_model.get() == nullptr)
 		{
-			up_game_model = std::unique_ptr<GameModel>{ new GameModel() };
-			Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
+			_up_game_model = std::unique_ptr<GameModel>{ new GameModel() };
+			Map* p_map = const_cast<Map*>(_up_game_model->GetBoard()->GetMap());
 			p_map->Reset();
+			_up_game_controller = std::unique_ptr<ServerGameController>{ new ServerGameController(_up_game_model.get()) };
 		}
 
-		up_game_model->AddPlayer(gpr.GetKeyValue("client_name").c_str());
+		_up_game_controller->HandleGameRequest(gpr);
 		break;
+		
 	}
 	case  GameObjectAction_BuildCastle:
 	{
-		int col = gpr.GetKeyValue<int>("col_index");
-		int row = gpr.GetKeyValue<int>("row_index");
-
-		Map* p_map = const_cast<Map*>(up_game_model->GetBoard()->GetMap());
-		p_map->AddCastle(row, col);
+		_up_game_controller->HandleGameRequest(gpr);
 
 		break;
 	}
