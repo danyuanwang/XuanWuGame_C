@@ -41,6 +41,9 @@ void ServerMapController::HandleGameRequest(GamePlayRequest & gpr)
 
 		Map* p_map = static_cast<Map*>(_p_model);
 		p_map->AddCastle(row, col);
+		
+		auto server_castle_controller =std::unique_ptr<ServerCastleController>( new ServerCastleController(const_cast <Castle*>(p_map->GetCastle(row, col))));
+		_list_castle.push_back(std::move(server_castle_controller));
 	}
 	default:
 		break;

@@ -92,4 +92,14 @@ const std::map < std::string, std::unique_ptr<Player>>* GameModel::GetPlayers() 
 	return &_map_players;
 }
 
+const Player* GameModel::GetPlayer(const char* key) const 
+{
+	Player* p_player = nullptr;
+	auto player_itr = _map_players.find(key);
+	if (player_itr != _map_players.end()) 
+	{
+		p_player = (*player_itr).second.get();
+	}
+	return p_player;
+}
 

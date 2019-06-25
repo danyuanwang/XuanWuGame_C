@@ -45,6 +45,7 @@ public:
 	const Mine* GetMine(int index) const;
 	const Shop* GetShop() const;
 	const Castle* GetCastle(int index) const;
+	const Castle* GetCastle(int row, int col) const;
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
 	int GetTotalCastleNumber() const;

@@ -308,6 +308,21 @@ const Castle * Map::GetCastle(int index) const
 	return _list_castle[index].get();
 }
 
+const Castle * Map::GetCastle(int row, int col) const
+{
+	Castle* p_castle = nullptr;
+	for (auto itr = _list_castle.cbegin(); itr != _list_castle.cend(); itr++) {
+		if ((*itr)->GetRowIndex() == row && (*itr)->GetColIndex() == col) 
+		{
+			p_castle =  (*itr).get();
+			break;
+		}
+		
+	}
+	return p_castle;
+	
+}
+
 int Map::GetTotalCellNumber() const
 {
 	return (int)_list_cell.size();
