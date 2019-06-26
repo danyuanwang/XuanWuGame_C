@@ -1,6 +1,7 @@
 #pragma once
 #include "GamePlayRequest.h"
 #include "ModelObject.h"
+
 class ServerBaseController
 {
 public:
@@ -11,4 +12,3 @@ protected:
 	ServerBaseController(ModelObject* p_model);
 	ModelObject* _p_model;
 };
-

@@ -3,6 +3,7 @@
 #include "ServerBoardController.h"
 #include "ServerPlayerController.h"
 #include <map>
+#include "ServerGameState.h"
 class ServerGameController :
 	public ServerBaseController
 {
@@ -11,12 +12,26 @@ public:
 	virtual ~ServerGameController();
 	void HandleGameRequest(GamePlayRequest& gpr) override;
 	const ServerBoardController* GetServerBoardController() const;
-	const std::map < std::string, std::unique_ptr<ServerPlayerController>>* GetServerPlayerControllers() const;
+
 private:
 	std::unique_ptr<ServerBoardController> _up_serverboardcontroller;
 	std::map<std::string, std::unique_ptr<ServerPlayerController>> _map_serverplayercontroller;
 
+	enum ServerGameStateValue
+	{
+		idle = 0,
 
-	
+		//...
+
+		total_number_of_states
+	};
+
+	std::unique_ptr<ServerGameState> _state_machine[total_number_of_states];
+	ServerGameStateValue _state_value;
+	void _change_state();
+
+	friend class ServerGameState;
+	friend class ServerGameStateIdle;
+
 };
 
