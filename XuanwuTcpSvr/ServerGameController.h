@@ -3,7 +3,6 @@
 #include "ServerBoardController.h"
 #include "ServerPlayerController.h"
 #include <map>
-#include "ServerGameState.h"
 class ServerGameController :
 	public ServerBaseController
 {
@@ -20,18 +19,14 @@ private:
 	enum ServerGameStateValue
 	{
 		idle = 0,
-
+		build_castle = 1,
 		//...
 
 		total_number_of_states
 	};
 
-	std::unique_ptr<ServerGameState> _state_machine[total_number_of_states];
 	ServerGameStateValue _state_value;
 	void _change_state();
-
-	friend class ServerGameState;
-	friend class ServerGameStateIdle;
 
 };
 

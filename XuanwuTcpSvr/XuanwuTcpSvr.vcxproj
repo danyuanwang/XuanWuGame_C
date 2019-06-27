@@ -161,13 +161,10 @@
   <ItemGroup>
     <ClCompile Include="GameServer.cpp" />
     <ClCompile Include="ServerBaseController.cpp" />
-    <ClCompile Include="ServerBaseState.cpp" />
     <ClCompile Include="ServerBoardController.cpp" />
     <ClCompile Include="ServerCastleController.cpp" />
     <ClCompile Include="ServerCellController.cpp" />
     <ClCompile Include="ServerGameController.cpp" />
-    <ClCompile Include="ServerGameStateIdle.cpp" />
-    <ClCompile Include="ServerGameState.cpp" />
     <ClCompile Include="ServerMapController.cpp" />
     <ClCompile Include="ServerMineController.cpp" />
     <ClCompile Include="ServerPanelController.cpp" />
@@ -189,13 +186,10 @@
   <ItemGroup>
     <ClInclude Include="GameServer.h" />
     <ClInclude Include="ServerBaseController.h" />
-    <ClInclude Include="ServerBaseState.h" />
     <ClInclude Include="ServerBoardController.h" />
     <ClInclude Include="ServerCastleController.h" />
     <ClInclude Include="ServerCellController.h" />
     <ClInclude Include="ServerGameController.h" />
-    <ClInclude Include="ServerGameStateIdle.h" />
-    <ClInclude Include="ServerGameState.h" />
     <ClInclude Include="ServerMapController.h" />
     <ClInclude Include="ServerMineController.h" />
     <ClInclude Include="ServerPanelController.h" />
