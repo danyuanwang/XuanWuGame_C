@@ -29,5 +29,6 @@ public:
 	const std::map < std::string, std::unique_ptr<Player>>* GetPlayers() const;
 	void AddPlayer(const char* identity);
 	const Player* GetPlayer(const char* key) const;
+	int GetPlayerNumber() const;
 };
 

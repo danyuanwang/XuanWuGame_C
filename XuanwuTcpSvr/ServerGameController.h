@@ -20,6 +20,7 @@ private:
 	{
 		idle = 0,
 		build_castle = 1,
+		playing = 2,
 		//...
 
 		total_number_of_states

@@ -32,3 +32,4 @@ const ServerPanelController * ServerBoardController::GetServerPanelController() 
 {
 	return _up_serverpanelcontroller.get();
 }
+

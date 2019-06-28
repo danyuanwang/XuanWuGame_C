@@ -49,10 +49,11 @@ public:
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
 	int GetTotalCastleNumber() const;
+	int GetTotalPlayerCastleNumber(const char* player_identity)const;
 
 	int GetNumberOfCol()const;
 	int GetNumberOfRow() const;
-	void AddCastle(int row, int col);
+	void AddCastle(int row, int col, const char* player_identity);
 
 	void Reset();
 };

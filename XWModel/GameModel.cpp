@@ -102,4 +102,6 @@ const Player* GameModel::GetPlayer(const char* key) const
 	}
 	return p_player;
 }
-
+int GameModel::GetPlayerNumber() const {
+	return (int)_map_players.size();
+}

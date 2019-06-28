@@ -338,6 +338,20 @@ int Map::GetTotalCastleNumber() const
 	return (int)_list_castle.size();
 }
 
+int Map::GetTotalPlayerCastleNumber(const char * player_identity) const
+{
+	int number_of_castles = 0;
+	for (auto itr = _list_castle.cbegin(); itr != _list_castle.cend(); itr++)
+	{
+		if (std::strcmp((*itr)->GetPlayerIdentity() ,player_identity) == 0) 
+		{
+			number_of_castles++;
+		}
+
+	}
+	return number_of_castles;
+}
+
 int Map::GetNumberOfCol() const
 {
 	return _num_of_col;
@@ -348,7 +362,7 @@ int Map::GetNumberOfRow() const
 	return _num_of_row;
 }
 
-void Map::AddCastle(int row, int col)
+void Map::AddCastle(int row, int col, const char* player_identity)
 {
 	
 	bool found_overlap = false;
@@ -365,7 +379,7 @@ void Map::AddCastle(int row, int col)
 	if (found_overlap == false)
 	{
 		std::unique_ptr<Castle> up_castle(
-			new Castle(row, col)
+			new Castle(row, col, player_identity)
 		);
 		_list_castle.push_back(std::move(up_castle));
 	}

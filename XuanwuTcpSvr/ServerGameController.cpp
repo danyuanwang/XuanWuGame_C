@@ -23,7 +23,9 @@ ServerGameController::~ServerGameController()
 }
 
 void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
+
 {
+	bool castle_create_flag = false;
 	switch (_state_value)
 	{
 	case ServerGameController::idle:
@@ -49,10 +51,20 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 	}
 	case ServerGameController::build_castle:
 	{
+		
 		switch (gpr.GetActionType())
 		{
 		case GameObjectAction_BuildCastle:
 		{
+			
+			auto key = gpr.GetKeyValue("client_name").c_str();
+			GameModel *p_game_model = static_cast<GameModel*>(_p_model);
+			const Map* p_map_model = p_game_model->GetBoard()->GetMap();
+			if (p_map_model->GetTotalPlayerCastleNumber(key) >= 1)
+			{
+				castle_create_flag = true;
+			}
+
 			break;
 			//TODO: check if room is full
 		}
@@ -67,8 +79,10 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		break;
 	}
 
-
-	_up_serverboardcontroller->HandleGameRequest(gpr);
+	if (castle_create_flag == false) {
+		_up_serverboardcontroller->HandleGameRequest(gpr);
+	}
+	
 
 	for (auto itr = _map_serverplayercontroller.begin(); itr != _map_serverplayercontroller.end(); itr++)
 	{
@@ -85,12 +99,31 @@ const ServerBoardController * ServerGameController::GetServerBoardController() c
 
 void ServerGameController::_change_state()
 {
+	GameModel*p_game_model = static_cast<GameModel*>(_p_model);
 	switch (_state_value)
 	{
 	case idle:
 	{
+		
+		if ((p_game_model)->GetPlayerNumber() == 1){
+			_state_value = build_castle;
+		}
 		//check the conditions to determine if change to next state and to what state.
 		break;
+	}
+	case build_castle:
+	{
+		bool players_done = true;
+		for (auto itr = p_game_model->GetPlayers()->cbegin(); itr != p_game_model->GetPlayers()->cend(); itr++) 
+		{
+			if (p_game_model->GetBoard()->GetMap()->GetTotalPlayerCastleNumber((itr)->first.c_str()) < 1) {
+				players_done = false;
+				break;
+			}
+		}
+		if (players_done == true) {
+			_state_value = playing;
+		}
 	}
 	default:
 	{
