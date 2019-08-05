@@ -3,6 +3,7 @@
 #include "Server.h"
 #include <string>
 #include "GameServer.h"
+#include "ServerScheduler.h"
 int main()
 {
 	std::string ips("0.0.0.0");
@@ -11,6 +12,8 @@ int main()
 	auto up_gs = std::unique_ptr<GameServer>(new GameServer);
 	auto up_msp = std::unique_ptr<NetMsgPump>(new NetMsgPump);
 	auto up_cnmgr = std::unique_ptr<ConnectionMgr>(new  ConnectionMgr);
+	auto up_scheduler = std::unique_ptr<ServerScheduler>(new ServerScheduler(up_msp.get()));
+	up_scheduler->Start();
 
 	up_cnmgr->AddMsgListener(up_msp.get());
 

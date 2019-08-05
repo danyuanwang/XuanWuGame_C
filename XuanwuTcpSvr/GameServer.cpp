@@ -39,9 +39,10 @@ void GameServer::_notifyUpdate()
 	gr.SetFromObject(GameObject_GameBoard);
 	gr.SetToObject(GameObject_GameModel);
 	gr.SetActionType(GameObjectAction_UpdateView);
-
-	gr.AddChild(_up_game_model->GetNameForPTree(), _up_game_model->GetPropertyTree());
-
+	if (_up_game_model.get() != nullptr)
+	{
+		gr.AddChild(_up_game_model->GetNameForPTree(), _up_game_model->GetPropertyTree());
+	}
 	NetPackMsg netMsg;
 	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
 	{
@@ -72,6 +73,11 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 	{
 		_up_game_controller->HandleGameRequest(gpr);
 
+		break;
+	}
+	case GameObjectAction_UpdateDataModel:
+	{
+		//update the data model
 		break;
 	}
 	default:

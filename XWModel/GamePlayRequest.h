@@ -40,6 +40,8 @@ enum  GameObjectActionTypeEnum
 
 	GameObjectAction_UpdateView,
 
+	GameObjectAction_UpdateDataModel,
+
 	GameObjectAction_Total_Number,
 };
 
