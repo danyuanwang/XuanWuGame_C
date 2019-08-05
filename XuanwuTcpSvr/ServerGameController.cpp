@@ -25,7 +25,7 @@ ServerGameController::~ServerGameController()
 void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 
 {
-	bool castle_create_flag = false;
+	bool ignore_castle_build_request = true;
 	switch (_state_value)
 	{
 	case ServerGameController::idle:
@@ -35,10 +35,10 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		case GameObjectAction_Restart:
 		{
 			GameModel *p_game_model = static_cast<GameModel*>(_p_model);
-			auto key = gpr.GetKeyValue("client_name").c_str();
-			p_game_model->AddPlayer(key);
+			auto key = gpr.GetKeyValue("client_name");
+			p_game_model->AddPlayer(key.c_str());
 			_map_serverplayercontroller[key] =
-				std::move(std::unique_ptr<ServerPlayerController>{new ServerPlayerController(const_cast<Player*>(p_game_model->GetPlayer(key)))});
+				std::move(std::unique_ptr<ServerPlayerController>{new ServerPlayerController(const_cast<Player*>(p_game_model->GetPlayer(key.c_str())))});
 			break;
 			//TODO: check if room is full
 		}
@@ -57,12 +57,12 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		case GameObjectAction_BuildCastle:
 		{
 			
-			auto key = gpr.GetKeyValue("client_name").c_str();
+			auto key = gpr.GetKeyValue("client_name");
 			GameModel *p_game_model = static_cast<GameModel*>(_p_model);
 			const Map* p_map_model = p_game_model->GetBoard()->GetMap();
-			if (p_map_model->GetTotalPlayerCastleNumber(key) >= 1)
+			if (p_map_model->GetTotalPlayerCastleNumber(key.c_str()) < 1)
 			{
-				castle_create_flag = true;
+				ignore_castle_build_request = false;
 			}
 
 			break;
@@ -79,7 +79,7 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		break;
 	}
 
-	if (castle_create_flag == false) {
+	if (ignore_castle_build_request == false) {
 		_up_serverboardcontroller->HandleGameRequest(gpr);
 	}
 	
@@ -105,7 +105,7 @@ void ServerGameController::_change_state()
 	case idle:
 	{
 		
-		if ((p_game_model)->GetPlayerNumber() == 1){
+		if ((p_game_model)->GetPlayerNumber() == 2){ //change the 2 to a 4 later
 			_state_value = build_castle;
 		}
 		//check the conditions to determine if change to next state and to what state.

@@ -34,19 +34,20 @@ int GameServer::OnSentMsgCallback(boost::system::error_code ec, std::size_t)
 
 void GameServer::_notifyUpdate()
 {
-	GamePlayRequest gr;
-	gr.SetScenario(GameScenario_DataModel);
-	gr.SetFromObject(GameObject_GameBoard);
-	gr.SetToObject(GameObject_GameModel);
-	gr.SetActionType(GameObjectAction_UpdateView);
 	if (_up_game_model.get() != nullptr)
 	{
+		GamePlayRequest gr;
+		gr.SetScenario(GameScenario_DataModel);
+		gr.SetFromObject(GameObject_GameBoard);
+		gr.SetToObject(GameObject_GameModel);
+		gr.SetActionType(GameObjectAction_UpdateView);
 		gr.AddChild(_up_game_model->GetNameForPTree(), _up_game_model->GetPropertyTree());
-	}
-	NetPackMsg netMsg;
-	if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
-	{
-		_p_connectionMgr->SendMsg(&netMsg);
+
+		NetPackMsg netMsg;
+		if (netMsg.SetConent(gr.ToJson().c_str()) > 0)
+		{
+			_p_connectionMgr->SendMsg(&netMsg);
+		}
 	}
 }
 
@@ -67,7 +68,7 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 
 		_up_game_controller->HandleGameRequest(gpr);
 		break;
-		
+
 	}
 	case  GameObjectAction_BuildCastle:
 	{
