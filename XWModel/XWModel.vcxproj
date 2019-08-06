@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Army.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="Cell.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Shop.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Army.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Cell.cpp" />

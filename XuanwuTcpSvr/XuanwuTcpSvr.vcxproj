@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp" />
+    <ClCompile Include="ServerArmyController.cpp" />
     <ClCompile Include="ServerBaseController.cpp" />
     <ClCompile Include="ServerBoardController.cpp" />
     <ClCompile Include="ServerCastleController.cpp" />
@@ -186,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameServer.h" />
+    <ClInclude Include="ServerArmyController.h" />
     <ClInclude Include="ServerBaseController.h" />
     <ClInclude Include="ServerBoardController.h" />
     <ClInclude Include="ServerCastleController.h" />

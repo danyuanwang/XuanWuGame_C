@@ -210,6 +210,8 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArmyController.cpp" />
+    <ClCompile Include="ArmyView.cpp" />
     <ClCompile Include="BaseCommand.cpp" />
     <ClCompile Include="BaseController.cpp" />
     <ClCompile Include="BaseView.cpp" />
@@ -241,6 +243,8 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="ShopView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArmyController.h" />
+    <ClInclude Include="ArmyView.h" />
     <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="BaseController.h" />
     <ClInclude Include="BaseView.h" />

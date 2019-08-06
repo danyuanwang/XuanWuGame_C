@@ -41,9 +41,13 @@ void ServerMapController::HandleGameRequest(GamePlayRequest & gpr)
 		auto key = gpr.GetKeyValue("client_name");
 		Map* p_map = static_cast<Map*>(_p_model);
 		p_map->AddCastle(row, col, key.c_str());
+		p_map->AddArmy(row, col, key.c_str());
 		
 		auto server_castle_controller =std::unique_ptr<ServerCastleController>( new ServerCastleController(const_cast <Castle*>(p_map->GetCastle(row, col))));
 		_list_castle.push_back(std::move(server_castle_controller));
+		auto server_army_controller = std::unique_ptr<ServerArmyController>(new ServerArmyController(const_cast <Army*>(p_map->GetArmy(row, col))));
+		_list_army.push_back(std::move(server_army_controller));
+
 	}
 	default:
 		break;
@@ -61,6 +65,9 @@ void ServerMapController::HandleGameRequest(GamePlayRequest & gpr)
 	for (auto itr = _list_castle.begin(); itr != _list_castle.end(); itr++)
 	{
 		
+		(*itr)->HandleGameRequest(gpr);
+	}
+	for (auto itr = _list_army.begin(); itr != _list_army.end(); itr++) {
 		(*itr)->HandleGameRequest(gpr);
 	}
 

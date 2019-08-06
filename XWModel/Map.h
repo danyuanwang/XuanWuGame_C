@@ -5,6 +5,7 @@
 #include "Mine.h"
 #include "Shop.h"
 #include "Castle.h"
+#include "Army.h"
 
 class Map :public ModelObject
 {
@@ -13,6 +14,7 @@ private:
 	std::vector< std::unique_ptr<Mine>> _list_mine;
 	std::vector<std::unique_ptr<Castle>> _list_castle;
 	std::unique_ptr<Shop> _up_shop;
+	std::vector<std::unique_ptr<Army>> _list_army;
 	int _num_of_row;
 	int _num_of_col;
 
@@ -46,14 +48,18 @@ public:
 	const Shop* GetShop() const;
 	const Castle* GetCastle(int index) const;
 	const Castle* GetCastle(int row, int col) const;
+	const Army* GetArmy(int index) const;
+	const Army* GetArmy(int row, int col) const;
 	int GetTotalCellNumber() const;
 	int GetTotalMineNumber() const;
 	int GetTotalCastleNumber() const;
+	int GetTotalArmyNumber() const;
 	int GetTotalPlayerCastleNumber(const char* player_identity)const;
 
 	int GetNumberOfCol()const;
 	int GetNumberOfRow() const;
 	void AddCastle(int row, int col, const char* player_identity);
+	void AddArmy(int row, int col, const char* player_identity);
 
 	void Reset();
 };

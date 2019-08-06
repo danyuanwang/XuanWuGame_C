@@ -127,7 +127,33 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 		}
 	}
 
+	int num_of_army = p_map->GetTotalArmyNumber();
+	for (int i = 0; i < num_of_army; i++) {
+		const Army* p_army = p_map->GetArmy(i);
 
+		if (_vector_army.size() <= i)
+		{//if the cell is added newly
+			int army_index_col = p_army->GetColIndex();
+			int army_index_row = p_army->GetRowIndex();
+			int cell_x = ((army_index_col * (GameSettings::CellMarginX * 2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
+			int cell_y = ((army_index_row * (GameSettings::CellMarginY * 2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
+			std::unique_ptr<ArmyView> up_armyView{
+				new ArmyView(
+					i,
+					cell_x,
+					cell_y,
+					GameSettings::MineWidth,
+					GameSettings::MineHeight,
+					GameSettings::MineMarginX,
+					GameSettings::MineMarginY)
+			};
+			_vector_army.push_back(std::move(up_armyView));
+		}
+		else
+		{
+			_vector_army[i]->Invalidate(p_army);
+		}
+	}
 	BaseView::Invalidate(p_gamemodel);
 }
 
@@ -149,5 +175,8 @@ void MapView::Draw(const GameEngine *p_game_engine)
 	{
 		(*itr)->Draw(p_game_engine);
 	}
-
+	for (auto itr = _vector_army.begin(); itr < _vector_army.end(); itr++) 
+	{
+		(*itr)->Draw(p_game_engine);
+	}
 }

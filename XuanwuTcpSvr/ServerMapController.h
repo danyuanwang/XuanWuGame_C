@@ -1,4 +1,5 @@
 #pragma once
+#include "ServerArmyController.h"
 #include "ServerBaseController.h"
 #include "ServerMineController.h"
 #include "ServerCellController.h"
@@ -17,6 +18,6 @@ private:
 	std::vector<std::unique_ptr<ServerCellController>>_list_cell;
 	std::vector<std::unique_ptr<ServerCastleController>>_list_castle;
 	std::unique_ptr<ServerShopController>_up_shop;
-
+	std::vector<std::unique_ptr<ServerArmyController>>_list_army;
 };
 

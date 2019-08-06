@@ -117,6 +117,20 @@ ptree & Map::GetPropertyTree()
 	}
 	_property_tree.add_child(QUOTES(_list_castle), pt_castle);
 	
+
+
+	ptree pt_army;
+	for (auto iter = _list_army.cbegin(); iter < _list_army.cend(); iter++)
+	{
+		pt_army.push_back(
+			ptree::value_type(
+			(*iter)->GetNameForPTree(),
+				(*iter)->GetPropertyTree()
+			)
+		);
+	}
+	_property_tree.add_child(QUOTES(_list_army), pt_army);
+
 	return _property_tree;
 }
 
@@ -286,7 +300,25 @@ void Map::UpdateByPropertyTree(const ptree & propert_tree)
 		}
 		index_castle++;
 	}
-
+	ptree pt_army = _property_tree.get_child(QUOTES(_list_army));
+	int index_army = 0;
+	BOOST_FOREACH(ptree::value_type const&v, pt_army)
+	{
+		const std::string & key = v.first; // key
+		const boost::property_tree::ptree & subtree = v.second; // value (or a subnode)
+		if (key == QUOTES(Army))
+		{
+			if (_list_army.size() <= index_army)
+			{
+				_list_army.push_back(std::move(std::unique_ptr<Army>(new Army(subtree))));
+			}
+			else
+			{
+				_list_army[index_army]->UpdateByPropertyTree(subtree);
+			}
+		}
+		index_army++;
+	}
 
 }
 
@@ -323,6 +355,25 @@ const Castle * Map::GetCastle(int row, int col) const
 	
 }
 
+const Army * Map::GetArmy(int index) const
+{
+	return _list_army[index].get();;
+}
+
+const Army * Map::GetArmy(int row, int col) const
+{
+	Army * p_army = nullptr;
+	for (auto itr = _list_army.cbegin(); itr != _list_army.cend(); itr++) {
+		if ((*itr)->GetRowIndex() == row && (*itr)->GetColIndex() == col)
+		{
+			p_army = (*itr).get();
+			break;
+		}
+
+	}
+	return p_army;
+}
+
 int Map::GetTotalCellNumber() const
 {
 	return (int)_list_cell.size();
@@ -336,6 +387,11 @@ int Map::GetTotalMineNumber() const
 int Map::GetTotalCastleNumber() const
 {
 	return (int)_list_castle.size();
+}
+
+int Map::GetTotalArmyNumber() const
+{
+	return (int)_list_army.size();
 }
 
 int Map::GetTotalPlayerCastleNumber(const char * player_identity) const
@@ -384,4 +440,27 @@ void Map::AddCastle(int row, int col, const char* player_identity)
 		_list_castle.push_back(std::move(up_castle));
 	}
 	
+}
+
+void Map::AddArmy(int row, int col, const char * player_identity)
+{
+	bool found_overlap = false;
+	for (auto itr = _list_army.begin(); itr < _list_army.end(); itr++)
+	{
+		if ((*itr)->GetColIndex() == row && (*itr)->GetRowIndex() == col)
+		{
+
+			found_overlap = true;
+			break;
+		}
+
+	}
+	if (found_overlap == false)
+	{
+		std::unique_ptr<Army> up_army(
+			new Army(row, col, player_identity)
+		);
+		_list_army.push_back(std::move(up_army));
+	}
+
 }
