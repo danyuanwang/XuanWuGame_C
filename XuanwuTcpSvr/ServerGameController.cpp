@@ -75,6 +75,22 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		}
 		break;
 	}
+	case ServerGameController::playing:
+	{
+		switch (gpr.GetActionType())
+		{
+			case GameObjectAction_Move:
+			{
+				break;
+			}
+			case GameObjectAction_UpdateDataModel:
+			{
+				break;
+			}
+		default:
+			break;
+		}
+	}
 	default:
 		break;
 	}
@@ -124,6 +140,10 @@ void ServerGameController::_change_state()
 		if (players_done == true) {
 			_state_value = playing;
 		}
+	}
+	case playing:
+	{
+	
 	}
 	default:
 	{

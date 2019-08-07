@@ -36,7 +36,7 @@ CastleController::~CastleController()
 
 bool CastleController::HandleSdlEvent(SDL_Event & e)
 {
-	return BaseController::HandleSdlEvent(e);;
+	return BaseController::HandleSdlEvent(e);
 }
 
 void CastleController::Invalidate()

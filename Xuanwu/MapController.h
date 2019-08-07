@@ -6,6 +6,7 @@
 #include "MineController.h"
 #include "ShopController.h"
 #include "CastleController.h"
+#include "ArmyController.h"
 class MapController :
 	public BaseController
 {
@@ -18,7 +19,7 @@ private:
 	std::unique_ptr<ShopController> _up_shop_controller;
 	std::vector<std::unique_ptr<CastleController>> _castle_controllers;
 	BaseController* _p_focused_controller;
-
+	std::vector<std::unique_ptr<ArmyController>> _army_controllers;
 public:
 	MapController(MapView* p_view, Map* p_model);
 	virtual ~MapController();

@@ -13,10 +13,21 @@ public:
 	void UpdateByPropertyTree(const ptree& propert_tree) override;
 	int GetRowIndex() const;
 	int GetColIndex() const;
+	int GetEndColIndex() const;
+
+	int GetEndrowIndex() const;
+	void SetEndIndex(int end_row, int end_col);
 	const char* GetPlayerIdentity();
-private:
+
+	void UpdateData();
+
+private: 
 	int _row_index;
+	int _end_row_index = -1;
 	int _col_index;
+	int _end_col_index = -1;
+
 	std::string _player_identity;
+
 };
 

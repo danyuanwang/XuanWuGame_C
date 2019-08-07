@@ -29,5 +29,6 @@ public:
 
 	BaseView* GetView() const;
 	ModelObject* GetModel() const;
+
 };
 

@@ -49,6 +49,10 @@ void ServerMapController::HandleGameRequest(GamePlayRequest & gpr)
 		_list_army.push_back(std::move(server_army_controller));
 
 	}
+	case GameObjectAction_Move:
+	{
+	
+	}
 	default:
 		break;
 	}

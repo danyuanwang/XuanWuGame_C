@@ -34,12 +34,12 @@ void Shop::UpdateByPropertyTree(const ptree & propert_tree)
 	PTREE_GET(_col_index);
 }
 
-int Shop::get_row_index()const
+int Shop::GetRowIndex()const
 {
 	return _row_index;
 }
 
-int Shop::get_col_index() const
+int Shop::GetColIndex() const
 {
 	return _col_index;
 }

@@ -1,5 +1,6 @@
 #include "MapController.h"
 #include "BuildCastleCommand.h"
+#include "MoveArmyCommand.h"
 
 MapController::MapController(MapView* p_view, Map* p_model) :
 	BaseController(p_view, p_model)
@@ -19,16 +20,36 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 
 {
 	bool result = false;
-
-	if (_up_shop_controller.get() != nullptr)
+	BaseController* p_last_focused_controller = _p_focused_controller;
+	int click_pos_row = -1;
+	int click_pos_col = -1;
+	for (auto itr = _army_controllers.begin(); itr < _army_controllers.end(); itr++)
 	{
-		result = (_up_shop_controller)->HandleSdlEvent(e);
+		result = (*itr)->HandleSdlEvent(e);
 		if (result)
 		{
-			_p_focused_controller = _up_shop_controller.get();
+			_p_focused_controller = itr._Ptr->get();
+			Army *p_army = static_cast<Army*>((*itr)->GetModel());
+			click_pos_row = p_army->GetRowIndex();
+			click_pos_col = p_army->GetColIndex();
+			break;
 		}
 	}
 
+	if (!result)
+	{
+		if (_up_shop_controller.get() != nullptr)
+		{
+			result = (_up_shop_controller)->HandleSdlEvent(e);
+			if (result)
+			{
+				_p_focused_controller = _up_shop_controller.get();
+				Shop *p_shop = static_cast<Shop*>((_up_shop_controller)->GetModel());
+				click_pos_row = p_shop->GetRowIndex();
+				click_pos_col = p_shop->GetColIndex();
+			}
+		}
+	}
 	if (!result)
 	{
 		for (auto itr = _mine_controllers.begin(); itr < _mine_controllers.end(); itr++)
@@ -37,6 +58,9 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			if (result)
 			{
 				_p_focused_controller = itr._Ptr->get();
+				Mine *p_mine = static_cast<Mine*>((*itr)->GetModel());
+				click_pos_row = p_mine->GetRowIndex();
+				click_pos_col = p_mine->GetColIndex();
 				break;
 			}
 		}
@@ -50,6 +74,9 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			if (result)
 			{
 				_p_focused_controller = itr._Ptr->get();
+				Castle *p_castle = static_cast<Castle*>((*itr)->GetModel());
+				click_pos_row = p_castle->GetRowIndex();
+				click_pos_col = p_castle->GetColIndex();
 				break;
 			}
 		}
@@ -64,6 +91,9 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			if (result)
 			{
 				_p_focused_controller = itr._Ptr->get();
+				Cell *p_cell = static_cast<Cell*>((*itr)->GetModel());
+				click_pos_row = p_cell->GetRowIndex();
+				click_pos_col = p_cell->GetColIndex();
 				if ((*itr)->GetCellType() != CellType_River && (*itr)->GetCellType() != CellType_Water)
 				{
 					BuildCastleCommand cmd{ (*itr)->GetRowIndex(),(*itr)->GetColIndex() };
@@ -73,7 +103,15 @@ bool MapController::HandleSdlEvent(SDL_Event & e)
 			}
 		}
 	}
-
+	//check if the last focus is on a army, if yes, send move command to move the army to the current focused position
+	if (p_last_focused_controller != nullptr&& typeid(*p_last_focused_controller) == typeid(ArmyController) && click_pos_col >= 0 && click_pos_row >= 0)
+	{
+		MoveArmyCommand cmd{
+			click_pos_row,
+			click_pos_col,
+			(p_last_focused_controller)->GetModel()->GetModelObjectID() };
+		cmd.Execute();
+	}
 
 
 
@@ -160,6 +198,21 @@ void MapController::Invalidate()
 		else
 		{
 			_castle_controllers[i]->Invalidate();
+		}
+	}
+
+	for (int i = 0; i < GetMapView()->_vector_army.size(); i++)
+	{
+		ArmyView* p_army_view = GetMapView()->_vector_army[i].get();
+		int index = p_army_view->GetIndex();
+		if (_army_controllers.size() <= i)
+		{
+			std::unique_ptr<ArmyController> p_army_controller{ new ArmyController(p_army_view, const_cast<Army*>(GetMapModel()->GetArmy(index))) };
+			_army_controllers.push_back(std::move(p_army_controller));
+		}
+		else
+		{
+			_army_controllers[i]->Invalidate();
 		}
 	}
 }

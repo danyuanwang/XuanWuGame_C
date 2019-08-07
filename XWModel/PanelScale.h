@@ -4,6 +4,7 @@
 #include "Cell.h"
 #include "Shop.h"
 #include "Castle.h"
+#include "Army.h"
 class PanelScale :
 	public ModelObject
 {

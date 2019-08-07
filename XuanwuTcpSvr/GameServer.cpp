@@ -72,13 +72,18 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 	}
 	case  GameObjectAction_BuildCastle:
 	{
-		_up_game_controller->HandleGameRequest(gpr);
-
+		if (_up_game_controller.get() != nullptr) {
+			_up_game_controller->HandleGameRequest(gpr);
+		}
 		break;
 	}
 	case GameObjectAction_UpdateDataModel:
 	{
 		//update the data model
+		if (_up_game_controller.get() != nullptr) {
+			_up_game_controller->HandleGameRequest(gpr);
+		}
+
 		break;
 	}
 	default:

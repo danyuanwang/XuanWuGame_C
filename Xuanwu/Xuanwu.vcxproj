@@ -232,6 +232,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClCompile Include="MapView.cpp" />
     <ClCompile Include="MineController.cpp" />
     <ClCompile Include="MineView.cpp" />
+    <ClCompile Include="MoveArmyCommand.cpp" />
     <ClCompile Include="PanelActionController.cpp" />
     <ClCompile Include="PanelActionView.cpp" />
     <ClCompile Include="PanelController.cpp" />
@@ -266,6 +267,7 @@ xcopy $(ProjectDir)resource\*.* $(OutDir)resource\. /DYI</Command>
     <ClInclude Include="MapView.h" />
     <ClInclude Include="MineController.h" />
     <ClInclude Include="MineView.h" />
+    <ClInclude Include="MoveArmyCommand.h" />
     <ClInclude Include="PanelActionController.h" />
     <ClInclude Include="PanelActionView.h" />
     <ClInclude Include="PanelController.h" />

@@ -77,8 +77,8 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 	{
 		if (_up_shop.get() == nullptr)
 		{
-			int shop_index_col = p_shop->get_col_index();
-			int shop_index_row = p_shop->get_row_index();
+			int shop_index_col = p_shop->GetColIndex();
+			int shop_index_row = p_shop->GetRowIndex();
 			int shop_x = ((shop_index_col * (GameSettings::CellMarginX * 2 + GameSettings::CellWidth)) + GameSettings::MineMarginX) + _x;
 			int shop_y = ((shop_index_row * (GameSettings::CellMarginY * 2 + GameSettings::CellHeight)) + GameSettings::MineMarginY) + _y;
 			_up_shop = std::move(

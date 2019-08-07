@@ -1,5 +1,6 @@
 #pragma once
 #include "ServerBaseController.h"
+#include "Army.h"
 class ServerArmyController :
 	public ServerBaseController
 {
