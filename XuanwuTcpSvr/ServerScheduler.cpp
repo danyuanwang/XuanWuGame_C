@@ -44,7 +44,7 @@ void ServerScheduler::_process_scheduler()
 	using namespace std::chrono_literals;
 	while (_signal_quit_thread ==false)
 	{
-		std::this_thread::sleep_for(10s);
+		std::this_thread::sleep_for(1s);
 		if (_p_msg_pump != nullptr)
 		{
 			GamePlayRequest gr;

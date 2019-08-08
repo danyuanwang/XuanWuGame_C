@@ -84,18 +84,23 @@ void Army::UpdateData()
 			int y1 = _row_index;
 			int x2 = _end_col_index;
 			int y2 = _end_row_index;
-			if (x1 - x2 == 0) {
-				if (_end_row_index > _row_index) {
+			if (x1 - x2 == 0)
+			{
+				if (_end_row_index > _row_index)
+				{
 					_row_index++;
 				}
-				else if (_end_row_index< _row_index) {
+				else
+				{
 					_row_index--;
 				}
-				else {
-					int slope = (y1 - y2) / (x1 - x2);
-				}
-			
 			}
+			else 
+			{
+				slope = (y1 - y2) / (x1 - x2);
+			}
+			
+			
 			
 			int y_intercept = y1 - slope * x1;
 			int result1 = slope * x1 + y_intercept;
@@ -103,7 +108,7 @@ void Army::UpdateData()
 			int delta1 = (y1 + 1) - result1;
 			int delta2 = (y1)-result2;
 			if (x1 - x2 != 0) {
-				if (abs(delta1) < abs(delta2))
+				if (abs(delta1) > abs(delta2))
 				{
 					if (_end_col_index > _col_index) {
 						_col_index++;
