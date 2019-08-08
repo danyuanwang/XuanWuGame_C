@@ -2,8 +2,8 @@
 
 
 
-PanelActionView::PanelActionView(int x, int y, int width, int height, int margin_x, int margin_y) :
-	BaseView(x, y, width, height, margin_x, margin_y)
+PanelActionView::PanelActionView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y) :
+	BaseView(x, y, container_x, container_y, width, height, margin_x, margin_y)
 {
 }
 

@@ -23,6 +23,12 @@ ServerMapController::ServerMapController(ModelObject* p_model)
 			std::unique_ptr< ServerCastleController>{new ServerCastleController(const_cast<Castle*>(p_map_model->GetCastle(i)))}
 		));
 	}
+
+	for (int i = 0; i < p_map_model->GetTotalArmyNumber(); i++)
+	{
+		_list_army.push_back(std::move(
+			std::unique_ptr< ServerArmyController>{new ServerArmyController(const_cast<Army*>(p_map_model->GetArmy(i)))}));
+	}
 }
 
 

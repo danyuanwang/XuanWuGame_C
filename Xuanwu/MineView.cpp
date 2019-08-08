@@ -4,8 +4,8 @@
 
 
 
-MineView::MineView(int index, MineType mine_type, int x, int y, int width, int height, int margin_x, int margin_y)
-	:BaseView(x, y, width, height, margin_x, margin_y),
+MineView::MineView(int index, MineType mine_type, int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y)
+	:BaseView(x, y, container_x, container_y, width, height, margin_x, margin_y),
 	_index(index),
 	_mine_type(mine_type)
 {

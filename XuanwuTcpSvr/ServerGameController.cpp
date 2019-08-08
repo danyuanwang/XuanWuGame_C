@@ -25,7 +25,7 @@ ServerGameController::~ServerGameController()
 void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 
 {
-	bool ignore_castle_build_request = true;
+	bool ignore_request_for_board = true;
 	switch (_state_value)
 	{
 	case ServerGameController::idle:
@@ -62,7 +62,7 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 			const Map* p_map_model = p_game_model->GetBoard()->GetMap();
 			if (p_map_model->GetTotalPlayerCastleNumber(key.c_str()) < 1)
 			{
-				ignore_castle_build_request = false;
+				ignore_request_for_board = false;
 			}
 
 			break;
@@ -81,10 +81,12 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		{
 			case GameObjectAction_Move:
 			{
+				ignore_request_for_board = false;
 				break;
 			}
 			case GameObjectAction_UpdateDataModel:
 			{
+				ignore_request_for_board = false;
 				break;
 			}
 		default:
@@ -95,7 +97,7 @@ void ServerGameController::HandleGameRequest(GamePlayRequest & gpr)
 		break;
 	}
 
-	if (ignore_castle_build_request == false) {
+	if (ignore_request_for_board == false) {
 		_up_serverboardcontroller->HandleGameRequest(gpr);
 	}
 	

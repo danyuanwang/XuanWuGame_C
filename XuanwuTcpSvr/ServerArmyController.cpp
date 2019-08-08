@@ -26,6 +26,7 @@ void ServerArmyController::HandleGameRequest(GamePlayRequest & gpr)
 		{
 			p_army->SetEndIndex(end_row, end_col);
 		}
+		break;
 	}
 	case GameObjectAction_UpdateDataModel:
 	{

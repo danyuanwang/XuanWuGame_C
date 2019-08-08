@@ -86,6 +86,13 @@ void GameServer::_processRequest(GamePlayRequest& gpr)
 
 		break;
 	}
+	case GameObjectAction_Move:
+	{
+		if (_up_game_controller.get() != nullptr)
+		{
+			_up_game_controller->HandleGameRequest(gpr);
+		}
+	}
 	default:
 		break;
 	}

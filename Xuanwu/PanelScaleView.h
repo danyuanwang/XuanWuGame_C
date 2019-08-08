@@ -16,7 +16,7 @@ private:
 	int _description_width;
 	int _description_height;
 public:
-	PanelScaleView(int x, int y, int width, int height, int margin_x, int margin_y);
+	PanelScaleView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y);
 	virtual ~PanelScaleView();
 
 	void Draw(const GameEngine *p_game_engine) override;

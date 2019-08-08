@@ -1,9 +1,11 @@
 #include "BaseView.h"
 #include "Logger.h"
-BaseView::BaseView(int x, int y, int width, int height, int margin_x, int margin_y)
+BaseView::BaseView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y)
 {
 	_x = x;
 	_y = y;
+	_container_x = container_x;
+	_container_y = container_y;
 	_width = width;
 	_height = height;
 	_margin_x = margin_x;
@@ -34,4 +36,14 @@ void BaseView::HighLight(bool high_lighted)
 void BaseView::Invalidate(const ModelObject *p_gamemodel)
 {
 
+}
+
+int BaseView::ConvertColToX(int col)
+{
+	return ((col * (_margin_x * 2 + _width)) + _margin_x) + _container_x;
+}
+
+int BaseView::ConvertRowToY(int row)
+{
+	return ((row * (_margin_y * 2 + _height)) + _margin_y) + _container_y;
 }

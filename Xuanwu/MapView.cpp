@@ -3,8 +3,8 @@
 #include "Settings.h"
 
 
-MapView::MapView(int x, int y, int width, int height, int margin_x, int margin_y)
-	: BaseView(x, y, width, height, margin_x, margin_y)
+MapView::MapView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y)
+	: BaseView(x, y, container_x, container_y, width, height, margin_x, margin_y)
 {
 }
 
@@ -32,7 +32,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 				new CellView(
 					i,
 					p_cell->GetCellType(),
-					cell_x, cell_y,
+					cell_x, cell_y, _x, _y,
 					GameSettings::CellWidth,
 					GameSettings::CellHeight,
 					GameSettings::CellMarginX,
@@ -59,6 +59,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 					p_mine->GetMineType(), 
 					mine_x, 
 					mine_y, 
+					 _x, _y,
 					GameSettings::MineWidth, 
 					GameSettings::MineHeight, 
 					GameSettings::MineMarginX, 
@@ -86,6 +87,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 				new ShopView(
 					shop_x,
 					shop_y,
+					_x, _y,
 					GameSettings::MineWidth,
 					GameSettings::MineHeight,
 					GameSettings::MineMarginX,
@@ -114,6 +116,7 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 					i,
 					cell_x,
 					cell_y,
+					 _x, _y,
 					GameSettings::MineWidth,
 					GameSettings::MineHeight,
 					GameSettings::MineMarginX,
@@ -142,6 +145,8 @@ void MapView::Invalidate(const ModelObject * p_gamemodel)
 					i,
 					cell_x,
 					cell_y,
+					_x,
+					_y,
 					GameSettings::MineWidth,
 					GameSettings::MineHeight,
 					GameSettings::MineMarginX,

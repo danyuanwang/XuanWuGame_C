@@ -7,7 +7,7 @@ GameClient::GameClient(GameEngine* pge) :
 {
 	up_gameModel = std::move(std::unique_ptr<GameModel>{  new GameModel() });
 
-	up_gameView = std::move(std::unique_ptr<GameView>{ new GameView(0, 0, 0, 0, 0, 0) });
+	up_gameView = std::move(std::unique_ptr<GameView>{ new GameView(0, 0, 0, 0, 0, 0, 0, 0) });
 
 	up_gameController = std::move(std::unique_ptr<GameController>{ new GameController(up_gameView.get(), up_gameModel.get()) });
 

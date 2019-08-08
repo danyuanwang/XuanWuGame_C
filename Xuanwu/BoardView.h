@@ -9,7 +9,7 @@ class BoardView :
 {
 
 public:
-	BoardView(int x, int y, int width, int height, int margin_x, int margin_y);
+	BoardView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y);
 	virtual ~BoardView();
 	void Draw(const GameEngine *p_game_engine) override;
 

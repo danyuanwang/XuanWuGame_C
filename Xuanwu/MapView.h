@@ -10,7 +10,7 @@ class MapView :
 	public BaseView
 {
 public:
-	MapView(int x, int y, int width, int height, int margin_x, int margin_y);
+	MapView(int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y);
 	virtual ~MapView();
 	void Draw(const GameEngine *p_game_engine) override;
 

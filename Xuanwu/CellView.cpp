@@ -2,8 +2,8 @@
 #include "Settings.h"
 #include "Logger.h"
 
-CellView::CellView(int index, CellType cell_type, int x, int y, int width, int height, int margin_x, int margin_y)
-	:BaseView(x, y, width, height, margin_x, margin_y),
+CellView::CellView(int index, CellType cell_type, int x, int y, int container_x, int container_y, int width, int height, int margin_x, int margin_y)
+	:BaseView(x, y, container_x, container_y, width, height, margin_x, margin_y),
 	_index(index), 
 	_cell_type(cell_type)
 {
