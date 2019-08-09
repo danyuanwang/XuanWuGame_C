@@ -11,8 +11,8 @@ namespace GameSettings
 	const int HeightWindowY = 800;
 	static const char* WindowCaption = "Xuanwu Game";
 	const int PanelWidth = WidthOfWindowX / 4;
-	const int MapWidth = (((WidthOfWindowX - PanelWidth)/22)*20);
-	
+	const int MapWidth = (((WidthOfWindowX - PanelWidth) / 22) * 20);
+
 	const int NumOfBoardRow = 20;
 	const int NumOfBoardCol = 16;
 	const int CellWidth = MapWidth / NumOfBoardRow;
@@ -25,11 +25,11 @@ namespace GameSettings
 	const int MineHeight = MineMarginY * 3;
 	const int CellMarginX = 1;
 	const int CellMarginY = CellMarginX;
-	const int MarginOfBoardX = MapWidth/20;
+	const int MarginOfBoardX = MapWidth / 20;
 	const int MapHeight = (CellHeight + CellMarginY)* NumOfBoardCol;
-	const int MarginOfBoardY = (HeightWindowY - MapHeight)/2;
-	
-	
+	const int MarginOfBoardY = (HeightWindowY - MapHeight) / 2;
+
+
 	const int PanelHeight = MapHeight;
 
 	const  std::string client_name = boost::asio::ip::host_name();;
@@ -42,6 +42,16 @@ namespace GameSettings
 		XW_RGB_Color(XW_Color_Value::BLUE_D),
 		XW_RGB_Color(XW_Color_Value::GREEN_L)
 	};
-		const int FramePerSecond = 45;
+
+	const XW_RGB_Color PlayerColorMap[] = {
+		XW_RGB_Color(XW_Color_Value::WHITE),
+		XW_RGB_Color(XW_Color_Value::BLUE_L),
+		XW_RGB_Color(XW_Color_Value::GREY),
+		XW_RGB_Color(XW_Color_Value::GREEN_D),
+		XW_RGB_Color(XW_Color_Value::BLUE),
+		XW_RGB_Color(XW_Color_Value::BLUE_D),
+		XW_RGB_Color(XW_Color_Value::GREEN_L)
+	};
+	const int FramePerSecond = 45;
 
 };

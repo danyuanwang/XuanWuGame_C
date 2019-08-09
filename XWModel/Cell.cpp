@@ -33,6 +33,7 @@ ptree & Cell::GetPropertyTree()
 	PROPERTY_TREE_PUT(_property_tree, _col_index);
 	PROPERTY_TREE_PUT(_property_tree, _elevation);
 	PROPERTY_TREE_PUT(_property_tree, _type);
+	PROPERTY_TREE_PUT_STRING(_property_tree, _player_identity);
 	return _property_tree;
 }
 
@@ -49,4 +50,15 @@ void Cell::UpdateByPropertyTree(const ptree& propert_tree)
 	PTREE_GET(_col_index);
 	PTREE_GET(_elevation);
 	PTREE_GET_T(_type, CellType);
+	PROPERTY_TREE_GET_STRING(_property_tree, _player_identity);
+}
+
+void Cell::SetPlayerIdentity(std::string player_identity)
+{
+	_player_identity = player_identity;
+}
+
+std::string Cell::GetPlayerIdentity() const
+{
+	return std::string(_player_identity);
 }

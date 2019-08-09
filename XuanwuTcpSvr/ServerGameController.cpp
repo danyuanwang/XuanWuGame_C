@@ -142,9 +142,14 @@ void ServerGameController::_change_state()
 		if (players_done == true) {
 			_state_value = playing;
 		}
+		break;
 	}
 	case playing:
 	{
+		if (p_game_model->GetBoard()->GetMap()->CastleIsSurrounded()) {
+			_state_value = idle;
+		}
+		break;
 	
 	}
 	default:

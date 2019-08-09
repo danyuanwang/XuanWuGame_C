@@ -24,6 +24,7 @@ private:
 	int _elevation;
 	CellType _type;
 	std::string _str_name_id;
+	std::string _player_identity;
 
 public:
 	Cell(
@@ -44,5 +45,7 @@ public:
 	CellType GetCellType() const { return _type;  };
 	int GetRowIndex() const { return _row_index; };
 	int GetColIndex() const { return _col_index; };
+	void SetPlayerIdentity(std::string player_identity);
+	std::string GetPlayerIdentity() const;
 };
 

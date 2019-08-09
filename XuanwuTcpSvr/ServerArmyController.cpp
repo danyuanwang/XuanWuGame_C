@@ -39,3 +39,15 @@ void ServerArmyController::HandleGameRequest(GamePlayRequest & gpr)
 		break;
 	}
 }
+
+int ServerArmyController::GetCol()
+{
+	Army * p_army = static_cast<Army*>(_p_model);
+	return p_army->GetColIndex();
+}
+
+int ServerArmyController::GetRow()
+{
+	Army * p_army = static_cast<Army*>(_p_model);
+	return p_army->GetRowIndex();
+}

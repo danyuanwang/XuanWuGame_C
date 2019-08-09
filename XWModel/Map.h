@@ -35,6 +35,7 @@ private:
 		return (std::rand() % ((userEnd - userBeg) + 1)) + userBeg;
 	}
 	void _generate_mines(std::vector<int> &cell_list, int number_of_mines, MineType minetype);
+	
 public:
 	Map();
 	~Map();
@@ -60,7 +61,9 @@ public:
 	int GetNumberOfRow() const;
 	void AddCastle(int row, int col, const char* player_identity);
 	void AddArmy(int row, int col, const char* player_identity);
-
+	 
 	void Reset();
+	void UpdateData();
+	bool CastleIsSurrounded() const;
+	bool OneCastleIsSurrounded(int r, int c, std::string player_identity) const;
 };
-

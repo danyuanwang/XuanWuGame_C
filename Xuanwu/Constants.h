@@ -31,13 +31,15 @@ struct XW_RGB_Color
 		: XW_RGB_Color(int(rgb))
 	{}
 
-	operator int() {
+	XW_Color_Value GetColorValue() const
+	{
 		int rgb = 0x0;
 		rgb = Red;
 		rgb <<= 8;
 		rgb += Green;
 		rgb <<= 8;
 		rgb += Blue;
-		return rgb;
+		return XW_Color_Value(rgb);
+
 	}
 };

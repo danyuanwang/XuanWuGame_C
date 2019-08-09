@@ -8,5 +8,7 @@ public:
 	ServerArmyController(ModelObject* p_model);
 	virtual ~ServerArmyController();
 	void HandleGameRequest(GamePlayRequest& gpr) override;
+	int GetCol();
+	int GetRow();
 };
 

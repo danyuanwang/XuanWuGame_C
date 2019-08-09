@@ -80,5 +80,9 @@ void ServerMapController::HandleGameRequest(GamePlayRequest & gpr)
 	for (auto itr = _list_army.begin(); itr != _list_army.end(); itr++) {
 		(*itr)->HandleGameRequest(gpr);
 	}
+    //After handle the request in all components, ask map data model to update to make the data in-sync.
+	Map* p_map_model = static_cast<Map*>(_p_model);
+	p_map_model->UpdateData();
+
 
 }

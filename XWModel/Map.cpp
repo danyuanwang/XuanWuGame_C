@@ -43,6 +43,8 @@ void Map::_generate_mines(std::vector<int> &cell_list, int number_of_mines, Mine
 	}
 }
 
+
+
 Map::Map()
 {
 	_num_of_row = MAP_NUM_OF_ROW;
@@ -101,7 +103,7 @@ ptree & Map::GetPropertyTree()
 			_up_shop->GetPropertyTree()
 		)
 	);
-	
+
 	_property_tree.add_child(QUOTES(_up_shop), pt_shop);
 
 
@@ -116,7 +118,7 @@ ptree & Map::GetPropertyTree()
 		);
 	}
 	_property_tree.add_child(QUOTES(_list_castle), pt_castle);
-	
+
 
 
 	ptree pt_army;
@@ -138,6 +140,59 @@ void Map::Reset()
 {
 	_init_map();
 }
+
+
+void Map::UpdateData()
+{
+	for (auto itr = _list_army.begin(); itr != _list_army.end(); itr++)
+	{
+		int col = (*itr)->GetColIndex();
+		int row = (*itr)->GetRowIndex();
+		auto player_identity = (*itr)->GetPlayerIdentity();
+		int index = (row * _num_of_col) + col;
+		Cell* cell = const_cast<Cell*>(GetCell(index));
+		cell->SetPlayerIdentity(player_identity);
+
+	}
+}
+
+bool Map::CastleIsSurrounded() const
+{
+	bool castle_is_surrounded = false;
+	for (auto itr = _list_castle.begin(); itr != _list_castle.end(); itr++)
+	{
+		int col = (*itr)->GetColIndex();
+		int row = (*itr)->GetRowIndex();
+		castle_is_surrounded = OneCastleIsSurrounded(row, col, (*itr)->GetPlayerIdentity());
+		if (castle_is_surrounded == true) {
+			break;
+		}
+		
+	}
+	return castle_is_surrounded;
+}
+
+bool Map::OneCastleIsSurrounded(int r, int c, std::string player_identity) const
+{
+	bool castle_is_surrounded = true;
+	for (int itr_c = c - 1; itr_c <= c + 1 && castle_is_surrounded; itr_c++) {
+		for (int itr_r = r - 1; itr_r <= r + 1 && castle_is_surrounded; itr_r++) {
+			if (itr_c == c && itr_r == r) {
+				continue;
+			}
+			int index = (itr_r*_num_of_col) + itr_c;
+			const Cell* cell = GetCell(index);
+			if (cell->GetPlayerIdentity() != player_identity) {
+				if (cell->GetPlayerIdentity().empty() != true) {
+					castle_is_surrounded = false;
+				}
+			}
+		}
+	}
+	return castle_is_surrounded;
+}
+
+
 void Map::_init_map()
 {
 
@@ -344,15 +399,15 @@ const Castle * Map::GetCastle(int row, int col) const
 {
 	Castle* p_castle = nullptr;
 	for (auto itr = _list_castle.cbegin(); itr != _list_castle.cend(); itr++) {
-		if ((*itr)->GetRowIndex() == row && (*itr)->GetColIndex() == col) 
+		if ((*itr)->GetRowIndex() == row && (*itr)->GetColIndex() == col)
 		{
-			p_castle =  (*itr).get();
+			p_castle = (*itr).get();
 			break;
 		}
-		
+
 	}
 	return p_castle;
-	
+
 }
 
 const Army * Map::GetArmy(int index) const
@@ -399,7 +454,7 @@ int Map::GetTotalPlayerCastleNumber(const char * player_identity) const
 	int number_of_castles = 0;
 	for (auto itr = _list_castle.cbegin(); itr != _list_castle.cend(); itr++)
 	{
-		if (std::strcmp((*itr)->GetPlayerIdentity() ,player_identity) == 0) 
+		if (std::strcmp((*itr)->GetPlayerIdentity(), player_identity) == 0)
 		{
 			number_of_castles++;
 		}
@@ -420,17 +475,17 @@ int Map::GetNumberOfRow() const
 
 void Map::AddCastle(int row, int col, const char* player_identity)
 {
-	
+
 	bool found_overlap = false;
-	for (auto itr = _list_castle.begin(); itr < _list_castle.end(); itr++) 
+	for (auto itr = _list_castle.begin(); itr < _list_castle.end(); itr++)
 	{
-		if ((*itr)->GetColIndex() == row && (*itr)->GetRowIndex() ==  col)
+		if ((*itr)->GetColIndex() == row && (*itr)->GetRowIndex() == col)
 		{
 
 			found_overlap = true;
 			break;
 		}
-		
+
 	}
 	if (found_overlap == false)
 	{
@@ -439,7 +494,7 @@ void Map::AddCastle(int row, int col, const char* player_identity)
 		);
 		_list_castle.push_back(std::move(up_castle));
 	}
-	
+
 }
 
 void Map::AddArmy(int row, int col, const char * player_identity)

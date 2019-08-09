@@ -149,8 +149,14 @@ void GameEngine::Flip()
 
 void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color)const
 {
+	DrawRect( pos_x, pos_y, width, height, color, SDL_ALPHA_OPAQUE);
+}
+
+void GameEngine::DrawRect(int pos_x, int pos_y, int width, int height, XW_RGB_Color color, unsigned char alpha) const
+{
 	SDL_Rect cell_rect = { pos_x, pos_y, width, height };
-	SDL_SetRenderDrawColor(m_sdlRenderer, color.Red, color.Green, color.Blue, 0xFF);
+	SDL_SetRenderDrawBlendMode(m_sdlRenderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(m_sdlRenderer, color.Red, color.Green, color.Blue, alpha);
 	SDL_RenderFillRect(m_sdlRenderer, &cell_rect);
 }
 
